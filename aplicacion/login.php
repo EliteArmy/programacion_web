@@ -14,7 +14,7 @@
 
   </head>
 
-  <body class="bg-gradient-primary">
+  <body class="">
     <!-- Contenido -->
     <div class="container-fluid">
       <div class="row justify-content-center">
@@ -22,7 +22,8 @@
 
           <form class="form-signin well card">
             <div class="heading-image text-white text-center">
-              <span class="fas fa-dragon dragon" aria-hidden="true"></span>
+              <span class="" aria-hidden="true" href="">
+              <img src="img/dargon2.png" alt="dragon" width="75" height="75"></span>
             </div>
             
             <div class="text-center mt-4">
@@ -32,17 +33,18 @@
             <label for="correo">Correo Electrónico</label>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text fas fa-user"></span>
+                <span class="input-group-text fas fa-user bg-white border-right-0"></span>
               </div>
-              <input type="text" id="correo" class="form-control" placeholder="Correo Electrónico" required autofocus>
+              <input type="text" id="correo" class="form-control border-left-0" placeholder="Correo Electrónico" autofocus>
             </div>
 
+            
             <label for="contrasena">Contraseña</label>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text fas fa-lock"></span>
+                <span class="input-group-text fas fa-lock bg-white border-right-0"></span>
               </div>
-              <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+              <input type="password" id="contrasena" class="form-control border-left-0" placeholder="Contraseña">
             </div>
 
             <div class="checkbox mb-3">
@@ -52,7 +54,9 @@
             </div>
             
             <div>
-              <button id="btn-login" class="btn btn-primary btn-block" type="button">Ingresar</button>
+              <a href="dash-carpeta.php">
+                <button id="btn-login" class="btn btn-primary btn-block" type="button">Ingresar</button>
+              </a>
             </div>
 
             <div>
@@ -64,11 +68,13 @@
                   <a href="#" class="float-right"><i>Olvido su contraseña?</i></a>
               </div>
             </div>
-            
+
+            <!--<button class="mt-3 btn btn-lg btn-primary btn-block" type="button"> <span class="fab fa-facebook"></span>Conectarse con facebook</button>
+            -->
           </form>
 
           <footer>
-            <p class="mt-3 mb-3 text-center">
+            <p class="mt-3 mb-3 text-center text-white">
               Copyright © 2019 Julio Ariel
             </p>
           </footer>

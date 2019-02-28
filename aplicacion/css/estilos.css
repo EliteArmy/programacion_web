@@ -11,7 +11,8 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background: #44B3C2;
+  background: url('../img/code5') no-repeat center center fixed;
+  
 }
 
 .form-signin {
@@ -120,7 +121,7 @@ body {
   height: 80px;
   width: 80px;
   border-radius: 100%;
-  background: #2B5377;
+  /*background: #2B5377;*/
   position: absolute;
   transform: translate(-50%, -50%);
   font-size: 50px;
@@ -130,3 +131,8 @@ body {
   color: rgb(255, 150, 50);
 }
 
+.input-group-prepend span{
+	font-size: 15px;
+  color: #9B9FAB;
+  
+}

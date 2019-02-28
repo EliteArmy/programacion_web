@@ -1,4 +1,4 @@
-Relaciones:
+--- Relaciones:
 
 Persona-Telefono
 Una persona puede tener muchos telefonos
@@ -8,20 +8,22 @@ Usuario-Persona
 Una persona puede tener muchos usuarios
 Un usuario puede pertenecer a una sola persona (Foranea)
 
+--- Relaciones: ---
 Usuario-Pago
-un pago le puede pertenecer a muchos usuarios 
-Un usuario puede tener un pago activo (Foranea)
+un Pago le puede pertenecer a muchos Usuarios 
+Un Usuario puede tener un Pago activo (Foranea)
 
--- Relaciones: --
 Usuario-Carpeta (N:M)
 Un Usuario puede tener muchas Carpetas (Se puede restringir por el plan)
-Una Carpeta puede pertenecer a muchos Usuarios
+Una Carpeta puede pertenecer a muchos Usuarios (Depende de los permisos)
 
 Usuario-Proyecto (N:M)
 Un Usuario puede tener varios Proyectos (Restringir por el plan)
-un Proyecto puede pertenecer a muchos Usuarios
+un Proyecto puede pertenecer a muchos Usuarios (Depende de los permisos)
 
-Usuario-Archivo (:) -> No hay relación porque va en carpeta
+Usuario-Archivo (N:M)
+Un Usuario puede tener muchos Archivos
+Un Archivo puede pertenecer a muchos Usuarios (Depende de los permisos)
 
 Proyecto-Carpeta (1:N)
 Una Carpeta puede tener muchos Proyectos
@@ -29,29 +31,31 @@ Un Proyecto puede pertenecer a una Carpeta (Foranea)
 
 Proyecto-Archivo (1:N)
 Un Proyecto puede tener muchos Archivos (3 MAX .html, .css, .js)
-Un Archivo pertenece a un Proyecto (Foranea) (o puede no pertenecer a ninguno)
+Un Archivo pertenece a un Proyecto (Foranea) (puede no pertenecer a ninguno)
 
 
--- Notas:
+--- Notas:
 • Permisos de archivos: Edición y Lectura
-  -> Permisos Globales a toda la carpeta
-• Los archivos deben estar dentro de una carpeta 
+• Los archivos deben estar dentro de una carpeta
 • Se debe crear una Carpeta inicial "Home"
 
 
--- Suposiciones: 
+--- Suposiciones: 
 • Para crear un proyecto, se debe crear una Carpeta
-• Para crear un archivo se debe crear una Carpeta
-• Dar permiso a una carpeta le puede dar accerso a todo el contenido de la carpeta o solo a ciertos archivos.
-• 
+• Para crear un archivo, se debe crear una Carpeta
+• Dar permiso a una carpeta le puede dar accerso a 
+todo el contenido de la carpeta o solo a ciertos archivos.
+• Se debe crear archivos solo de extensiones conocidas
+• Dejar una carpeta siempre en el home
+ 
 
-Duda:
-Se puede borrar la carpeta "home"?
-Si se borra, se debe crear una nueva vacia?
-Si se borra, puede quedar la cuenta sin carpetas sin problemas?
+--- Dudas:
+Java, Option
+Disco o carpeta
 
-
-
+Crear Relación con las demas tablas entre usuario y archivo y proyecto
+por el caso en donde un usuario cree una carpeta y otro usuario cree
+archivos o proyectos en esa carpeta.
 
 
 

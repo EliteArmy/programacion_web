@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Code html css javascript">
+  
+    <title>Draco Code</title>
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./plugin/font-awesome/css/all.css">
+    
+    <!-- Sidebard CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/sidebar-main.css">
+    <link rel="stylesheet" type="text/css" href="./css/sidebar-themes.css">
+    <link rel="stylesheet" type="text/css" href="./css/jquery.mCustomScrollbar.min.css">
+
+    <!-- Code Mirror CSS and Addons -->
+    <link rel="stylesheet" type="text/css" href="./plugin/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="./plugin/codemirror/addon/scroll/simplescrollbars.css">
+
+    <!-- Code Mirror CSS Themes -->
+      <link rel="stylesheet" href="./plugin/codemirror/theme/3024-day.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/3024-night.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/abcdef.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/ambiance.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/base16-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/bespin.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/base16-light.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/blackboard.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/cobalt.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/colorforth.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/dracula.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/duotone-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/duotone-light.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/eclipse.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/elegant.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/erlang-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/gruvbox-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/hopscotch.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/icecoder.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/isotope.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/lesser-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/liquibyte.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/lucario.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/material.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/mbo.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/mdn-like.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/midnight.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/monokai.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/neat.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/neo.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/night.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/nord.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/oceanic-next.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/panda-syntax.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/paraiso-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/paraiso-light.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/pastel-on-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/railscasts.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/rubyblue.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/seti.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/shadowfox.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/solarized.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/the-matrix.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/tomorrow-night-bright.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/tomorrow-night-eighties.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/ttcn.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/twilight.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/vibrant-ink.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/xq-dark.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/xq-light.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/yeti.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/idea.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/darcula.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/zenburn.css">
+    <!-- Code Mirror CSS Themes -->
+
+  </head>
+
+  <body>
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand mt-n3 mb-n3" href="#">
+        <img src="img/dargon1.png" alt="dragon" width="35" height="35">
+        Draco Code Editor
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#contenido-navbar"
+        aria-controls="contenido-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="contenido-navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown active">
+              <form class="form-inline">
+                  <a class="nav-link mr-2">
+                      <i class="fas fa-user"></i> Temas 
+                    </a>
+                    <select class="custom-select custom-select-sm" onchange="selectTheme()" id="select">
+                      <option selected="">default</option>
+                      <option>3024-day</option>
+                      <option>3024-night</option>
+                      <option>abcdef</option>
+                      <option>ambiance</option>
+                      <option>base16-dark</option>
+                      <option>base16-light</option>
+                      <option>bespin</option>
+                      <option>blackboard</option>
+                      <option>cobalt</option>
+                      <option>colorforth</option>
+                      <option>darcula</option>
+                      <option>dracula</option>
+                      <option>duotone-dark</option>
+                      <option>duotone-light</option>
+                      <option>eclipse</option>
+                      <option>elegant</option>
+                      <option>erlang-dark</option>
+                      <option>gruvbox-dark</option>
+                      <option>hopscotch</option>
+                      <option>icecoder</option>
+                      <option>idea</option>
+                      <option>isotope</option>
+                      <option>lesser-dark</option>
+                      <option>liquibyte</option>
+                      <option>lucario</option>
+                      <option>material</option>
+                      <option>mbo</option>
+                      <option>mdn-like</option>
+                      <option>midnight</option>
+                      <option>monokai</option>
+                      <option>neat</option>
+                      <option>neo</option>
+                      <option>night</option>
+                      <option>nord</option>
+                      <option>oceanic-next</option>
+                      <option>panda-syntax</option>
+                      <option>paraiso-dark</option>
+                      <option>paraiso-light</option>
+                      <option>pastel-on-dark</option>
+                      <option>railscasts</option>
+                      <option>rubyblue</option>
+                      <option>seti</option>
+                      <option>shadowfox</option>
+                      <option>solarized dark</option>
+                      <option>solarized light</option>
+                      <option>the-matrix</option>
+                      <option>tomorrow-night-bright</option>
+                      <option>tomorrow-night-eighties</option>
+                      <option>ttcn</option>
+                      <option>twilight</option>
+                      <option>vibrant-ink</option>
+                      <option>xq-dark</option>
+                      <option>xq-light</option>
+                      <option>yeti</option>
+                      <option>zenburn</option>
+                    </select>
+              </form>
+                  
+          </li>
+
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="fas fa-user"></i> Perfil 
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+              <a class="dropdown-item" href="#">Mi Perfil</a>
+              <a class="dropdown-item" href="#">Desconectarse</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+
+    <!-- Contenido -->
+    <div class="container-fluid">
+      <div class="row justify-content-md-center">
+        <div class="col-12">
+          <h1 class="text-center"></h1>
+          
+          <div class="row no-gutters">
+            <div class="col-12 col-md-6">
+              <p>Select a theme:</p>
+              
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-12 col-md-6">
+              <div class="m-1 shadow-sm">
+                <div>HTML</div>
+                <textarea id="html" name="html"></textarea>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="m-1 shadow-sm">
+                CSS
+                <textarea id="css" name="css"></textarea>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="m-1 shadow-sm">
+                Javascript
+                <textarea id="javascript" name="javascript"></textarea>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="m-1 shadow-sm">
+                Resultado
+                <textarea id="html-resultado" name="html-resultado"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Contenido -->
+    
+    <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+    
+    <script type="text/javascript" src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="./js/sidebar-main.js"></script>
+
+    <script type="text/javascript" src="./plugin/codemirror/lib/codemirror.js"></script>
+    
+    <script type="text/javascript" src="./plugin/codemirror/mode/javascript/javascript.js"></script>
+    <script type="text/javascript" src="./plugin/codemirror/mode/xml/xml.js"></script>
+    <script type="text/javascript" src="./plugin/codemirror/mode/css/css.js"></script>
+
+    <script type="text/javascript" src="./plugin/codemirror/addon/scroll/simplescrollbars.js"></script>
+    
+    <script type="text/javascript" src="./js/controladores/editor.js"></script>
+
+  </body>
+
+</html>
+

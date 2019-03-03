@@ -1,0 +1,18 @@
+.font-green{
+  color: #22ff16;
+}
+
+.font-blue{
+  color: rgb(10, 150, 200);
+  /*font-size: 18px;*/
+  font-size: 1.1rem;
+  margin-right: 2px;
+}
+
+.center{
+  font-size: 1.1rem;
+}
+
+i, cite, em, var, address, dfn {
+  font-style: normal;
+}

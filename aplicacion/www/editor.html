@@ -14,6 +14,9 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./plugin/font-awesome/css/all.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/estilos-editor.css">
     
     <!-- Sidebard CSS -->
     <link rel="stylesheet" type="text/css" href="./css/sidebar-main.css">
@@ -68,8 +71,8 @@
       <link rel="stylesheet" href="./plugin/codemirror/theme/shadowfox.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/solarized.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/the-matrix.css">
-      <link rel="stylesheet" href="./plugin/codemirror/theme/tomorrow-night-bright.css">
-      <link rel="stylesheet" href="./plugin/codemirror/theme/tomorrow-night-eighties.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/tnight-bright.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/night-eighties.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/ttcn.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/twilight.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/vibrant-ink.css">
@@ -98,80 +101,92 @@
 
       <div class="collapse navbar-collapse" id="contenido-navbar">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown active">
-              <form class="form-inline">
-                  <a class="nav-link mr-2">
-                      <i class="fas fa-user"></i> Temas 
-                    </a>
-                    <select class="custom-select custom-select-sm" onchange="selectTheme()" id="select">
-                      <option selected="">default</option>
-                      <option>3024-day</option>
-                      <option>3024-night</option>
-                      <option>abcdef</option>
-                      <option>ambiance</option>
-                      <option>base16-dark</option>
-                      <option>base16-light</option>
-                      <option>bespin</option>
-                      <option>blackboard</option>
-                      <option>cobalt</option>
-                      <option>colorforth</option>
-                      <option>darcula</option>
-                      <option>dracula</option>
-                      <option>duotone-dark</option>
-                      <option>duotone-light</option>
-                      <option>eclipse</option>
-                      <option>elegant</option>
-                      <option>erlang-dark</option>
-                      <option>gruvbox-dark</option>
-                      <option>hopscotch</option>
-                      <option>icecoder</option>
-                      <option>idea</option>
-                      <option>isotope</option>
-                      <option>lesser-dark</option>
-                      <option>liquibyte</option>
-                      <option>lucario</option>
-                      <option>material</option>
-                      <option>mbo</option>
-                      <option>mdn-like</option>
-                      <option>midnight</option>
-                      <option>monokai</option>
-                      <option>neat</option>
-                      <option>neo</option>
-                      <option>night</option>
-                      <option>nord</option>
-                      <option>oceanic-next</option>
-                      <option>panda-syntax</option>
-                      <option>paraiso-dark</option>
-                      <option>paraiso-light</option>
-                      <option>pastel-on-dark</option>
-                      <option>railscasts</option>
-                      <option>rubyblue</option>
-                      <option>seti</option>
-                      <option>shadowfox</option>
-                      <option>solarized dark</option>
-                      <option>solarized light</option>
-                      <option>the-matrix</option>
-                      <option>tomorrow-night-bright</option>
-                      <option>tomorrow-night-eighties</option>
-                      <option>ttcn</option>
-                      <option>twilight</option>
-                      <option>vibrant-ink</option>
-                      <option>xq-dark</option>
-                      <option>xq-light</option>
-                      <option>yeti</option>
-                      <option>zenburn</option>
-                    </select>
-              </form>
-                  
+
+          <li class="nav-item dropdown ml-1">
+            <a class="nav-link mr-1 text-white" href="#">
+                <i class="fas fa-save font-blue"></i> <span class="center">Guardar</span>  
+            </a>
           </li>
 
-          <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+          <li class="nav-item dropdown ml-1">
+            <a class="nav-link mr-1 text-white" href="#">
+                <i class="fas fa-play font-blue"></i> <span class="center">Correr</span>  
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <form class="form-inline">
+              <a class="nav-link mr-1 text-white">
+                  <i class="fas fa-sliders-h font-blue"></i> <span class="center">Temas:</span>
+              </a>
+              <select class="custom-select custom-select-sm" onchange="selectTheme()" id="select">
+                <option selected="">default</option>
+                <option>3024-day</option>
+                <option>3024-night</option>
+                <option>abcdef</option>
+                <option>ambiance</option>
+                <option>base16-dark</option>
+                <option>base16-light</option>
+                <option>bespin</option>
+                <option>blackboard</option>
+                <option>cobalt</option>
+                <option>colorforth</option>
+                <option>darcula</option>
+                <option>dracula</option>
+                <option>duotone-dark</option>
+                <option>duotone-light</option>
+                <option>eclipse</option>
+                <option>elegant</option>
+                <option>erlang-dark</option>
+                <option>gruvbox-dark</option>
+                <option>hopscotch</option>
+                <option>icecoder</option>
+                <option>idea</option>
+                <option>isotope</option>
+                <option>lesser-dark</option>
+                <option>liquibyte</option>
+                <option>lucario</option>
+                <option>material</option>
+                <option>mbo</option>
+                <option>mdn-like</option>
+                <option>midnight</option>
+                <option>monokai</option>
+                <option>neat</option>
+                <option>neo</option>
+                <option>night</option>
+                <option>nord</option>
+                <option>oceanic-next</option>
+                <option>panda-syntax</option>
+                <option>paraiso-dark</option>
+                <option>paraiso-light</option>
+                <option>pastel-on-dark</option>
+                <option>railscasts</option>
+                <option>rubyblue</option>
+                <option>seti</option>
+                <option>shadowfox</option>
+                <option>solarized dark</option>
+                <option>solarized light</option>
+                <option>the-matrix</option>
+                <option>night-bright</option>
+                <option>night-eighties</option>
+                <option>ttcn</option>
+                <option>twilight</option>
+                <option>vibrant-ink</option>
+                <option>xq-dark</option>
+                <option>xq-light</option>
+                <option>yeti</option>
+                <option>zenburn</option>
+              </select>
+            </form> 
+          </li>
+
+          <li class="nav-item dropdown ml-1">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="menu-navbar" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              <i class="fas fa-user"></i> Perfil 
+              <i class="fas fa-user font-blue"></i> <span class="center">Perfil</span> 
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menu-navbar">
               <a class="dropdown-item" href="#">Mi Perfil</a>
               <a class="dropdown-item" href="#">Desconectarse</a>
             </div>
@@ -179,20 +194,12 @@
         </ul>
       </div>
     </nav>
-    <!--/.Navbar -->
+    <!--/ Fin Navbar -->
 
     <!-- Contenido -->
     <div class="container-fluid">
       <div class="row justify-content-md-center">
         <div class="col-12">
-          <h1 class="text-center"></h1>
-          
-          <div class="row no-gutters">
-            <div class="col-12 col-md-6">
-              <p>Select a theme:</p>
-              
-            </div>
-          </div>
 
           <div class="row no-gutters">
             <div class="col-12 col-md-6">

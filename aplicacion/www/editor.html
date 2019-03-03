@@ -59,6 +59,8 @@
       <link rel="stylesheet" href="./plugin/codemirror/theme/neat.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/neo.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/night.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/night-bright.css">
+      <link rel="stylesheet" href="./plugin/codemirror/theme/night-eighties.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/nord.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/oceanic-next.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/panda-syntax.css">
@@ -71,8 +73,6 @@
       <link rel="stylesheet" href="./plugin/codemirror/theme/shadowfox.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/solarized.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/the-matrix.css">
-      <link rel="stylesheet" href="./plugin/codemirror/theme/tnight-bright.css">
-      <link rel="stylesheet" href="./plugin/codemirror/theme/night-eighties.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/ttcn.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/twilight.css">
       <link rel="stylesheet" href="./plugin/codemirror/theme/vibrant-ink.css">
@@ -200,33 +200,44 @@
     <div class="container-fluid">
       <div class="row justify-content-md-center">
         <div class="col-12">
+          <!--<button id="generar" type="button" class="btn btn-primary">Generar Html</button>-->
+          <!--<a href="#my-header" onclick='saveTextAsFile()'>Save/Download</a>-->
 
           <div class="row no-gutters">
             <div class="col-12 col-md-6">
-              <div class="m-1 shadow-sm">
-                <div>HTML</div>
-                <textarea id="html" name="html"></textarea>
+              <div class="row no-gutters m-1 shadow-sm">
+                  
+                <div class="col-12 font-weight-bolder mb-1">
+                  <span class="btn btn-primary btn-file mr-1">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Subir HTML <input type="file" onchange="loadfile(this)"> 
+                  </span> 
+                </div>
+
+                <div class="col-12">
+                  <textarea id="html" name="html" placeholder="Escriba su código HTML" class="text-muted"></textarea>
+                </div>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="m-1 shadow-sm">
                 CSS
-                <textarea id="css" name="css"></textarea>
+                <textarea id="css" name="css" placeholder="Escriba su código CSS"></textarea>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="m-1 shadow-sm">
                 Javascript
-                <textarea id="javascript" name="javascript"></textarea>
+                <textarea id="javascript" name="javascript" placeholder="Escriba su código Javascript"></textarea>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="m-1 shadow-sm">
                 Resultado
-                <textarea id="html-resultado" name="html-resultado"></textarea>
+                <textarea id="html-resultado" name="html-resultado" placeholder="Resultado"></textarea>
               </div>
             </div>
           </div>
@@ -249,7 +260,8 @@
     <script type="text/javascript" src="./plugin/codemirror/mode/css/css.js"></script>
 
     <script type="text/javascript" src="./plugin/codemirror/addon/scroll/simplescrollbars.js"></script>
-    
+    <script type="text/javascript" src="./plugin/codemirror/addon/display/placeholder.js"></script>
+
     <script type="text/javascript" src="./js/controladores/editor.js"></script>
 
   </body>

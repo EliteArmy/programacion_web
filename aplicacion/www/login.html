@@ -43,6 +43,8 @@
                 <span class="input-group-text fas fa-user bg-white border-right-0"></span>
               </div>
               <input type="text" id="correo" class="form-control border-left-0" placeholder="Correo Electrónico" autofocus>
+              <div id="validar-correo" class="invalid-feedback valid-feedback">
+              </div>
             </div>
             
             <label for="contrasena">Contraseña</label>
@@ -50,7 +52,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text fas fa-lock bg-white border-right-0"></span>
               </div>
-              <input type="password" id="contrasena" class="form-control border-left-0" placeholder="Contraseña">
+              <input type="password" id="contrasena" class="form-control border-left-0" placeholder="Contraseña"> 
+              <div id="validar-contrasena" class="invalid-feedback">
+              </div>
             </div>
 
             <div class="checkbox mb-3">
@@ -61,7 +65,7 @@
             
             <div>
               <a href="dash-carpeta.html">
-                <button id="btn-login" class="btn btn-primary btn-block" type="button">Ingresar</button>
+                <button id="btn-login" class="btn btn-primary btn-block" type="button" >Ingresar</button>
               </a>
             </div>
 

@@ -10,8 +10,12 @@
     <title>Login</title>    
     
     <link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/estilos-login.css">
+    <link rel="stylesheet" href="./css/bootstrap-float-label.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/estilos-login3.css">
 
+    <style>
+
+      </style>
   </head>
 
   <body class="">
@@ -37,25 +41,22 @@
 
             <hr>
 
-            <label for="correo">Correo Electrónico</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text fas fa-user bg-white border-right-0"></span>
+            <div class="form-group input-group">
+                <span class="has-float-label">
+                  <input class="form-control" id="correo" type="text" placeholder="email@example.com"/>
+                  <label for="correo">Correo Electrónico</label>
+                  <div id="validar-correo" class=""></div>
+                </span>
               </div>
-              <input type="text" id="correo" class="form-control" placeholder="Correo Electrónico" autofocus>
-              <div id="validar-correo" class="invalid-feedback valid-feedback">
-              </div>
+
+            <div class="form-group input-group">
+              <span class="has-float-label">
+                <input class="form-control" id="contrasena" type="password" placeholder="Contraseña"/>
+                <label for="contrasena">Contraseña</label>
+                <div id="validar-contrasena" class=""></div>
+              </span>
             </div>
-            
-            <label for="contrasena">Contraseña</label>
-            <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                <span class="input-group-text fas fa-lock bg-white border-right-0"></span>
-              </div>
-              <input type="password" id="contrasena" class="form-control " placeholder="Contraseña"> 
-              <div id="validar-contrasena" class="invalid-feedback">
-              </div>
-            </div>
+              
             <div class="text-right">
                 <a href="#" class=""><i>Olvido su correo / contraseña?</i></a>
             </div>

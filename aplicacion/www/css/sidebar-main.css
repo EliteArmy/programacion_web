@@ -405,15 +405,19 @@ body {
       display: none; }
   .page-wrapper.toggled .sidebar-wrapper {
     left: 0px; }
+
   @media screen and (min-width: 768px) {
     .page-wrapper.toggled .page-content {
       padding-left: 280px; } }
+  
   @media screen and (max-width: 768px) {
     .page-wrapper.toggled .page-content .overlay {
       display: block; } }
+  
   @media screen and (min-width: 768px) {
     .page-wrapper.toggled.pinned .page-content {
       padding-left: 80px; } }
+      
   .page-wrapper.pinned:not(.sidebar-hovered) .sidebar-wrapper {
     width: 80px; }
     .page-wrapper.pinned:not(.sidebar-hovered) .sidebar-wrapper .sidebar-header {

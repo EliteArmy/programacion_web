@@ -3,10 +3,10 @@ body {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background: url('../img/code5') no-repeat center center fixed;
-  
+  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120));
+  height: 100vh;
+
 }
 
 .form-signin {
@@ -25,7 +25,6 @@ body {
   padding: 15px 15px 15px 15px;
   margin-bottom: 15px;
   margin-top: 15px;
-
 }
 
 .heading-image {
@@ -70,7 +69,6 @@ a {
   text-decoration: none;
   text-decoration-style: dashed;
   background-color: transparent;
-  
 }
 
 a:hover {
@@ -93,6 +91,7 @@ i, cite, em, var, address, dfn {
 .font-green{
   color: #22ff16;
 }
+
 .login-or {
   position: relative;
   color: #aaa;
@@ -100,7 +99,8 @@ i, cite, em, var, address, dfn {
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  }
+}
+
 .span-or {
   display: block;
   position: absolute;
@@ -110,9 +110,10 @@ i, cite, em, var, address, dfn {
   background-color: #fff;
   width: 50px;
   text-align: center;
-  }
-  .hr-or {
+}
+
+.hr-or {
   height: 1px;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
-  }
+}

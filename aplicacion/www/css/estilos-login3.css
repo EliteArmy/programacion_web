@@ -1,3 +1,13 @@
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  /*background: url('../img/code5') no-repeat center center fixed;*/
+  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120));
+  height: 100vh;
+}
+
 .has-float-label input:focus,
 .has-float-label textarea:focus, 
 .has-float-label select:focus{
@@ -7,16 +17,6 @@
 .has-float-label .form-control:placeholder-shown:not(:focus) + * {
   font-size: 100%;
   margin-top: 4px; 
-}
-
-body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: url('../img/code5') no-repeat center center fixed;  
 }
 
 .form-signin {
@@ -79,7 +79,6 @@ a {
   text-decoration: none;
   text-decoration-style: dashed;
   background-color: transparent;
-  
 }
 
 a:hover {

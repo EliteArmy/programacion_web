@@ -1,0 +1,35 @@
+.carpeta{
+  color:rgb(10, 150, 200);
+  font-size: 100px;
+}
+
+.btn-primary {
+  background-color: rgb(10, 150, 200);
+  border-color: rgb(10, 150, 200);
+}
+
+.btn-primary:hover {
+  background-color: rgb(12, 100, 150);
+  border-color: rgb(12, 100, 150);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  background-color:rgb(15, 80, 120);
+  border-color: rgb(15, 80, 120);
+}
+
+a {
+  color: rgb(10, 150, 200);
+  text-decoration: none;
+  text-decoration-style: dashed;
+  background-color: transparent; 
+}
+
+a:hover {
+  color: rgb(12, 100, 150);
+  text-decoration: none;
+}
+
+i, cite, em, var, address, dfn {
+  font-style: normal;
+}

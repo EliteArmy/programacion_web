@@ -1,5 +1,6 @@
-.font-green{
-  color: #22ff16;
+body {
+  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120));
+  /*height: 100vh;*/
 }
 
 .font-blue{
@@ -51,4 +52,13 @@ i, cite, em, var, address, dfn {
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
   background-color:rgb(15, 80, 120);
   border-color: rgb(15, 80, 120);
+}
+
+.nav-item:hover i{
+  color: #22ff16;
+}
+
+.font-color{
+  background-color:rgb(33, 37, 41);
+  border-color: rgb(33, 37, 41);
 }

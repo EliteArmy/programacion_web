@@ -39,28 +39,6 @@ CodeMirror.on(window, "hashchange", function() {
   if (theme) { input.value = theme; selectTheme(); }
 });
 
-
-/* Test */
-/*$("#generar").click(function(){
-  alert("Generando Html");
-  
-  editores[0].setValue(`<!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>Page Title</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-      <p>Hola Mundo!</p>
-    </body>
-  </html>`);
-
-  alert(editores[0].getValue())
-
-});*/
-
 function loadfile(input) {
   var reader = new FileReader();
   reader.onload = function(e) {
@@ -68,10 +46,5 @@ function loadfile(input) {
   }
   reader.readAsText(input.files[0]);
 }
-
-
-
-
-
 
 

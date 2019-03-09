@@ -188,8 +188,8 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menu-navbar">
-              <a class="dropdown-item" href="#">Mi Perfil</a>
-              <a class="dropdown-item" href="login3.html">Desconectarse</a>
+              <a class="dropdown-item" href="perfil.html">Mi Perfil</a>
+              <a class="dropdown-item" href="login.html">Desconectarse</a>
             </div>
           </li>
         </ul>
@@ -206,40 +206,68 @@
 
           <div class="row no-gutters">
             <div class="col-12 col-md-6">
+
               <div class="row no-gutters m-1 shadow-sm">
                   
                 <div class="col-12 font-weight-bolder mb-1">
-                  <span class="btn btn-primary btn-file mr-1">
+                  <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
                     <i class="fas fa-cloud-upload-alt"></i>
                     Subir HTML <input type="file" onchange="loadfile(this)"> 
                   </span> 
                 </div>
 
                 <div class="col-12">
-                  <textarea id="html" name="html" placeholder="Escriba su código HTML" class="text-muted"></textarea>
+                  <textarea id="html" name="html" placeholder="Escriba su código HTML"></textarea>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-12 col-md-6">
+
+              <div class="row no-gutters m-1 shadow-sm">
+                <div class="col-12 font-weight-bolder mb-1">
+                  <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Subir CSS <input type="file" onchange="loadfile(this)"> 
+                  </span> 
+                </div>
+                <div class="col-12">
+                  <textarea id="css" name="css" placeholder="Escriba su código CSS"></textarea>
                 </div>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
-              <div class="m-1 shadow-sm">
-                CSS
-                <textarea id="css" name="css" placeholder="Escriba su código CSS"></textarea>
-              </div>
+                <div class="row no-gutters m-1 shadow-sm">
+                  <div class="col-12 font-weight-bolder mb-1">
+                    <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
+                      <i class="fas fa-cloud-upload-alt"></i>
+                      Subir Javascript <input type="file" onchange="loadfile(this)"> 
+                    </span> 
+                  </div>
+  
+                  <div class="col-12">
+                    <textarea id="javascript" name="javascript" placeholder="Escriba su código Javascript"></textarea>
+                  </div>
+                </div>
             </div>
 
             <div class="col-12 col-md-6">
-              <div class="m-1 shadow-sm">
-                Javascript
-                <textarea id="javascript" name="javascript" placeholder="Escriba su código Javascript"></textarea>
-              </div>
-            </div>
+              <div class="row no-gutters m-1 shadow-sm">
+                
+                <div class="col-12 font-weight-bolder mb-1">
+                  <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Resultado <input type="file" onchange="loadfile(this)"> 
+                  </span> 
+                </div>
 
-            <div class="col-12 col-md-6">
-              <div class="m-1 shadow-sm">
-                Resultado
-                <textarea id="html-resultado" name="html-resultado" placeholder="Resultado"></textarea>
+                <div class="col-12">
+                  <textarea id="html-resultado" name="html-resultado" placeholder="Resultado"></textarea>
+                </div>
               </div>
+
             </div>
           </div>
         </div>

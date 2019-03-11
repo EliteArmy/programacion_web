@@ -4,8 +4,9 @@ body {
   -ms-flex-align: center;
   align-items: center;
   /*background: url('../img/code5') no-repeat center center fixed;*/
-  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120));
+  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120)) fixed;
   height: 100vh;
+  background-repeat: no-repeat;
 }
 
 .has-float-label input:focus,

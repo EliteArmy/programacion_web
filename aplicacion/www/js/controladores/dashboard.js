@@ -10,7 +10,7 @@ $(document).ready(function() {
 $("#sidebar").load('sidebar.html');
 $("#nav-bar").load('navbar-dashboard.html');
 
-var informacion = [
+var informacionCarpetas = [
   {nombre:'Carpeta 01', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
   {nombre:'Carpeta 02', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
   {nombre:'Carpeta 03', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
@@ -19,13 +19,13 @@ var informacion = [
   {nombre:'Carpeta 06', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'}
 ];
 
-console.log(informacion.length);
+console.log(informacionCarpetas.length);
 
 function generarCarpetas(){
   
   document.getElementById('mostrar-carpetas').innerHTML = "";
   
-  for(var i=0; i<informacion.length; i++){
+  for(var i=0; i<informacionCarpetas.length; i++){
     document.getElementById('mostrar-carpetas').innerHTML +=
     `<div id="${[i+1]}" class="form-group card-padding col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
       <div class="text-center card">
@@ -34,7 +34,7 @@ function generarCarpetas(){
             <div class="col-2 padding">
             </div>
             <div class="col-8 padding">
-              <h5 class="card-title">${informacion[i].nombre}</h5>
+              <h5 class="card-title">${informacionCarpetas[i].nombre}</h5>
             </div>
             <div class="col-2 padding">
               <div class="float-right">
@@ -43,10 +43,10 @@ function generarCarpetas(){
               </div>
             </div>
           </div>
-          <div class="correcion">
+          <div>
             <a class="" href="editor.html"><span class="fas fa-folder folder"></span></a>
           </div>
-          <p class="card-text">${informacion[i].descripcion}</p>
+          <p class="card-text">${informacionCarpetas[i].descripcion}</p>
         </div>
       </div>
     </div>`;

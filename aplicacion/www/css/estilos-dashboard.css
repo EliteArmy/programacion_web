@@ -1,5 +1,6 @@
-.card-body {
-  padding: 0.5rem;
+body {
+  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120)) fixed;
+  background-repeat: no-repeat;
 }
 
 .btn-primary {
@@ -33,14 +34,21 @@ i, cite, em, var, address, dfn {
   font-style: normal;
 }
 
+.nav-item:hover i{
+  color: #22ff16;
+}
+
 /* Font-awesome */
 .folder {
   color:rgb(10, 150, 200);
   font-size: 80px;
 }
 
-.card-title {
-  margin-bottom: 0rem;
+.font-blue{
+  color: rgb(10, 150, 200);
+  /*font-size: 18px;*/
+  font-size: 1.1rem;
+  margin-right: 2px;
 }
 
 .padding{
@@ -49,10 +57,6 @@ i, cite, em, var, address, dfn {
 
 .margin{
   margin: 0px !important;
-}
-
-.correcion{
- line-height: 1 !important;
 }
 
 .card-padding{
@@ -70,18 +74,49 @@ i, cite, em, var, address, dfn {
   border: 1px solid rgba(10, 150, 200, 0.125) !important;
 }
 
-.nav-item:hover i{
-  color: #22ff16;
+.card-title {
+  margin-bottom: 0rem;
 }
 
-body {
-  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120));
-  /*height: 100vh;*/
+.card-body {
+  padding: 0.5rem;
 }
 
-.font-blue{
-  color: rgb(10, 150, 200);
-  /*font-size: 18px;*/
-  font-size: 1.1rem;
-  margin-right: 2px;
+/* CSS sobreescrito */
+/* Background del Sidebar */
+.default-theme.sidebar-bg .sidebar-wrapper:before {
+  background-color: rgba(52, 58, 64, 0.9); }
+
+.default-theme .sidebar-wrapper {
+  background-color: rgba(52, 58, 64);}
+
+.default-theme.sidebar-bg .sidebar-wrapper a:not(.dropdown-item):hover,
+.default-theme.sidebar-bg .sidebar-wrapper .sidebar-menu li.active > a {
+  color: #f2f2f2; 
+  background-color: rgba(32, 52, 72, 0.6);}
+
+/* Botones del Siderbar */
+.default-theme .sidebar-wrapper .sidebar-menu li.active a i {
+  color: #22ff16 !important;
+  border-bottom: 2px solid #22ff16 !important;
 }
+
+.default-theme .sidebar-wrapper .sidebar-menu a:hover i{
+  color: rgb(10, 150, 200) !important;
+  border-bottom: 2px solid  rgb(10, 150, 200) !important;
+  /*-webkit-animation: mymove 1s infinite;*/ /* Safari 4.0 - 8.0 */
+  /*animation: mymove 1s infinite;*/
+}
+
+/* Animaciones a los botones */
+/* Code for old Chrome, Safari and Opera */
+@-webkit-keyframes mymove {
+  /*from {border-bottom: 1px solid #22ff16;}
+  to {border-bottom: 1px solid #22ff16;}*/
+}
+@keyframes mymove {
+  /*from {border-bottom: 1px solid #22ff16;}
+  to {border-bottom: 2px solid #22ff16;}*/
+}
+
+

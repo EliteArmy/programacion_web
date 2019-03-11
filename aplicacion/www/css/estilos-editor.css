@@ -1,6 +1,6 @@
 body {
-  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120));
-  /*height: 100vh;*/
+  background: linear-gradient(to bottom, rgb(10, 150, 200), rgb(15, 80, 120)) fixed;
+  background-repeat: no-repeat;
 }
 
 .font-blue{

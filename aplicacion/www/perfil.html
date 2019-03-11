@@ -13,6 +13,10 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./plugin/font-awesome/css/all.css">
+
+    <!-- Floating Labels CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap-float-label.css">
+
   
     <!-- Sidebard CSS -->
     <link rel="stylesheet" type="text/css" href="./css/sidebar-main.css">
@@ -27,7 +31,7 @@
 
   <body>
     <!-- envoltura pagina -->
-    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+    <div class="page-wrapper default-theme sidebar-bg toggled">
     
       <!-- Importar el Sidebard -->
       <div id="sidebar"></div>
@@ -35,7 +39,7 @@
       <!-- contenido pagina  -->
       <main class="page-content">
 
-        <!-- Importar el Sidebard -->
+        <!-- Envoltura del Sidebard -->
         <div id="overlay" class="overlay"></div>
 
         <!-- Importar el Navbar -->
@@ -57,14 +61,96 @@
           </div>
             
           <div class="row pr-1" id="mostrar-perfil">
-            <div class="col-4">
-              
-            </div>
-            <div class="col-8">
-              
+            <!-- Fotografia -->
+            <div class="col-12 col-lg-4 mt-3">
+              <div class="text-center card">
+                <div class="card-body">
+                  <div class="row margin">
+                    <div class="col-12 padding">
+                      <h5 class="card-title">Julio Ariel</h5>
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <a class="" href=""><span class="fas fa-user-circle folder"></span></a>
+                  </div>
+
+                  <h5 class="card-title">Usuario1234</h5>
+                  <p class="card-text mt-2">Esta es una pequeña descripción del perfil.</p>
+                </div>
               </div>
-          </div>
+            </div>
+            <!-- Fin Fotografia -->
+
+            <!-- Infomación -->
+            <div class="col-12 col-lg-8 mt-3">
+              <div class="text-center card">
+                <div class="card-body">
+                  <div class="row justify-content-center margin">
+                    
+                    <div class="col-12 padding">
+                      <h5 class="card-title mb-4">Editar Perfil</h5>
+                    </div>
+
+                    <div class="col-11 col-sm-11 col-md-11 col-lg-8">
+                        <div class="text-left text-muted">
+                          <label for="nombre">Nombre:</label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                          </div>
+                        </div>
+                      </div>
   
+                      <div class="col-11 col-sm-11 col-md-11 col-lg-8">
+                        <div class="text-left text-muted">
+                          <label for="apellido">Apellido:</label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="col-11 col-sm-11 col-md-11 col-lg-8">
+                      <div class="text-left text-muted">
+                        <label for="usuario">Usuario:</label>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-11 col-sm-11 col-md-11 col-lg-8">
+                      <div class="text-left text-muted">
+                        <label for="correo">Correo:</label>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" id="correo" placeholder="Correo">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-11 col-sm-11 col-md-11 col-lg-8">
+                      <div class="text-left text-muted">
+                        <label for="contrasena">contraseña:</label>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" id="contrasena" placeholder="Contraseña">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-10 col-sm-9 col-md-8">
+                      <div class="my-3">
+                        <button id="btn-login" class="btn btn-primary btn-block" type="button">Guardar Cambios</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Infomación -->
+          </div>
+          
+          <!-- Footer -->
           <div class="row">
             <div class="form-group col-md-12">
   

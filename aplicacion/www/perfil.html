@@ -9,31 +9,73 @@
     <meta name="description" content="Code html css javascript">
   
     <title>Draco Code</title>
-  
+    
+    <!-- Plugin CSS -->
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./plugin/font-awesome/css/all.css">
   
+    <!-- Sidebard CSS -->
     <link rel="stylesheet" type="text/css" href="./css/sidebar-main.css">
     <link rel="stylesheet" type="text/css" href="./css/sidebar-themes.css">
     <link rel="stylesheet" type="text/css" href="./css/jquery.mCustomScrollbar.min.css">
-
-    <link rel="stylesheet" type="text/css" href="./css/plantilla.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/estilos-dashboard.css">
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
-
   </head>
 
   <body>
-    <!-- Contenido -->
-    <div class="container-fluid">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-lg-11">
-          <h1 class="text-center">Placeholder</h1>
-          
+    <!-- envoltura pagina -->
+    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+    
+      <!-- Importar el Sidebard -->
+      <div id="sidebar"></div>
+        
+      <!-- contenido pagina  -->
+      <main class="page-content">
+
+        <!-- Importar el Sidebard -->
+        <div id="overlay" class="overlay"></div>
+
+        <!-- Importar el Navbar -->
+        <div id="nav-bar"></div>
+
+        <div class="container-fluid">
+  
+          <div class="row">
+            <!--
+            <div class="form-group col-md-12 mt-2">
+              <a id="toggle-sidebar" class="btn btn-primary" href="#">
+                <span>Alternar Barra Lateral</span>
+              </a>
+              <a id="pin-sidebar" class="btn btn-primary" href="#">
+                <span>Adherir Barra Lateral</span>
+              </a>
+            </div>
+            -->
+          </div>
+            
+          <div class="row pr-1" id="mostrar-perfil">
+            <div class="col-4">
+              
+            </div>
+            <div class="col-8">
+              
+              </div>
+          </div>
+  
+          <div class="row">
+            <div class="form-group col-md-12">
+  
+            </div>
+          </div>
+  
         </div>
-      </div>
+      </main>
+      <!-- contenido pagina -->
     </div>
-    <!-- Fin Contenido -->
+    <!-- envoltura pagina -->
 
     <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="./js/bootstrap.bundle.js"></script>
@@ -42,9 +84,8 @@
     <script type="text/javascript" src="./js/sidebar-main.js"></script>
     <script type="text/javascript" src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <script type="text/javascript" src="./js/controladores/plantilla.js"></script>
+    <script type="text/javascript" src="./js/controladores/perfil.js"></script>
 
   </body>
 
 </html>
-

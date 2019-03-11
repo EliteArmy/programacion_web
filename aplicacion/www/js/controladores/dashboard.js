@@ -1,12 +1,14 @@
 $(document).ready(function() {
   generarCarpetas();
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
+  });
+  
 });
-/*
-$(".boton-active").click(function(){
-  $('.boton-active').css('color', '00a9fd');
-});
-*/
+
 $("#sidebar").load('sidebar.html');
+$("#nav-bar").load('navbar-dashboard.html');
 
 var informacion = [
   {nombre:'Carpeta 01', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
@@ -20,7 +22,9 @@ var informacion = [
 console.log(informacion.length);
 
 function generarCarpetas(){
+  
   document.getElementById('mostrar-carpetas').innerHTML = "";
+  
   for(var i=0; i<informacion.length; i++){
     document.getElementById('mostrar-carpetas').innerHTML +=
     `<div id="${[i+1]}" class="form-group card-padding col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -34,8 +38,8 @@ function generarCarpetas(){
             </div>
             <div class="col-2 padding">
               <div class="float-right">
-                <a href="#"><span class="far fa-edit text-success"></span></a>
-                <a href="#"><span class="far fa-trash-alt text-danger"></span></a>
+                <a href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
+                <a href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
               </div>
             </div>
           </div>

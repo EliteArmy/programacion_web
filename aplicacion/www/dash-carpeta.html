@@ -34,10 +34,17 @@
       
     <!-- contenido pagina  -->
     <main class="page-content">
+
+      <!-- Importar el Sidebard -->
       <div id="overlay" class="overlay"></div>
+      
+      <!-- Importar el Navbar -->
+      <div id="nav-bar"></div>
+
       <div class="container-fluid">
 
         <div class="row">
+          <!--
           <div class="form-group col-md-12 mt-2">
             <a id="toggle-sidebar" class="btn btn-primary" href="#">
               <span>Alternar Barra Lateral</span>
@@ -46,9 +53,11 @@
               <span>Adherir Barra Lateral</span>
             </a>
           </div>
+          -->
         </div>
           
         <div class="row pr-1" id="mostrar-carpetas">
+          <!-- Información a Generar -->
           <div class="form-group card-padding col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="text-center card">
               <div class="card-body">
@@ -60,7 +69,8 @@
                   </div>
                   <div class="col-2 padding">
                     <div class="float-right">
-                      <a href="#"><span class="far fa-edit text-success"></span></a>
+                      <a href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
+                      
                       <a href="#"><span class="far fa-trash-alt text-danger"></span></a>
                     </div>
                   </div>

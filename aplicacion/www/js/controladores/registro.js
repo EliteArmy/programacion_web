@@ -27,7 +27,7 @@ function validarLogin(campo, expresion, formato) {
     $("#"+campo).addClass("is-invalid");
     $("#validar-"+campo).removeClass("valid-feedback");
     $("#validar-"+campo).addClass("invalid-feedback");
-    $("#validar-"+campo).html("Ingrese sus datos");
+    $("#validar-"+campo).html("Ingrese el dato");
     return false;
 
   } else if (!re.test(valor)) {

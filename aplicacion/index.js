@@ -1,23 +1,24 @@
 'use strict'
 
-// Importar el modulo express para crear el servidor web
-var express = require('express');
-var bodyParser = require('body-parser');
-
-// Crear una aplicacion de nodejs con express
-var app = express();
-const port = process.env.PORT || 3000
-
-// Definir una carpeta como publica para que los usuarios puedan acceder a su contenido
-app.use(express.static("www"));
-
-// Poder parsear el cuerpo de la peticion y poder tratar los datos que enviemos
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json()) // poder admitir peticiones con cuerpo de msj en formato json
-
-// Otra forma de escribirlo más resumido y con variable port:
-app.listen (port, () => {
-  console.log(`Api rest corriendo en http://localhost: ${port}`)
-})
-
 // Correrlo con nodemon instalado: node index.js
+
+const mongoose = require('mongoose');
+const app = require('./app')
+const config = require('./config')
+
+// ====================== CONEXIÓN ======================
+mongoose.connect(config.db, (err, res) => {
+  
+  if (err) {
+    return console.log(`Error al conectarse a la base de datos: ${err}`)
+  }
+
+  // Si no hay error, muestra el mensaje
+  console.log('Conexión con la base de datos establecida...')
+
+  // Segundo se conecta al API
+  app.listen (config.port, () => {
+    console.log(`Aplicación corriendo en http://localhost:${config.port}`)
+  })
+
+})

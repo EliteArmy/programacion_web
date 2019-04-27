@@ -44,7 +44,7 @@ function validarLogin(campo, expresion, formato) {
 }
 
 $("#btn-login").click(function(){
-  var loginValido = false; // Inicialmente es falso
+  var loginValido = false; // Inicialmente es falso\
   
   // Manda  a llamar la función de validar por cada campo
   for (var i=0; i<campos.length; i++) {
@@ -52,12 +52,41 @@ $("#btn-login").click(function(){
   }
 
   for (var i=0; i<campos.length; i++){
-    if (!campos[i].valido)
+    if (!campos[i].valido){
       return loginValido = false;
+    } else {
+      loginValido = true;
+    }
   }
 
-  if (loginValido)
-    window.location.href = "dash-carpeta.html";
-});
+  //console.log(`Validación: ${loginValido}`);
+  //console.log("correo: "+ $('#correo').val())
+  //console.log("contrasena: "+ $('#contrasena').val())
 
+  if (loginValido){
+    //console.log('Ingresar al Login')
+    $.ajax({
+      url:`/api/login`,
+      method: "POST",
+      dataType: "json",
+      data: {
+        "correo": $('#correo').val(),
+        "contrasena": $('#contrasena').val(),
+      },
+      success: function(response){
+        //console.log(`mensaje del servidor: ${response}`); 
+        //console.log(`mensaje del servidor1: ${response.estatus}`);
+        //console.log(`mensaje del servidor2: ${response.mensaje}`);   
+        if (response.estatus == 1)
+          window.location.href = "/dash-carpeta.html";
+        else
+          console.log("No direccion: "+response.mensaje);
+      },
+      error: function(error){
+        console.error(error);
+      }
+    });
+  }
+
+});
 

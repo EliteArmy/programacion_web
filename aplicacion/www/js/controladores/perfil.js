@@ -3,6 +3,23 @@ $(document).ready(function() {
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
   });
+/*
+  url:`/usuarios/${$("#slc-usuario").val()}/contactos`,
+  
+  $.ajax({
+		url:`/usuarios/${$("#slc-usuario").val()}/contactos`,
+    method: "POST",
+    dataType:"json",
+		success: function(response){
+			console.log(response);
+
+		},
+		error: function(error){
+      console.error(error);
+      
+		}
+	});
+*/
 
 });
 

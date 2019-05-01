@@ -1,4 +1,5 @@
 $("#btn-logout").click(function(){
+  
   console.log('Salir del Sitio')
   $.ajax({
     url:`/api/logout`,

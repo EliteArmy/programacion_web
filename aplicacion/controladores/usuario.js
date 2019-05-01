@@ -1,9 +1,8 @@
 'use strict'
 
 // Al no estar instalado por npm, se le debe indicar la ruta
-const Usuario = require('../modelos/usuario')
+const Usuario = require('../modelos/usuario');
 const servicio = require('../servicios')
-const bcrypt = require('bcrypt-nodejs')
 
 function getUsuario (req, res) {
   // params porque viene como parametro de la url
@@ -102,37 +101,19 @@ function registro (req, res){
 
 // Autenticacion una vez el usuario esta registrado
 function login (req, res){
-
-  Usuario.findOne({ correo: req.body.correo }, (err, usuario) => {
-    
+  Usuario.find({ correo: req.body.correo }, (err, usuario) => {
     if(err) return res.status(500).send({ message: err })
     
     if(!usuario) return res.status(404).send({ message: 'No existe el usuario' })
-    
-    //const password_verification = bcrypt.compareSync(req.body.contrasena, usuario.contrasena);        
-        
-    if (password_verification){
-      req.usuario = usuario;
-      res.status(200).send({
-        message: "Has ingresado correctamente",
-        token: servicio.crearToken(usuario)
-      });
-    } else {
-      res.status(500).send({message: 'Email o Contraseña incorrectos'});  
-    } 
 
-    //req.usuario = usuario 
+    req.usuario = usuario 
     
-    // Login exitoso
-    /*res.status(200).send({
+    res.status(200).send({
       message: "Has ingresado correctamente",
       token: servicio.crearToken(usuario)
-    })*/
+    })
   })
-
 }
-
-
 
 // Se exportan las funciones
 module.exports = {

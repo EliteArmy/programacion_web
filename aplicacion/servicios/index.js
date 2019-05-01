@@ -12,7 +12,7 @@ const config = require('../config')
 function crearToken (usuario) {
   
   // payload = datos que viajan en el cliente y servidor
-  // Se debe evitar poner mucha información en ellos
+  // y se debe evitar poner mucha información en ellos
   const payload = {
     sub: usuario._id, // id del usuario en mongo
     iat: moment().unix(), // fecha para indicar cuando fue creado el token
@@ -63,8 +63,8 @@ module.exports = {
   decodificarToken
 } 
 
-// Antes de pasar la funcionalidad al siguiente middleware o controlador final
-// de la ruta, en el objeto user del request, se pone el que envia el payload 
-// del usuario y se pasa con next al siguiente middleware
-// req.user = payload.sub
-// next()
+  // Antes de pasar la funcionalidad al siguiente middleware o controlador final
+  // de la ruta, en el objeto user del request, se pone el que envia el payload 
+  // del usuario y se pasa con next al siguiente middleware
+  //req.user = payload.sub
+  //next()

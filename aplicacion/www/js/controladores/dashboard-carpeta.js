@@ -1,29 +1,4 @@
 $(document).ready(function() {
-  
-  $.ajax({
-    url: "/api/login",
-    method: "POST",
-    dataType: "json",
-    data: {
-      "correo": $('#correo').val(),
-      "contrasena": $('#contrasena').val(),
-    },
-    success: function(response){
-      //console.log(`mensaje del servidor: ${response}`); 
-      //console.log(`mensaje del servidor1: ${response.token}`);
-      //console.log(`mensaje del servidor2: ${response.message}`);   
-      if(response.status == 1){
-        localStorage.setItem('token', response.token)
-        window.location.href = "/dash-carpeta.html";
-      } else {
-        window.location.href = "/login.html";
-      }
-    },
-    error: function(error){
-      console.error(error);
-    }
-  });
-  
   generarCarpetas();
 
   $(function () {
@@ -44,15 +19,14 @@ var informacionCarpetas = [
   {nombre:'Carpeta 06', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'}
 ];
 
+//console.log(informacionCarpetas.length);
+
 function generarCarpetas(){
-  //const miCabezera = new Headers();
-  //miCabezera.append('Authorization', `Bearer ${localStorage.token}`)
 
   $.ajax({
-		url: "/api/carpeta",
+		url:`/api/carpeta`,
     method: "GET",
-    headers: `Bearer ${sessionStorage.token}`,
-    dataType: "json",
+    dataType:"json",
     success: function(response){
       console.log(response);
       //console.log(`carpetas: ${response.carpetas.length}`);
@@ -89,7 +63,9 @@ function generarCarpetas(){
 		},
 		error: function(error){
       console.error(error);
+      
 		}
 	});
+  
 }
 

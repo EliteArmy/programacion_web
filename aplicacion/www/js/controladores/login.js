@@ -66,66 +66,24 @@ $("#btn-login").click(function(){
   if (loginValido){
     //console.log('Ingresar al Login')
     $.ajax({
-      url: "/api/login",
+      url:`/api/login`,
       method: "POST",
       dataType: "json",
       data: {
         "correo": $('#correo').val(),
         "contrasena": $('#contrasena').val(),
       },
-      success: function (response){
-        //console.log(`mensaje del servidor: ${response}`);
-        //console.log(`mensaje del servidor1: ${response.status}`);
-        console.log(`mensaje del servidor1: ${response.token}`);
-        console.log(`mensaje del servidor2: ${response.message}`);   
-        
-        if (response.message == "Has ingresado correctamente"){
-          localStorage.setItem('token', response.token)
+      success: function(response){
+        //console.log(`mensaje del servidor: ${response}`); 
+        //console.log(`mensaje del servidor1: ${response.estatus}`);
+        //console.log(`mensaje del servidor2: ${response.mensaje}`);   
+        if (response.estatus == 1)
           window.location.href = "/dash-carpeta.html";
-        } else {
-          // Mensaje de Error
-          $.alert({
-            title: '',
-            content: response.message,
-            type: 'red',
-            typeAnimated: true,
-            icon: 'fas fa-exclamation-triangle',
-            closeIcon: true,
-            closeIconClass: 'fas fa-times',
-            autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
-            theme: 'modern', // Acepta propiedades CSS
-            buttons: {
-              cerrar: {
-                text: 'Cerrar',
-                btnClass: 'btn-danger',
-                keys: ['enter', 'shift']
-              }
-            }
-          });
-        }
+        else
+          console.log("No direccion: "+response.mensaje);
       },
-      error: function (error){
-        //console.error(`Error1: ${error}`);
-        //console.error(`Error2: ${error.message}`);
-        // Mensaje de Error
-        $.alert({
-          title: '',
-          content: error,
-          type: 'red',
-          typeAnimated: true,
-          icon: 'fas fa-exclamation-triangle',
-          closeIcon: true,
-          closeIconClass: 'fas fa-times',
-          autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
-          theme: 'modern', // Acepta propiedades CSS
-          buttons: {
-            cerrar: {
-              text: 'Cerrar',
-              btnClass: 'btn-danger',
-              keys: ['enter', 'shift']
-            }
-          }
-        });
+      error: function(error){
+        console.error(error);
       }
     });
   }

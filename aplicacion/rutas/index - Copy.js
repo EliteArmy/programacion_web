@@ -1,7 +1,6 @@
 'use strict'
 
 const express = require('express');
-
 const usuarioCtrl = require('../controladores/usuario')
 
 const carpetaCtrl = require('../controladores/carpeta')
@@ -31,7 +30,7 @@ api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
 api.delete('/usuario/:usuarioId', usuarioCtrl.deleteUsuario)
 
 // ==================== PETICIONES DE CARPETA ====================
-api.get('/carpeta', autenticar, carpetaCtrl.getCarpetas)
+api.get('/carpeta', carpetaCtrl.getCarpetas)
 
 api.get('/carpeta/:carpetaId', carpetaCtrl.getCarpeta)
 
@@ -63,12 +62,25 @@ api.put('/archivo/:archivoId', archivoCtrl.updateArchivo)
 
 api.delete('/archivo/:archivoId', archivoCtrl.deleteArchivo)
 
+// ================== PETICIONES AUTENTICACIÓN ==================
+/*api.post('/login', usuarioCtrl.loginUsuario)
+
+api.get('/logout', usuarioCtrl.logoutUsuario)
+
+api.get('/peticion-registringido', usuarioCtrl.denegarUsuario)
+
+function verificarAutenticacion(req, res, next){
+	if(req.session.correoUsuario)
+		return next();
+  else
+    res.send({ estatus: 1, mensaje: `ERROR, ACCESO NO AUTORIZADO` })
+}
+*/
+
 // ================ NUEVAS PETICIONES AUTENTICACIÓN ================
 api.post('/registro', usuarioCtrl.registro)
 
 api.post('/login', usuarioCtrl.login)
-
-//api.post('/logout', autenticar, usuarioCtrl.logout);
 
 // Antes de llamar function(req, res){}, se pueden poner tantas funciones como se desee.
 api.get('/privada', autenticar, function (req, res){

@@ -1,6 +1,0 @@
-
-
-npm i -S bcrypt-nodejs
-npm install --save jwt-simple
-npm install --save moment
-

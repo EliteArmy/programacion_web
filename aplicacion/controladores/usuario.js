@@ -1,9 +1,7 @@
 'use strict'
 
 // Al no estar instalado por npm, se le debe indicar la ruta
-const Usuario = require('../modelos/usuario')
-const servicio = require('../servicios')
-const bcrypt = require('bcrypt-nodejs')
+const Usuario = require('../modelos/usuario');
 
 function getUsuario (req, res) {
   // params porque viene como parametro de la url
@@ -79,9 +77,27 @@ function deleteUsuario (req, res) {
 }
 
 // ================== PETICIONES AUTENTICACIÓN ==================
-/* Se va a encargar de registro y autenticacion de usuarios */
+function loginUsuario(req, res){
+  console.log('POST /login')
 
-function registro (req, res){
+  Usuario.find({correo: req.body.correo, contrasena: req.body.contrasena})
+    .then(data => {
+      if(data.length == 1){
+        req.session.codigoUsuario = data[0]._id;
+        req.session.correoUsuario =  data[0].correo;
+        res.send({ estatus: 1, mensaje: `Usuario autenticado con éxito`, usuario: data[0]});
+      } else {
+        res.send({ estatus: 0, mensaje: `Credenciales Invalidas` })
+      }
+    })
+    .catch(error=>{
+      res.send(error);
+    }); 
+
+}
+
+
+function registroUsuario (req, res){
   const usuario = new Usuario ({
     nombreUsuario: req.body.nombreUsuario,
     correo: req.body.correo,
@@ -100,39 +116,27 @@ function registro (req, res){
   })
 }
 
-// Autenticacion una vez el usuario esta registrado
-function login (req, res){
-
-  Usuario.findOne({ correo: req.body.correo }, (err, usuario) => {
-    
-    if(err) return res.status(500).send({ message: err })
-    
-    if(!usuario) return res.status(404).send({ message: 'No existe el usuario' })
-    
-    //const password_verification = bcrypt.compareSync(req.body.contrasena, usuario.contrasena);        
-        
-    if (password_verification){
-      req.usuario = usuario;
-      res.status(200).send({
-        message: "Has ingresado correctamente",
-        token: servicio.crearToken(usuario)
-      });
-    } else {
-      res.status(500).send({message: 'Email o Contraseña incorrectos'});  
-    } 
-
-    //req.usuario = usuario 
-    
-    // Login exitoso
-    /*res.status(200).send({
-      message: "Has ingresado correctamente",
-      token: servicio.crearToken(usuario)
-    })*/
-  })
-
+function logoutUsuario(req, res){
+  console.log('GET /logout')
+  req.session.destroy();
+  res.send({ estatus: 0, mensaje: `Salió del Sitio` })
+  //res.redirect("/api");
+  //res.redirect("/login.html");
+  //res.status(200).send({ mensaje: `Ha salido del sitio` })
 }
 
+function denegarUsuario(req, res){
+  console.log('GET /peticion-registringido')
+  verificarAutenticacion()
+}
 
+/// Para agregar seguridad a una ruta especifica, esta función sería llamada desde alguna peticion.
+function verificarAutenticacion(req, res, next){
+	if(req.session.correoUsuario)
+		return next();
+	else
+		res.send("ERROR, ACCESO NO AUTORIZADO");
+}
 
 // Se exportan las funciones
 module.exports = {
@@ -141,10 +145,8 @@ module.exports = {
   saveUsuario,
   updateUsuario,
   deleteUsuario,
-  registro,
-  login
+  loginUsuario,
+  registroUsuario,
+  logoutUsuario,
+  denegarUsuario
 }
-
-// Los Servicios en nodejs y demas plataformas son funciones que 
-// nos ayudan a realizar determinadas acciones que podemos repetir 
-// a lo largo del codigo. Pueden estar en su propio archivo.

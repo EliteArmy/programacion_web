@@ -3,13 +3,9 @@
 const express = require('express');
 
 const usuarioCtrl = require('../controladores/usuario')
-
 const carpetaCtrl = require('../controladores/carpeta')
 const proyectoCtrl = require('../controladores/proyecto')
 const archivoCtrl = require('../controladores/archivo')
-
-// Middleware de autenticación que nos permite proteger ciertas rutas
-const autenticar = require('../middlewares/autenticar')
 
 // Se usa un router de express para las rutas
 const api = express.Router();
@@ -31,7 +27,7 @@ api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
 api.delete('/usuario/:usuarioId', usuarioCtrl.deleteUsuario)
 
 // ==================== PETICIONES DE CARPETA ====================
-api.get('/carpeta', autenticar, carpetaCtrl.getCarpetas)
+api.get('/carpeta', verificarAutenticacion, carpetaCtrl.getCarpetas)
 
 api.get('/carpeta/:carpetaId', carpetaCtrl.getCarpeta)
 
@@ -63,16 +59,22 @@ api.put('/archivo/:archivoId', archivoCtrl.updateArchivo)
 
 api.delete('/archivo/:archivoId', archivoCtrl.deleteArchivo)
 
-// ================ NUEVAS PETICIONES AUTENTICACIÓN ================
-api.post('/registro', usuarioCtrl.registro)
+// ================== PETICIONES AUTENTICACIÓN ==================
+api.post('/login', usuarioCtrl.loginUsuario)
 
-api.post('/login', usuarioCtrl.login)
+api.post('/registro', usuarioCtrl.registroUsuario)
 
-//api.post('/logout', autenticar, usuarioCtrl.logout);
+api.get('/logout', usuarioCtrl.logoutUsuario)
 
-// Antes de llamar function(req, res){}, se pueden poner tantas funciones como se desee.
-api.get('/privada', autenticar, function (req, res){
-  res.status(200).send({ message: 'Tienes acceso' })
-})
+api.get('/peticion-registringido', usuarioCtrl.denegarUsuario)
+
+// Prueba de autenticación
+function verificarAutenticacion(req, res, next){
+	if(req.session.correoUsuario)
+		return next();
+  else
+    res.send({ estatus: 1, mensaje: `ERROR, ACCESO NO AUTORIZADO` })
+    //return res.status(403).send({ message: 'No tienes autorización' })
+}
 
 module.exports = api

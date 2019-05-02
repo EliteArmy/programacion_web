@@ -1,31 +1,13 @@
 $( "#sidebar" ).load( "sidebar.html", function() {
-  console.log( "Load was performed." );
+  console.log( "Sidebar fue cargado con exito." );
 });
 
 $( "#nav-bar" ).load( "navbar-dashboard.html", function() {
-  console.log( "Load was performed." );
+  console.log( "Navbar fue cargado con exito." );
 });
 
 $(document).ready(function() {
-  /*
-  $.ajax({
-    url: "navbar-dashboard.html", 
-    dataType: "text",
-    //context: document.body,
-    success: function(response) {
-      $("#nav-bar").html(response);
-    }
-  });
 
-  $.ajax({
-    url: "sidebar.html", 
-    dataType: "text",
-    //context: document.body,
-    success: function(response) {
-      $("#sidebar").html(response);
-    }
-  });
-*/
   $.ajax({
     url: "/api/loged",
     method: "GET",
@@ -44,7 +26,7 @@ $(document).ready(function() {
       }
     },
     error: function(error){
-      console.error(error);
+      //console.error(error);
     }
   });
   
@@ -98,7 +80,7 @@ function generarCarpetas(){
 
 		},
 		error: function(error){
-      console.error(error);
+      //console.error(error);
 		}
 	});
 }
@@ -153,8 +135,7 @@ $('#guard-empleado').click(function(){
 
 });
 
-$('#slc-tipo-trabajo').onchange(function(){
+$('#slc-tipo-trabajo').change(function(){
   
-
 });
 

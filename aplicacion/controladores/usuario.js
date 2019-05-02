@@ -77,6 +77,7 @@ function deleteUsuario (req, res) {
 }
 
 // ================== PETICIONES AUTENTICACIÓN ==================
+// Hace el Login del usuario
 function loginUsuario(req, res){
   console.log('POST /login')
 
@@ -97,9 +98,9 @@ function loginUsuario(req, res){
     .catch(error=>{
       res.send(error);
     }); 
-
 }
 
+// Busca los datos del Usuario que esta loggeado
 function usuarioLogeado (req, res){
   Usuario.find({_id: req.session.codigoUsuario})
     .then(data=>{
@@ -115,15 +116,13 @@ function logoutUsuario(req, res){
   console.log('GET /logout')
 
   req.session.destroy();
-  res.send({ estatus: 0, mensaje: `Salió del Sitio` })
-  //res.redirect("/api");
   //res.redirect("/login.html");
+  res.send({ estatus: 1, mensaje: `Salió del Sitio` });
   //res.status(200).send({ mensaje: `Ha salido del sitio` })
 }
 
-
 function denegarUsuario(req, res){
-  console.log('GET /peticion-registringido')
+  //console.log('GET /peticion-registringido')
   verificarAutenticacion()
 }
 

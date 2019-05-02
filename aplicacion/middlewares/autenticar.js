@@ -3,7 +3,7 @@ function verificarAutenticacion (req, res, next){
 	if(req.session.correoUsuario)
 		return next();
 	else
-		res.send("ERROR, ACCESO NO AUTORIZADO");
+     res.redirect('/login.html');
 }
 
 module.exports = verificarAutenticacion

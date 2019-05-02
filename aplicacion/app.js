@@ -7,6 +7,9 @@ const api = require('./rutas')
 
 const session = require("express-session");
 
+// Definir una carpeta como publica para que los usuarios puedan acceder a su contenido
+app.use(express.static("public"));
+
 var publicCarpeta = express.static("public");
 var privateCarpeta = express.static("private");
 
@@ -26,6 +29,10 @@ app.use( function (req, res, next) {
       publicCarpeta(req, res, next);
   }
 );
+
+app.get('/', (req, res) => {
+	res.redirect('login.html');
+});
 
 app.use('/api', api)
 

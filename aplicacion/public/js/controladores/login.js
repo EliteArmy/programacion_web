@@ -75,18 +75,16 @@ $("#btn-login").click(function(){
       },
       success: function (response){
         //console.log(`mensaje del servidor: ${response}`);
-        //console.log(`mensaje del servidor1: ${response.status}`);
-        console.log(`mensaje del servidor1: ${response.token}`);
-        console.log(`mensaje del servidor2: ${response.message}`);   
+        console.log(`mensaje del servidor1: ${response.estatus}`);
+        console.log(`mensaje del servidor2: ${response.mensaje}`);   
         
-        if (response.message == "Has ingresado correctamente"){
-          localStorage.setItem('token', response.token)
+        if (response.estatus == 1){
           window.location.href = "/dash-carpeta.html";
         } else {
           // Mensaje de Error
           $.alert({
             title: '',
-            content: response.message,
+            content: response.mensaje,
             type: 'red',
             typeAnimated: true,
             icon: 'fas fa-exclamation-triangle',

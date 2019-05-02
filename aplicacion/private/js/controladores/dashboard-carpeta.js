@@ -1,22 +1,19 @@
 $(document).ready(function() {
   
   $.ajax({
-    url: "/api/login",
-    method: "POST",
+    url: "/api/loged",
+    method: "GET",
     dataType: "json",
-    data: {
-      "correo": $('#correo').val(),
-      "contrasena": $('#contrasena').val(),
-    },
     success: function(response){
-      //console.log(`mensaje del servidor: ${response}`); 
-      //console.log(`mensaje del servidor1: ${response.token}`);
-      //console.log(`mensaje del servidor2: ${response.message}`);   
-      if(response.status == 1){
-        localStorage.setItem('token', response.token)
-        window.location.href = "/dash-carpeta.html";
+      console.log(`mensaje del servidor: ${response.length}`); 
+      
+      //console.log(`mensaje del servidor3: ${response[0].nombre}`);  
+      if (response.length > 0){
+        console.log(`mensaje del servidor3: ${response[0].nombre}`);  
+        $('#prueba').html(response[0].nombre)
       } else {
-        window.location.href = "/login.html";
+        //window.location.href = "/login.html";
+        console.log(`mensaje del servidor2: ${response[0].correo}`);
       }
     },
     error: function(error){
@@ -24,7 +21,7 @@ $(document).ready(function() {
     }
   });
   
-  generarCarpetas();
+  //generarCarpetas();
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
@@ -53,7 +50,6 @@ function generarCarpetas(){
   $.ajax({
 		url: "/api/carpeta",
     method: "GET",
-    headers: `Bearer ${sessionStorage.token}`,
     dataType: "json",
     success: function(response){
       console.log(response);

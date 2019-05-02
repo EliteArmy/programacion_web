@@ -3,9 +3,13 @@
 const express = require('express');
 
 const usuarioCtrl = require('../controladores/usuario')
+
 const carpetaCtrl = require('../controladores/carpeta')
 const proyectoCtrl = require('../controladores/proyecto')
 const archivoCtrl = require('../controladores/archivo')
+
+// Middleware de autenticación que nos permite proteger ciertas rutas
+const autenticar = require('../middlewares/autenticar')
 
 // Se usa un router de express para las rutas
 const api = express.Router();
@@ -27,7 +31,7 @@ api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
 api.delete('/usuario/:usuarioId', usuarioCtrl.deleteUsuario)
 
 // ==================== PETICIONES DE CARPETA ====================
-api.get('/carpeta', verificarAutenticacion, carpetaCtrl.getCarpetas)
+api.get('/carpeta', carpetaCtrl.getCarpetas)
 
 api.get('/carpeta/:carpetaId', carpetaCtrl.getCarpeta)
 
@@ -60,21 +64,21 @@ api.put('/archivo/:archivoId', archivoCtrl.updateArchivo)
 api.delete('/archivo/:archivoId', archivoCtrl.deleteArchivo)
 
 // ================== PETICIONES AUTENTICACIÓN ==================
-api.post('/login', usuarioCtrl.loginUsuario)
+api.post('/login', usuarioCtrl.loginUsuario) // app.post("/login", function(req, res){}
 
-api.post('/registro', usuarioCtrl.registroUsuario)
+api.get('/loged', usuarioCtrl.usuarioLogeado) // app.post("/login", function(req, res){}
+ 
+api.post('/registro', usuarioCtrl.saveUsuario) // app.post("/login", function(req, res){}
 
-api.get('/logout', usuarioCtrl.logoutUsuario)
+api.get('/logout', usuarioCtrl.logoutUsuario) // app.post("/login", function(req, res){}
 
-api.get('/peticion-registringido', usuarioCtrl.denegarUsuario)
+// ===================== PETICIONES PRUEBA  =====================
+// La siguiente es una peticion restringida, se envia una funcion midleware que verifica si esta autenticadoo no.
+api.get('/peticion-registringida', autenticar, usuarioCtrl.denegarUsuario)
 
-// Prueba de autenticación
-function verificarAutenticacion(req, res, next){
-	if(req.session.correoUsuario)
-		return next();
-  else
-    res.send({ estatus: 1, mensaje: `ERROR, ACCESO NO AUTORIZADO` })
-    //return res.status(403).send({ message: 'No tienes autorización' })
-}
+// Antes de llamar function(req, res){}, se pueden poner tantas funciones como se desee.
+api.get('/privada', autenticar, function (req, res){
+  res.status(200).send({ message: 'Tienes acceso' })
+})
 
 module.exports = api

@@ -82,9 +82,13 @@ function loginUsuario(req, res){
 
   Usuario.find({correo: req.body.correo, contrasena: req.body.contrasena})
     .then(data => {
-      if(data.length == 1){
+      console.log(`Data: ${data}`)
+      if(data.length == 1){ // Significa que si encontro un usuario con las credenciales indicadas
+        
+        //Establecer las variables de sesion
         req.session.codigoUsuario = data[0]._id;
-        req.session.correoUsuario =  data[0].correo;
+        req.session.correoUsuario = data[0].correo;
+        req.session.nombreUsuario = data[0].nombreUsuario;
         res.send({ estatus: 1, mensaje: `Usuario autenticado con éxito`, usuario: data[0]});
       } else {
         res.send({ estatus: 0, mensaje: `Credenciales Invalidas` })
@@ -96,34 +100,27 @@ function loginUsuario(req, res){
 
 }
 
-
-function registroUsuario (req, res){
-  const usuario = new Usuario ({
-    nombreUsuario: req.body.nombreUsuario,
-    correo: req.body.correo,
-    contrasena: req.body.contrasena,
-  })
-  
-  // Debemos guardar el usuario
-  usuario.save((err) => { // Funcion callback en caso de haber un error
-    if (err) res.status(500).send({ message: `Error al crear el usuario: ${err}` })
-
-    // Si no hay error, se envia la respuesta con el parametro token
-    // se hace uso del modulo aparte llamado servicio*, y el cual contiene la
-    // funcion createToken, la cual recibe el objeto usuario que se ha creado
-    // y se encargará de crear el token
-    return res.status(200).send({ token: servicio.crearToken(usuario) })
-  })
+function usuarioLogeado (req, res){
+  Usuario.find({_id: req.session.codigoUsuario})
+    .then(data=>{
+      console.log(`data: ${data}`)
+      res.send(data);
+    })
+    .catch(error=>{
+      res.send(error);
+    });
 }
 
 function logoutUsuario(req, res){
   console.log('GET /logout')
+
   req.session.destroy();
   res.send({ estatus: 0, mensaje: `Salió del Sitio` })
   //res.redirect("/api");
   //res.redirect("/login.html");
   //res.status(200).send({ mensaje: `Ha salido del sitio` })
 }
+
 
 function denegarUsuario(req, res){
   console.log('GET /peticion-registringido')
@@ -146,7 +143,7 @@ module.exports = {
   updateUsuario,
   deleteUsuario,
   loginUsuario,
-  registroUsuario,
+  usuarioLogeado,
   logoutUsuario,
   denegarUsuario
 }

@@ -1,5 +1,31 @@
+$( "#sidebar" ).load( "sidebar.html", function() {
+  console.log( "Load was performed." );
+});
+
+$( "#nav-bar" ).load( "navbar-dashboard.html", function() {
+  console.log( "Load was performed." );
+});
+
 $(document).ready(function() {
-  
+  /*
+  $.ajax({
+    url: "navbar-dashboard.html", 
+    dataType: "text",
+    //context: document.body,
+    success: function(response) {
+      $("#nav-bar").html(response);
+    }
+  });
+
+  $.ajax({
+    url: "sidebar.html", 
+    dataType: "text",
+    //context: document.body,
+    success: function(response) {
+      $("#sidebar").html(response);
+    }
+  });
+*/
   $.ajax({
     url: "/api/loged",
     method: "GET",
@@ -10,7 +36,8 @@ $(document).ready(function() {
       //console.log(`mensaje del servidor3: ${response[0].nombre}`);  
       if (response.length > 0){
         console.log(`mensaje del servidor3: ${response[0].nombre}`);  
-        $('#prueba').html(response[0].nombre)
+        $('#nombre-usuario').html(response[0].nombre)
+        $('#nombre-usuario2').html(response[0].nombre)
       } else {
         //window.location.href = "/login.html";
         console.log(`mensaje del servidor2: ${response[0].correo}`);
@@ -21,31 +48,15 @@ $(document).ready(function() {
     }
   });
   
-  //generarCarpetas();
+  generarCarpetas();
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
   });
   
-
-  
 });
 
-$("#sidebar").load('sidebar.html');
-$("#nav-bar").load('navbar-dashboard.html');
-
-var informacionCarpetas = [
-  {nombre:'Carpeta 01', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Carpeta 02', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Carpeta 03', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Carpeta 04', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Carpeta 05', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Carpeta 06', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'}
-];
-
 function generarCarpetas(){
-  //const miCabezera = new Headers();
-  //miCabezera.append('Authorization', `Bearer ${localStorage.token}`)
 
   $.ajax({
 		url: "/api/carpeta",
@@ -53,7 +64,7 @@ function generarCarpetas(){
     dataType: "json",
     success: function(response){
       console.log(response);
-      //console.log(`carpetas: ${response.carpetas.length}`);
+      console.log(`carpetas: ${response.carpetas.length}`);
 
       document.getElementById('mostrar-carpetas').innerHTML = "";
   
@@ -68,6 +79,7 @@ function generarCarpetas(){
                 <div class="col-8 padding">
                   <h5 class="card-title">${response.carpetas[i].nombre}</h5>
                 </div>
+
                 <div class="col-2 padding">
                   <div class="float-right">
                     <a href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
@@ -91,3 +103,52 @@ function generarCarpetas(){
 	});
 }
 
+$('#guard-empleado').click(function(){
+  console.log($('#slc-tipo-trabajo').val());
+
+  if($('#slc-tipo-trabajo').val() == "carpeta"){
+    
+    $.ajax({
+      url: "/api/",
+      method: "POST",
+      dataType: "json",
+      success: function(response){
+        console.log(`mensaje del servidor: ${response.length}`); 
+      },
+      error: function(error){
+        console.error(error);
+      }
+    });
+
+  } else if ($('#slc-tipo-trabajo').val() == "proyecto"){
+
+    $.ajax({
+      url: "/api/",
+      method: "POST",
+      dataType: "json",
+      success: function(response){
+        console.log(`mensaje del servidor: ${response.length}`); 
+      },
+      error: function(error){
+        console.error(error);
+      }
+    });
+
+  } else if ($('#slc-tipo-trabajo').val() == "archivo"){
+
+    $.ajax({
+      url: "/api/",
+      method: "POST",
+      dataType: "json",
+      success: function(response){
+        console.log(`mensaje del servidor: ${response.length}`); 
+      },
+      error: function(error){
+        console.error(error);
+      }
+    });
+
+  }
+
+
+});

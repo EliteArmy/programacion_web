@@ -10,15 +10,6 @@ $(document).ready(function() {
 $("#sidebar").load('sidebar.html');
 $("#nav-bar").load('navbar-dashboard.html');
 
-var informacionProyectos = [
-  {nombre:'Proyecto 01', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Proyecto 02', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Proyecto 03', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Proyecto 04', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Proyecto 05', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
-  {nombre:'Proyecto 06', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'}
-];
-
 console.log(informacionProyectos.length);
 
 function generarProyectos(){
@@ -53,3 +44,39 @@ function generarProyectos(){
   }
 }
 
+$('#guard-empleado').click(function(){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "insertar-empleado",
+
+      "primer_nombre": $('#primer-nombre').val(),
+      "segundo_nombre": $('#segundo-nombre').val(),
+      "primer_apellido": $('#primer-apellido').val(),
+      "segundo_apellido": $('#segundo-apellido').val(),
+      "sexo": $('#slc-sexo').val(),
+      "direccion": $('#direccion').val(),
+      "correo_electronico": $('#correo-electronico').val(),
+      "numero_identidad": $('#numero-identidad').val(),
+      "telefono": $('#telefono').val(),
+      "fecha_nacimiento": $('#fecha-nacimiento').val(),
+      "fecha_ingreso": $('#fecha-ingreso').val(),
+      "usuario": $('#usuario').val(),
+      "contrasena": $('#contrasena').val(),
+      "foto_url": $("#foto-inputGroupFile").val(),
+      "id_tipo_usuario": $('#slc-tipo-usuario').val()
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response);
+  });
+
+});

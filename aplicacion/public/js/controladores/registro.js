@@ -50,7 +50,7 @@ function validarLogin(campo, expresion, formato) {
   }
 }
 
-$("#btn-login").click(function(){
+$("#btn-registro").click(function(){
   var loginValido = false; // Inicialmente es falso
   
   // Manda  a llamar la función de validar por cada campo
@@ -59,12 +59,86 @@ $("#btn-login").click(function(){
   }
 
   for (var i=0; i<campos.length; i++){
-    if (!campos[i].valido)
+    if (!campos[i].valido){
       return loginValido = false;
+    } else {
+      loginValido = true;
+    }
   }
 
-  if (loginValido)
-    window.location.href = "dash-carpeta.html";
+  console.log("Nombre Usuario: "+ $('#usuario').val());
+  console.log("correo: "+ $('#correo').val())
+  console.log("contrasena: "+ $('#contrasena').val())
+
+  if (loginValido){
+
+    $.ajax({
+      url: "/api/registro",
+      method: "POST",
+      dataType: "json",
+      data: {
+        "nombreUsuario": $('#usuario').val(),
+        "correo": $('#correo').val(),
+        "contrasena": $('#contrasena').val(),
+      },
+      success: function (response){
+        //console.log(`mensaje del servidor: ${response}`);
+        console.log(`mensaje del servidor1: ${response.estatus}`);
+        console.log(`mensaje del servidor2: ${response.mensaje}`);   
+        
+        if (response.estatus == 1){
+          window.location.href = "/dash-carpeta.html";
+        } else {
+          // Mensaje de Error
+          $.alert({
+            title: '',
+            content: response.mensaje,
+            type: 'red',
+            typeAnimated: true,
+            icon: 'fas fa-exclamation-triangle',
+            closeIcon: true,
+            closeIconClass: 'fas fa-times',
+            autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+            theme: 'modern', // Acepta propiedades CSS
+            buttons: {
+              cerrar: {
+                text: 'Cerrar',
+                btnClass: 'btn-danger',
+                keys: ['enter', 'shift']
+              }
+            }
+          });
+        }
+      },
+      error: function (error){
+        //console.error(`Error1: ${error}`);
+        //console.error(`Error2: ${error.message}`);
+        // Mensaje de Error
+        $.alert({
+          title: '',
+          content: error,
+          type: 'red',
+          typeAnimated: true,
+          icon: 'fas fa-exclamation-triangle',
+          closeIcon: true,
+          closeIconClass: 'fas fa-times',
+          autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+          theme: 'modern', // Acepta propiedades CSS
+          buttons: {
+            cerrar: {
+              text: 'Cerrar',
+              btnClass: 'btn-danger',
+              keys: ['enter', 'shift']
+            }
+          }
+        });
+      }
+    });
+
+
+
+  }
+    //window.location.href = "dash-carpeta.html";
 });
 
 

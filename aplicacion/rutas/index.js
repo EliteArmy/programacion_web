@@ -66,11 +66,11 @@ api.delete('/archivo/:archivoId', archivoCtrl.deleteArchivo)
 // ================== PETICIONES AUTENTICACIÓN ==================
 api.post('/login', usuarioCtrl.loginUsuario) // app.post("/login", function(req, res){}
 
-api.get('/loged', usuarioCtrl.usuarioLogeado) // app.post("/login", function(req, res){}
+api.get('/loged', usuarioCtrl.usuarioLogeado) // app.get("/loged", function(req, res){}
  
-api.post('/registro', usuarioCtrl.saveUsuario) // app.post("/login", function(req, res){}
+api.post('/registro', usuarioCtrl.saveUsuario) // app.post("/registro", function(req, res){}
 
-api.get('/logout', usuarioCtrl.logoutUsuario) // app.post("/login", function(req, res){}
+api.post('/logout', usuarioCtrl.logoutUsuario) // app.post("/logout", function(req, res){}
 
 // ===================== PETICIONES PRUEBA  =====================
 // La siguiente es una peticion restringida, se envia una funcion midleware que verifica si esta autenticadoo no.

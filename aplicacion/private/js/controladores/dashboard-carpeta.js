@@ -7,36 +7,43 @@ $( "#nav-bar" ).load( "navbar-dashboard.html", function() {
 });
 
 $(document).ready(function() {
-
-  $.ajax({
-    url: "/api/loged",
-    method: "GET",
-    dataType: "json",
-    success: function(response){
-      console.log(`mensaje del servidor: ${response.length}`); 
-      
-      //console.log(`mensaje del servidor3: ${response[0].nombre}`);  
-      if (response.length > 0){
-        console.log(`mensaje del servidor3: ${response[0].nombre}`);  
-        $('#nombre-usuario').html(response[0].nombre)
-        $('#nombre-usuario2').html(response[0].nombre)
-      } else {
-        //window.location.href = "/login.html";
-        console.log(`mensaje del servidor2: ${response[0].correo}`);
-      }
-    },
-    error: function(error){
-      //console.error(error);
-    }
-  });
-  
-  generarCarpetas();
+  cargarDatos();
+  //generarCarpetas();
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
   });
   
 });
+
+function cargarDatos(){
+  console.log("Cargar los Datos.")
+   
+  $.ajax({
+    url: "/api/loged",
+    method: "get",
+    dataType: "json",
+    success: function(response){
+      console.log(`Tamaño: ${response.length}`);
+      console.log(`Response: ${response}`);
+      console.log(`Nombre: ${response[0].nombreUsuario}`);  
+      console.log(`Correo: ${response[0].correo}`);
+      
+      if (response.length > 0){
+        
+        $('#nombre-usuario').html(response[0].nombreUsuario)
+        $('#nombre-usuario2').html(response[0].nombreUsuario)
+      } else {
+        //window.location.href = "/login.html";
+      }
+    },
+    
+    error: function(err){
+      console.log(err);
+    }
+  });
+
+}
 
 function generarCarpetas(){
 
@@ -79,8 +86,8 @@ function generarCarpetas(){
       }
 
 		},
-		error: function(error){
-      //console.error(error);
+		error: function(err){
+      console.log(err);
 		}
 	});
 }
@@ -98,8 +105,8 @@ $('#guard-empleado').click(function(){
       success: function(response){
         console.log(`mensaje del servidor: ${response.length}`); 
       },
-      error: function(error){
-        console.error(error);
+      error: function(err){
+        console.error(err);
       }
     });
 
@@ -112,8 +119,8 @@ $('#guard-empleado').click(function(){
       success: function(response){
         console.log(`mensaje del servidor: ${response.length}`); 
       },
-      error: function(error){
-        console.error(error);
+      error: function(err){
+        console.error(err);
       }
     });
 
@@ -126,8 +133,8 @@ $('#guard-empleado').click(function(){
       success: function(response){
         console.log(`mensaje del servidor: ${response.length}`); 
       },
-      error: function(error){
-        console.error(error);
+      error: function(err){
+        console.error(err);
       }
     });
 

@@ -27,23 +27,24 @@ function getUsuarios(req, res) {
   })
 }
 
+// Registro de nuevos Usuarios
 function saveUsuario(req, res){
   console.log('POST /api/usuario')
   console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let usuario = new Usuario() // Usuario es el modelo de la base de datos
   
-  usuario.nombre = req.body.nombre // req.body - tenemos todo el cuerpo de la cabecera
+  usuario.nombreUsuario = req.body.nombreUsuario // req.body - tenemos todo el cuerpo de la cabecera
   usuario.correo = req.body.correo
   usuario.contrasena = req.body.contrasena
   usuario.imagen = req.body.imagen // No almacena si no es de los previamente definidos
-  usuario.fechaRegistro = req.body.fechaRegistro
+  usuario.fechaRegistro = Date.now()
 
   usuario.save((err, usuarioStored) => {
     if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}`})
     
     // Devuelve los campos mas los que agrego mongo
-    res.status(200).send({ usuario: usuarioStored })
+    res.status(200).send({ estatus: 1, mensaje: "Usuario guardado con exito!", usuario: usuarioStored })
   })
 }
 
@@ -82,8 +83,9 @@ function loginUsuario(req, res){
   console.log('POST /login')
 
   Usuario.find({correo: req.body.correo, contrasena: req.body.contrasena})
-    .then(data => {
-      console.log(`Data: ${data}`)
+    .then(data=>{
+      console.log(`Data luego del Login: ${data}`)
+      
       if(data.length == 1){ // Significa que si encontro un usuario con las credenciales indicadas
         
         //Establecer las variables de sesion
@@ -101,10 +103,12 @@ function loginUsuario(req, res){
 }
 
 // Busca los datos del Usuario que esta loggeado
-function usuarioLogeado (req, res){
+function usuarioLogeado(req, res){
+  console.log('GET /Loged')
+  
   Usuario.find({_id: req.session.codigoUsuario})
     .then(data=>{
-      console.log(`data: ${data}`)
+      console.log(`data Usuario Logaedo: ${data}`)
       res.send(data);
     })
     .catch(error=>{
@@ -141,6 +145,7 @@ module.exports = {
   saveUsuario,
   updateUsuario,
   deleteUsuario,
+
   loginUsuario,
   usuarioLogeado,
   logoutUsuario,

@@ -107,7 +107,8 @@ $('#guard-empleado').click(function(){
   console.log($('#slc-tipo-trabajo').val());
 
   if($('#slc-tipo-trabajo').val() == "carpeta"){
-    
+    console.log("carpeta");
+
     $.ajax({
       url: "/api/",
       method: "POST",
@@ -121,7 +122,7 @@ $('#guard-empleado').click(function(){
     });
 
   } else if ($('#slc-tipo-trabajo').val() == "proyecto"){
-
+    console.log("proyecto");
     $.ajax({
       url: "/api/",
       method: "POST",
@@ -135,7 +136,7 @@ $('#guard-empleado').click(function(){
     });
 
   } else if ($('#slc-tipo-trabajo').val() == "archivo"){
-
+    console.log("archivo");
     $.ajax({
       url: "/api/",
       method: "POST",
@@ -150,5 +151,10 @@ $('#guard-empleado').click(function(){
 
   }
 
+});
+
+$('#slc-tipo-trabajo').onchange(function(){
+  
 
 });
+

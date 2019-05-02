@@ -7,9 +7,12 @@ var ProyectoEsquema = new mongoose.Schema({
   descripcion: String,
   imagen: String, 
   fechaCreacion: { type: Date, default: Date.now() } ,
-  carpetaId: String,
-  usuarioId: String,
-  estado: String
+  
+  carpetaId: mongoose.Types.ObjectId, // Id carpeta a la cual pertenece
+  archivos: Array, // 3 Archivos (html, css, js)
+  
+  estado: String,
+  usuarioCreador: mongoose.Types.ObjectId
 })
 
 module.exports = mongoose.model('Proyecto', ProyectoEsquema);

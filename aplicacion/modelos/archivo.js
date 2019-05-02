@@ -5,13 +5,17 @@ var mongoose = require('mongoose')
 var ArchivoEsquema = new mongoose.Schema({
   nombre: String,
   descripcion: String,
+  imagen: String,
+  fechaCreacion: { type: Date, default: Date.now() } ,
+
   contenido: String,
   extension: String,
-  fechaCreacion: { type: Date, default: Date.now() } ,
-  proyectoId: String,
-  carpetaId: String,
-  usuarioId: String,
-  estado: String
+
+  proyectoId: mongoose.Types.ObjectId, // Proyecto al cual puede pertenecer
+  carpetaId: mongoose.Types.ObjectId, // Carpeta a la cual puede pertenecer
+  
+  estado: String,
+  usuarioCreador: mongoose.Types.ObjectId
 })
 
 module.exports = mongoose.model('Archivo', ArchivoEsquema);

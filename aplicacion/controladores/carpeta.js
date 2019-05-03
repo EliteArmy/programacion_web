@@ -32,7 +32,7 @@ function getCarpetas (req, res) {
 
 // Guardar una carpeta en la base de Datos
 function saveCarpeta(req, res){
-  console.log('POST /api/carpeta')
+  //console.log('POST /api/carpeta') // Imprime en terminal
   //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let carpeta = new Carpeta() // Carpeta es el modelo de la base de datos

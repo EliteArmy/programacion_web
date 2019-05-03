@@ -16,6 +16,7 @@ var CarpetaEsquema = new mongoose.Schema({
   
   estado: String,
   usuarioCreador: mongoose.Types.ObjectId,
+  compartido: Array
 })
 
 module.exports = mongoose.model('Carpeta', CarpetaEsquema);

@@ -80,11 +80,11 @@ function deleteUsuario (req, res) {
 // ================== PETICIONES AUTENTICACIÓN ==================
 // Hace el Login del usuario
 function loginUsuario(req, res){
-  console.log('POST /login')
+  //console.log('POST /login') // Imprime en terminal
 
   Usuario.find({correo: req.body.correo, contrasena: req.body.contrasena})
     .then(data=>{
-      console.log(`Data luego del Login: ${data}`)
+      //console.log(`Data luego del Login: ${data}`) // Imprime en terminal todo el usuario y sus datos
       
       if(data.length == 1){ // Significa que si encontro un usuario con las credenciales indicadas
         
@@ -104,11 +104,11 @@ function loginUsuario(req, res){
 
 // Busca los datos del Usuario que esta loggeado
 function usuarioLogeado(req, res){
-  console.log('GET /Loged')
+  //console.log('GET /Loged') // Imprime en terminal
   
   Usuario.find({_id: req.session.codigoUsuario})
     .then(data=>{
-      console.log(`data Usuario Logaedo: ${data}`)
+      //console.log(`data Usuario Logaedo: ${data}`) // Imprime en terminal
       res.send(data);
     })
     .catch(error=>{

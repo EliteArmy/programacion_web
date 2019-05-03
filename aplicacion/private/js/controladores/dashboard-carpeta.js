@@ -52,7 +52,8 @@ function generarCarpetas(){
     dataType: "json",
     success: function(response){
       console.log(response);
-      console.log(`carpetas: ${response.carpetas.length}`);
+      console.log(`Numero carpetas: ${response.carpetas.length}`);
+      $('#numero-carpetas').html(response.carpetas.length)
 
       document.getElementById('mostrar-carpetas').innerHTML = "";
   
@@ -62,15 +63,16 @@ function generarCarpetas(){
           <div class="text-center card">
             <div class="card-body">
               <div class="row margin">
-                <div class="col-2 padding">
-                </div>
-                <div class="col-8 padding">
-                  <h5 class="card-title">${response.carpetas[i].nombre}</h5>
+                
+                <div class="text-left col-8 padding">
+                  <h5 class="card-title ml-2">${response.carpetas[i].nombre}</h5>
                 </div>
 
-                <div class="col-2 padding">
+                <div class="col-4 padding">
                   <div class="float-right">
-                    <a onclick="buscarCarpeta(${response.carpetas[i]._id})" data-toggle="modal" data-target="#carpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
+                  <i ></i>
+                    <a onclick="crearTrabajo(${response.carpetas[i]._id})" data-toggle="modal" data-target="#crearNuevoTrabajo" href="#" data-toggle="tooltip" title="Nuevo Trabajo"><span class="far fa-plus-square text-info"></span></a>
+                    <a onclick="editarCarpeta(${response.carpetas[i]._id})" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
                     <a onclick="borrarCarpeta(${response.carpetas[i]._id})" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
                 </div>
@@ -91,143 +93,144 @@ function generarCarpetas(){
 	});
 }
 
+// ============ Carpeta ============
 function crearCarpeta(){
-  //console.log("Selección:" + $('#slc-tipo-trabajo').val());
+  console.log("Crear Carpeta");
 
-  if($('#slc-tipo-trabajo').val() == "carpeta"){
-    console.log("Opción seleccionada: carpeta");
+  $.ajax({
+    url: "/api/carpeta",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "nombre": $('#carpeta-nombre').val(),
+      "descripcion": $('#carpeta-descripcion').val(),
+      "imagen": $('#carpeta-imagen').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
 
-    $.ajax({
-      url: "/api/carpeta",
-      method: "POST",
-      dataType: "json",
-      data: {
-        "nombre": $('#trabajo-nombre').val(),
-        "descripcion": $('#trabajo-descripcion').val(),
-        "imagen": $('#trabajo-imagen').val(),
-      },
-      success: function(response){
-        //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
-
-        // Mensajes Validos
-        $.alert({
-          title: '',
-          content: `Carpeta ${response.carpeta.nombre}, creada con exito`,
-          type: 'green',
-          typeAnimated: true,
-          icon: 'fas fa-check',
-          closeIcon: true,
-          closeIconClass: 'fas fa-times',
-          autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
-          theme: 'modern', // Acepta propiedades CSS
-          buttons: {
-            cerrar: {
-              text: 'Cerrar',
-              btnClass: 'btn-success',
-              keys: ['enter', 'shift']
-            }
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Carpeta "${response.carpeta.nombre}", creada con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
           }
-        });
-      },
-      error: function(err){
-        console.error(err);
-      }
-    });
+        }
+      });
 
-  } else if ($('#slc-tipo-trabajo').val() == "proyecto"){
-    console.log("Opción seleccionada: proyecto");
-    /*
-    $.ajax({
-      url: "/api/",
-      method: "POST",
-      dataType: "json",
-      success: function(response){
-        console.log(`mensaje del servidor: ${response.length}`); 
-      },
-      error: function(err){
-        console.error(err);
-      }
-    });
-    */
-  } else if ($('#slc-tipo-trabajo').val() == "archivo"){
-    console.log("Opción seleccionada: archivo");
-    /*
-    $.ajax({
-      url: "/api/",
-      method: "POST",
-      dataType: "json",
-      success: function(response){
-        console.log(`mensaje del servidor: ${response.length}`); 
-      },
-      error: function(err){
-        console.error(err);
-      }
-    });
-    */
-  }
+      $('#crearNuevaCarpeta').modal('hide');
+      generarCarpetas();
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
 
 }
 
-$('#crear-nuevo1').click(function(){
-  console.log("Selección:" + $('#slc-tipo-trabajo').val());
+// ============ Proyecto ============
+function crearProyecto(){
+  console.log("Crear Proyecto");
+  /*
+  $.ajax({
+    url: "/api/proyecto",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "nombre": $('#proyecto-nombre').val(),
+      "descripcion": $('#proyecto-descripcion').val(),
+      "imagen": $('#proyecto-imagen').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      //console.log(`Nombre Proyecto: ${response.proyecto.nombre}`);
 
-  if($('#slc-tipo-trabajo').val() == "carpeta"){
-    console.log("carpeta");
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Proyecto "${response.proyecto.nombre}", creado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
 
-    $.ajax({
-      url: "/api/carpeta",
-      method: "POST",
-      dataType: "json",
-      data: {
-        "nombre": $('#trabajo-nombre').val(),
-        "descripcion": $('#trabajo-descripcion').val(),
-        "imagen": $('#trabajo-imagen').val(),
-        "estado": "Activa"
-      },
-      success: function(response){
-        console.log(`mensaje del servidor: ${response}`);
-        console.log(`mensaje del servidor: ${response[0]}`);
-      },
-      error: function(err){
-        console.error(err);
-      }
-    });
+      $('#crearNuevoProyecto').modal('hide');
+      generarProyectos();
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+  */
+}
 
-  } else if ($('#slc-tipo-trabajo').val() == "proyecto"){
-    console.log("proyecto");
-    /*
-    $.ajax({
-      url: "/api/",
-      method: "POST",
-      dataType: "json",
-      success: function(response){
-        console.log(`mensaje del servidor: ${response.length}`); 
-      },
-      error: function(err){
-        console.error(err);
-      }
-    });
-    */
-  } else if ($('#slc-tipo-trabajo').val() == "archivo"){
-    console.log("archivo");
-    /*
-    $.ajax({
-      url: "/api/",
-      method: "POST",
-      dataType: "json",
-      success: function(response){
-        console.log(`mensaje del servidor: ${response.length}`); 
-      },
-      error: function(err){
-        console.error(err);
-      }
-    });
-    */
-  }
+// ============ Archivo ============
+function crearArchivo(){
+  console.log("Crear Archivo");
+  /*
+  $.ajax({
+    url: "/api/archivo",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "nombre": $('#archivo-nombre').val(),
+      "descripcion": $('#archivo-descripcion').val(),
+      "imagen": $('#archivo-imagen').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      //console.log(`Nombre Archivo: ${response.archivo.nombre}`);
 
-});
-
-$('#slc-tipo-trabajo').change(function(){
-  console.log("Selección:" + $('#slc-tipo-trabajo').val());
-});
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Archivo "${response.archivo.nombre}", creado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+      $('#crearNuevoArchivo').modal('hide');
+      generarArchivos();
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+  */
+}
 

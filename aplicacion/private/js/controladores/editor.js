@@ -3,14 +3,14 @@ var modo = ["text/html", "css", "javascript", "text/html"];
 var editores = [];
 
 for (var i = 0; i<txtAreas.length; i++){
-    editores[i] = CodeMirror.fromTextArea(document.getElementById(txtAreas[i]), {
-    mode: modo[i],
-    lineNumbers: true,
-    tabSize: 2,
-    value: "CSS",
-    cursorScrollMargin: 20,
-    scrollbarStyle: "overlay"
-    });
+  editores[i] = CodeMirror.fromTextArea(document.getElementById(txtAreas[i]), {
+  mode: modo[i],
+  lineNumbers: true,
+  tabSize: 2,
+  value: "CSS",
+  cursorScrollMargin: 20,
+  scrollbarStyle: "overlay"
+  });
 }
 
 var input = document.getElementById("select");

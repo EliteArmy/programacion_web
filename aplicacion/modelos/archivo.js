@@ -8,14 +8,15 @@ var ArchivoEsquema = new mongoose.Schema({
   imagen: String,
   fechaCreacion: { type: Date, default: Date.now() } ,
 
+  carpetaId: mongoose.Types.ObjectId, // Id Carpeta a la cual puede pertenecer
+  proyectoId: mongoose.Types.ObjectId, // Id Proyecto al cual puede pertenecer
+  
   contenido: String,
   extension: String,
-
-  proyectoId: mongoose.Types.ObjectId, // Proyecto al cual puede pertenecer
-  carpetaId: mongoose.Types.ObjectId, // Carpeta a la cual puede pertenecer
   
   estado: String,
-  usuarioCreador: mongoose.Types.ObjectId
+  usuarioCreador: mongoose.Types.ObjectId,
+  compartido: Array
 })
 
 module.exports = mongoose.model('Archivo', ArchivoEsquema);

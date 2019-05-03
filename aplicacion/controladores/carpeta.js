@@ -59,6 +59,7 @@ function saveCarpeta(req, res){
   })
 }
 
+// Actualiza una carpeta en la base de datos
 function updateCarpeta (req, res) {
   console.log('PUT /api/carpeta')
   console.log(req.body)
@@ -83,7 +84,7 @@ function deleteCarpeta (req, res) {
     carpeta.remove(err => {
       if (err) res.status(500).send({ message: `Error al borrar la carpeta: ${err}`})
       
-      res.status(200).send({ message: `La carpeta ha sido eliminado` })
+      res.status(200).send({ message: `La carpeta ha sido eliminada con éxito` })
     })
 
   })

@@ -96,6 +96,14 @@
             </div>
           </div>
 
+          <div class="form-group col-12 col-sm-6 col-md-6 d-none">
+            <label for="carpeta-id"></label>
+            <input type="hidden" class="form-control" id="carpeta-id" name="carpeta-id">
+            <div class="invalid-feedback">
+              <span></span>
+            </div>
+          </div>
+
         </div>
       </div>
       
@@ -103,6 +111,12 @@
         <button type="button" class="btn btn-primary" onclick="crearCarpeta()" id="GuardarNuevaCarpeta">Crear Carpeta</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="actualizarCarpeta()" id="GuardarNuevaCarpeta">Actualizar Carpeta</button>
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>-->
+      </div>
+
     </div>
   </div>
 </div>

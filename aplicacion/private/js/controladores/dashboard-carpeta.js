@@ -71,9 +71,9 @@ function generarCarpetas(){
                 <div class="col-4 padding">
                   <div class="float-right">
                   <i ></i>
-                    <a onclick="crearTrabajo(${response.carpetas[i]._id})" data-toggle="modal" data-target="#crearNuevoTrabajo" href="#" data-toggle="tooltip" title="Nuevo Trabajo"><span class="far fa-plus-square text-info"></span></a>
-                    <a onclick="editarCarpeta(${response.carpetas[i]._id})" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
-                    <a onclick="borrarCarpeta(${response.carpetas[i]._id})" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
+                    <a onclick="crearTrabajo('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevoTrabajo" href="#" data-toggle="tooltip" title="Nuevo Trabajo"><span class="far fa-plus-square text-info"></span></a>
+                    <a onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
+                    <a onclick="borrarCarpeta('${response.carpetas[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
                 </div>
               </div>
@@ -138,6 +138,139 @@ function crearCarpeta(){
       console.error(err);
     }
   });
+}
+
+function buscarCarpeta(id){
+  console.log("Buscar Carpeta");
+
+  $.ajax({
+    url: "/api/carpeta/"+id,
+    method: "GET",
+    dataType: "json",
+    success: function(response){
+      //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+      $('#carpeta-nombre').val(response.carpeta.nombre);
+      $('#carpeta-descripcion').val(response.carpeta.descripcion);
+      $('#carpeta-imagen').val(response.carpeta.imagen);
+      $('#carpeta-id').val(response.carpeta._id);
+      //$('#crearNuevaCarpeta').modal('show');
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
+function actualizarCarpeta(){
+  console.log("Actualizar Carpeta: " + $('#carpeta-id').val());
+  
+  $.ajax({
+    url: '/api/carpeta/'+$('#carpeta-id').val(),
+    method: "PUT",
+    dataType: "json",
+    data: {
+      "nombre": $('#carpeta-nombre').val(),
+      "descripcion": $('#carpeta-descripcion').val(),
+      "imagen": $('#carpeta-imagen').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Carpeta "${response.carpeta.nombre}", actualizada con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+      $('#crearNuevaCarpeta').modal('hide');
+      generarCarpetas();
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
+function borrarCarpeta(id){
+  console.log("Borrar Carpeta: " + $('#carpeta-id').val());
+  
+  $.confirm({
+    title: '',
+    content: '¿Está seguro de eliminar esta carpeta?',
+    type: 'orange',
+    typeAnimated: true,
+    icon: 'fa fa-trash',
+    theme: 'modern',
+    closeIcon: true,
+    closeIconClass: 'fas fa-times',
+    buttons: {
+      
+      Eliminar: {
+        text: "¡Si, Seguro!",
+        btnClass: "btn-warning",
+        action: function(){
+
+
+          $.ajax({
+            url: '/api/carpeta/'+id,
+            method: "DELETE",
+            dataType: "json",
+            success: function(response){
+              //console.log(`Nombre Carpeta: ${response.message}`);
+        
+              // Mensajes Validos
+              $.alert({
+                title: '',
+                content: `${response.message}`,
+                type: 'green',
+                typeAnimated: true,
+                icon: 'fas fa-check',
+                closeIcon: true,
+                closeIconClass: 'fas fa-times',
+                autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+                theme: 'modern', // Acepta propiedades CSS
+                buttons: {
+                  cerrar: {
+                    text: 'Cerrar',
+                    btnClass: 'btn-success',
+                    keys: ['enter', 'shift']
+                  }
+                }
+              });
+        
+              generarCarpetas();
+        
+            },
+            error: function(error){
+              console.error(error);
+            }
+          });
+          
+
+        }
+      },
+      Cancelar: function(){
+        // --
+      }
+    }
+  })
 
 }
 

@@ -32,8 +32,8 @@ app.use(function (req, res, next) {
   }
 );
 
-app.use('', apl) // Rutas de las paginas
 app.use('/api', api) // Rutas de las peticiones
+app.use('', apl) // Rutas de las paginas
 
 // Exportar el App
 module.exports = app

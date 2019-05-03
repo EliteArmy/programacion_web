@@ -78,7 +78,7 @@
 
           <div class="form-group col-12 col-sm-6 col-md-6">
             <label for="trabajo-nombre">Nombre:</label>
-            <input type="text" class="form-control" id="trabajo-nombre" name="trabajo-nombre"  placeholder="Nombre">
+            <input type="text" value="nombre" class="form-control" id="trabajo-nombre" name="trabajo-nombre"  placeholder="Nombre">
             <div class="invalid-feedback">
               <span></span>
             </div>
@@ -86,7 +86,15 @@
 
           <div class="form-group col-12 col-sm-6 col-md-6">
             <label for="trabajo-descripcion">Descripción:</label>
-            <input type="text" class="form-control" id="trabajo-descripcion" name="trabajo-descripcion"  placeholder="Descripción">
+            <input type="text" value="descripcion" class="form-control" id="trabajo-descripcion" name="trabajo-descripcion"  placeholder="Descripción">
+            <div class="invalid-feedback">
+              <span></span>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-6 col-md-6">
+            <label for="trabajo-imagen">Imagen:</label>
+            <input type="text" value="imagen.jpg" class="form-control" id="trabajo-imagen" name="trabajo-imagen"  placeholder="Imagen">
             <div class="invalid-feedback">
               <span></span>
             </div>
@@ -119,7 +127,7 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="crear-nuevo">Crear</button>
+        <button type="button" class="btn btn-primary" onclick="crearCarpeta()" id="crear-nuevo">Crear</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

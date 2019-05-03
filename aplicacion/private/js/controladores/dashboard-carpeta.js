@@ -1,14 +1,14 @@
-$( "#sidebar" ).load( "sidebar.html", function() {
+$("#sidebar").load( "sidebar.html", function() {
   console.log( "Sidebar fue cargado con exito." );
 });
 
-$( "#nav-bar" ).load( "navbar-dashboard.html", function() {
+$("#nav-bar").load( "navbar-dashboard.html", function() {
   console.log( "Navbar fue cargado con exito." );
 });
 
 $(document).ready(function() {
   cargarDatos();
-  //generarCarpetas();
+  generarCarpetas();
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
@@ -17,27 +17,26 @@ $(document).ready(function() {
 });
 
 function cargarDatos(){
-  console.log("Cargar los Datos.")
+  //console.log("Cargar los Datos del Usuario.")
    
   $.ajax({
     url: "/api/loged",
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(`Tamaño: ${response.length}`);
-      console.log(`Response: ${response}`);
-      console.log(`Nombre: ${response[0].nombreUsuario}`);  
-      console.log(`Correo: ${response[0].correo}`);
+      //console.log(`Tamaño: ${response.length}`);
+      //console.log(`Response: ${response}`);
+      //console.log(`Nombre: ${response[0].nombreUsuario}`);  
+      //console.log(`Correo: ${response[0].correo}`);
       
       if (response.length > 0){
-        
+        console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
         $('#nombre-usuario').html(response[0].nombreUsuario)
         $('#nombre-usuario2').html(response[0].nombreUsuario)
       } else {
         //window.location.href = "/login.html";
       }
     },
-    
     error: function(err){
       console.log(err);
     }
@@ -46,7 +45,7 @@ function cargarDatos(){
 }
 
 function generarCarpetas(){
-
+  console.log(`Generar las carpetas:`);
   $.ajax({
 		url: "/api/carpeta",
     method: "GET",
@@ -71,8 +70,8 @@ function generarCarpetas(){
 
                 <div class="col-2 padding">
                   <div class="float-right">
-                    <a href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
-                    <a href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
+                    <a onclick="buscarCarpeta(${response.carpetas[i]._id})" data-toggle="modal" data-target="#carpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
+                    <a onclick="borrarCarpeta(${response.carpetas[i]._id})" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
                 </div>
               </div>
@@ -92,18 +91,102 @@ function generarCarpetas(){
 	});
 }
 
-$('#guard-empleado').click(function(){
-  console.log($('#slc-tipo-trabajo').val());
+function crearCarpeta(){
+  //console.log("Selección:" + $('#slc-tipo-trabajo').val());
 
   if($('#slc-tipo-trabajo').val() == "carpeta"){
-    console.log("carpeta");
+    console.log("Opción seleccionada: carpeta");
 
+    $.ajax({
+      url: "/api/carpeta",
+      method: "POST",
+      dataType: "json",
+      data: {
+        "nombre": $('#trabajo-nombre').val(),
+        "descripcion": $('#trabajo-descripcion').val(),
+        "imagen": $('#trabajo-imagen').val(),
+      },
+      success: function(response){
+        //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+
+        // Mensajes Validos
+        $.alert({
+          title: '',
+          content: `Carpeta ${response.carpeta.nombre}, creada con exito`,
+          type: 'green',
+          typeAnimated: true,
+          icon: 'fas fa-check',
+          closeIcon: true,
+          closeIconClass: 'fas fa-times',
+          autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+          theme: 'modern', // Acepta propiedades CSS
+          buttons: {
+            cerrar: {
+              text: 'Cerrar',
+              btnClass: 'btn-success',
+              keys: ['enter', 'shift']
+            }
+          }
+        });
+      },
+      error: function(err){
+        console.error(err);
+      }
+    });
+
+  } else if ($('#slc-tipo-trabajo').val() == "proyecto"){
+    console.log("Opción seleccionada: proyecto");
+    /*
     $.ajax({
       url: "/api/",
       method: "POST",
       dataType: "json",
       success: function(response){
         console.log(`mensaje del servidor: ${response.length}`); 
+      },
+      error: function(err){
+        console.error(err);
+      }
+    });
+    */
+  } else if ($('#slc-tipo-trabajo').val() == "archivo"){
+    console.log("Opción seleccionada: archivo");
+    /*
+    $.ajax({
+      url: "/api/",
+      method: "POST",
+      dataType: "json",
+      success: function(response){
+        console.log(`mensaje del servidor: ${response.length}`); 
+      },
+      error: function(err){
+        console.error(err);
+      }
+    });
+    */
+  }
+
+}
+
+$('#crear-nuevo1').click(function(){
+  console.log("Selección:" + $('#slc-tipo-trabajo').val());
+
+  if($('#slc-tipo-trabajo').val() == "carpeta"){
+    console.log("carpeta");
+
+    $.ajax({
+      url: "/api/carpeta",
+      method: "POST",
+      dataType: "json",
+      data: {
+        "nombre": $('#trabajo-nombre').val(),
+        "descripcion": $('#trabajo-descripcion').val(),
+        "imagen": $('#trabajo-imagen').val(),
+        "estado": "Activa"
+      },
+      success: function(response){
+        console.log(`mensaje del servidor: ${response}`);
+        console.log(`mensaje del servidor: ${response[0]}`);
       },
       error: function(err){
         console.error(err);
@@ -112,6 +195,7 @@ $('#guard-empleado').click(function(){
 
   } else if ($('#slc-tipo-trabajo').val() == "proyecto"){
     console.log("proyecto");
+    /*
     $.ajax({
       url: "/api/",
       method: "POST",
@@ -123,9 +207,10 @@ $('#guard-empleado').click(function(){
         console.error(err);
       }
     });
-
+    */
   } else if ($('#slc-tipo-trabajo').val() == "archivo"){
     console.log("archivo");
+    /*
     $.ajax({
       url: "/api/",
       method: "POST",
@@ -137,12 +222,12 @@ $('#guard-empleado').click(function(){
         console.error(err);
       }
     });
-
+    */
   }
 
 });
 
 $('#slc-tipo-trabajo').change(function(){
-  
+  console.log("Selección:" + $('#slc-tipo-trabajo').val());
 });
 

@@ -9,6 +9,7 @@ const UsuarioEsquema = new mongoose.Schema({
   correo: { type: String, unique: true, lowercase: true },
   contrasena: { type: String },
   imagen: String,
+  plan: mongoose.Schema.Types.ObjectId,
   fechaRegistro: { type: Date, default: Date.now }
 });
 

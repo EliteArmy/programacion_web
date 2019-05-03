@@ -22,7 +22,7 @@ api.get('/usuario', usuarioCtrl.getUsuarios)
 api.get('/usuario/:usuarioId', usuarioCtrl.getUsuario)
 
 // === Petición de tipo POST para Insertar nuevos recursos: 
-api.post('/usuario/', usuarioCtrl.saveUsuario)
+api.post('/usuario', usuarioCtrl.saveUsuario)
 
 // === Petición de tipo PUT para Actualizar un único recurso:
 api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
@@ -30,12 +30,21 @@ api.put('/usuario/:usuarioId', usuarioCtrl.updateUsuario)
 // === Petición de tipo DELETE para Borrar un único recurso:
 api.delete('/usuario/:usuarioId', usuarioCtrl.deleteUsuario)
 
+// ================== PETICIONES AUTENTICACIÓN ==================
+api.post('/login', usuarioCtrl.loginUsuario) // app.post("/login", function(req, res){}
+
+api.get('/loged', usuarioCtrl.usuarioLogeado) // app.get("/loged", function(req, res){}
+ 
+api.post('/registro', usuarioCtrl.saveUsuario) // app.post("/registro", function(req, res){}
+
+api.post('/logout', usuarioCtrl.logoutUsuario) // app.post("/logout", function(req, res){}
+
 // ==================== PETICIONES DE CARPETA ====================
 api.get('/carpeta', carpetaCtrl.getCarpetas)
 
 api.get('/carpeta/:carpetaId', carpetaCtrl.getCarpeta)
 
-api.post('/carpeta/', carpetaCtrl.saveCarpeta)
+api.post('/carpeta', carpetaCtrl.saveCarpeta)
 
 api.put('/carpeta/:carpetaId', carpetaCtrl.updateCarpeta)
 
@@ -46,7 +55,7 @@ api.get('/proyecto', proyectoCtrl.getProyectos)
 
 api.get('/proyecto/:proyectoId', proyectoCtrl.getProyecto)
 
-api.post('/proyecto/', proyectoCtrl.saveProyecto)
+api.post('/proyecto', proyectoCtrl.saveProyecto)
 
 api.put('/proyecto/:proyectoId', proyectoCtrl.updateProyecto)
 
@@ -62,15 +71,6 @@ api.post('/archivo/', archivoCtrl.saveArchivo)
 api.put('/archivo/:archivoId', archivoCtrl.updateArchivo)
 
 api.delete('/archivo/:archivoId', archivoCtrl.deleteArchivo)
-
-// ================== PETICIONES AUTENTICACIÓN ==================
-api.post('/login', usuarioCtrl.loginUsuario) // app.post("/login", function(req, res){}
-
-api.get('/loged', usuarioCtrl.usuarioLogeado) // app.get("/loged", function(req, res){}
- 
-api.post('/registro', usuarioCtrl.saveUsuario) // app.post("/registro", function(req, res){}
-
-api.post('/logout', usuarioCtrl.logoutUsuario) // app.post("/logout", function(req, res){}
 
 // ===================== PETICIONES PRUEBA  =====================
 // La siguiente es una peticion restringida, se envia una funcion midleware que verifica si esta autenticadoo no.

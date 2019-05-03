@@ -19,27 +19,37 @@ function getCarpeta (req, res) {
   })
 }
 
+// Generar las Carpetas de un usuario Loggeado
 function getCarpetas (req, res) {
-  Carpeta.find({}, (err, carpetas) => {
+  Carpeta.find({usuarioCreador: req.session.codigoUsuario}, (err, carpetas) => {
     if (err) return res.status(500).send({ message: `Error al realizar la peticición: ${err}`})    
-    if (!carpetas) return res.status(404).send({ message: `No existen carpetas` })
+    
+    if (!carpetas) return res.status(404).send({ message: `No Tienes Carpetas` })
+    
     res.status(200).send({ carpetas })
   })
 }
 
+// Guardar una carpeta en la base de Datos
 function saveCarpeta(req, res){
   console.log('POST /api/carpeta')
-  console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
+  //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let carpeta = new Carpeta() // Carpeta es el modelo de la base de datos
   
   carpeta.nombre = req.body.nombre // req.body - tenemos todo el cuerpo de la cabecera
   carpeta.descripcion = req.body.descripcion
   carpeta.imagen = req.body.imagen
-  carpeta.fechaCreacion = req.body.fechaCreacion // No almacena si no es de los previamente definidos
-  carpeta.carpetaId = req.body.carpetaId
-  carpeta.usuarioId = req.body.usuarioId
+  carpeta.fechaCreacion = Date.now() // No almacena si no es de los previamente definidos
+  
+  //carpeta.carpetaId = req.body.carpetaId // Id carpeta a la cual pertenece, en caso de ser subcarpeta
+
+  carpeta.subCarpeta = []
+  carpeta.archivos = []
+  carpeta.proyectos = []
+
   carpeta.estado = req.body.estado
+  carpeta.usuarioCreador = req.session.codigoUsuario
 
   carpeta.save((err, carpetaStored) => {
     if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}`})
@@ -63,6 +73,7 @@ function updateCarpeta (req, res) {
   })
 }
 
+// Borrar una carpeta de la base
 function deleteCarpeta (req, res) {
   let carpetaId = req.params.carpetaId
 

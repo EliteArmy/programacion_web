@@ -4,8 +4,11 @@
 const Usuario = require('../modelos/usuario');
 
 function getUsuario (req, res) {
+  //console.log('GET /api/usuario/ID')
+
   // params porque viene como parametro de la url
-  let usuarioId = req.params.usuarioId // variable para guardar el id
+  //let usuarioId = req.params.usuarioId // variable para guardar el id
+  let usuarioId = req.session.codigoUsuario // variable session para guardar el id
 
   // Función Usuario, que busque por ID (findById) de mongoose
   // y tambien recibe un callback, error si existiese y el usuario si lo encuentra
@@ -51,8 +54,9 @@ function saveUsuario(req, res){
 function updateUsuario (req, res) {
   console.log('PUT /api/usuario')
   console.log(req.body)
-  
-  let usuarioId = req.params.usuarioId
+  //let usuarioId = req.params.usuarioId // variable para guardar el id
+
+  let usuarioId = req.session.codigoUsuario // variable session para guardar el id
   let update = req.body
 
   Usuario.findByIdAndUpdate(usuarioId, update, (err, usuarioUpdated) => {

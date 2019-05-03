@@ -1,0 +1,46 @@
+Carpetas:
+  • Leer Carpetas y mostrarlas
+  • Creación de Carpetas
+  • Actualizar información de Carpetas
+    -> Nombre
+    -> Descripción
+    -> Imagen (Simulado)
+  • Borrar Carpetas
+  
+
+Archivos:
+  • 
+  • 
+  • 
+
+
+Proyectos
+  • 
+  • 
+  • 
+
+
+Usuario:
+  • Creación de nuevos Usuarios por medio de registro
+  • Mostrar nombre del usuario en el navbar luego del Login
+  • Mostrar información del usuario en el perfil luego del Login
+  • Actualizar información de Usuarios en su perfil
+
+
+Autenticación:
+  • Login
+  • Logout
+  • Redireccionar en caso de no existir la página
+  • Redireccionar en caso de no estar autenticado
+
+
+Editor:
+  • Descargar los archivos
+  • Subir archivos al editor
+  • Cambiar los temas en el editor (Syntax highlighting)
+
+
+Misceláneo:
+  • Navegación entre las páginas del sitio
+  • Responsive
+

@@ -1,9 +1,9 @@
-$("#sidebar").load( "sidebar.html", function() {
-  console.log( "Sidebar fue cargado con exito." );
+$("#sidebar").load("sidebar.html", function() {
+  console.log("Sidebar fue cargado con exito.");
 });
 
-$("#nav-bar").load( "navbar-dashboard.html", function() {
-  console.log( "Navbar fue cargado con exito." );
+$("#nav-bar").load("navbar-dashboard.html", function() {
+  console.log("Navbar fue cargado con exito.");
 });
 
 $(document).ready(function() {
@@ -34,7 +34,7 @@ function cargarDatos(){
         $('#nombre-usuario').html(response[0].nombreUsuario)
         $('#nombre-usuario2').html(response[0].nombreUsuario)
       } else {
-        //window.location.href = "/login.html";
+        // console.log("");
       }
     },
     error: function(err){
@@ -149,10 +149,10 @@ function buscarCarpeta(id){
     dataType: "json",
     success: function(response){
       //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+      $('#carpeta-id').val(response.carpeta._id);
       $('#carpeta-nombre').val(response.carpeta.nombre);
       $('#carpeta-descripcion').val(response.carpeta.descripcion);
       $('#carpeta-imagen').val(response.carpeta.imagen);
-      $('#carpeta-id').val(response.carpeta._id);
       //$('#crearNuevaCarpeta').modal('show');
 
     },

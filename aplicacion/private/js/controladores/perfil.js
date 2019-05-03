@@ -1,30 +1,10 @@
-$(document).ready(function() {
-
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
-  });
-/*
-  url:`/usuarios/${$("#slc-usuario").val()}/contactos`,
-  
-  $.ajax({
-		url:`/usuarios/${$("#slc-usuario").val()}/contactos`,
-    method: "POST",
-    dataType:"json",
-		success: function(response){
-			console.log(response);
-
-		},
-		error: function(error){
-      console.error(error);
-      
-		}
-	});
-*/
-
+$("#sidebar").load("sidebar.html", function() {
+  console.log("Sidebar fue cargado con exito.");
 });
 
-$("#sidebar").load('sidebar.html');
-$("#nav-bar").load('navbar-dashboard.html');
+$("#nav-bar").load("navbar-dashboard.html", function() {
+  console.log("Navbar fue cargado con exito.");
+});
 
 var campos = [
   {campo:'nombre', expresion: /^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$/i, 
@@ -43,7 +23,7 @@ var campos = [
   formato: 'La contraseña nueva debe tener por lo menos de 6 caracteres, 1 letra mayúscula, 1 letra minúscula, y 1 numero.',  valido: false}
 ];
 
-function validarLogin(campo, expresion, formato) {
+function validarDatos(campo, expresion, formato) {
   var re = expresion;
   var valor = $("#"+campo).val();
   
@@ -52,7 +32,7 @@ function validarLogin(campo, expresion, formato) {
     $("#"+campo).addClass("is-invalid");
     $("#validar-"+campo).removeClass("valid-feedback");
     $("#validar-"+campo).addClass("invalid-feedback");
-    $("#validar-"+campo).html("Ingrese es dato");
+    $("#validar-"+campo).html("Ingrese el dato solicitado");
     return false;
 
   } else if (!re.test(valor)) {
@@ -63,33 +43,123 @@ function validarLogin(campo, expresion, formato) {
     $("#validar-"+campo).html(formato);
     return false;
 
-  }
-  else {
+  } else {
     $("#"+campo).removeClass("is-invalid");
     $("#"+campo).addClass("is-valid");
     $("#validar-"+campo).removeClass("invalid-feedback");
     $("#validar-"+campo).addClass("valid-feedback");
     $("#validar-"+campo).html("Campo Correcto");
     return true;
-    
   }
 }
 
+$(document).ready(function() {
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
+  });
+
+  cargarDatos();
+
+});
+
+function cargarDatos(){
+  //console.log("Cargar los Datos del Usuario.")
+   
+  $.ajax({
+    url: "/api/usuario/id",
+    method: "GET",
+    dataType: "json",
+    success: function(response){
+      console.log(`Se cargaron los datos de: ${response.usuario.nombreUsuario} con exito.`);
+      
+      $('#nombre-usuario').html(response.usuario.nombreUsuario);
+      $('#nombre-usuario2').html(response.usuario.nombreUsuario);
+      $('#nombre-usuario3').html(response.usuario.nombreUsuario);
+      $('#nombre-cuenta').html(response.usuario.nombre);
+      $('#descripcion-cuenta').html(response.usuario.descripcion);
+      
+      $('#nombre').val(response.usuario.nombre);
+      $('#apellido').val(response.usuario.apellido);
+      $('#usuario').val(response.usuario.nombreUsuario);
+      $('#correo').val(response.usuario.correo);
+      $('#contrasena').val(response.usuario.contrasena);
+      $('#descripcion').val(response.usuario.descripcion);
+      //$('#').val(response.usuario.);
+      //$('#').val(response.usuario.);
+    },
+    error: function(err){
+      console.log(err);
+    }
+  });
+
+}
+
+function actualizarUsuario(){
+
+  $.ajax({
+    url: '/api/usuario/id',
+    method: "PUT",
+    dataType: "json",
+    data: {
+      "nombre": $('#nombre').val(),
+      "apellido": $('#apellido').val(),
+      "nombreUsuario": $('#usuario').val(),
+      "correo": $('#correo').val(),
+      "contrasena": $('#contrasena').val(),
+      "descripcion": $('#descripcion').val()
+    },
+    success: function(response){
+      console.log(`Nombre usuario: ${response.usuario.nombre}`);
+
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Usuario "${response.usuario.nombreUsuario}", actualizado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+      cargarDatos();
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
 $("#btn-guardar").click(function(){
-  var loginValido = false; // Inicialmente es falso
+  var datosValidos = false; // Inicialmente es falso
   
   // Manda  a llamar la función de validar por cada campo
   for (var i=0; i<campos.length; i++) {
-    campos[i].valido = validarLogin(campos[i].campo, campos[i].expresion, campos[i].formato);
+    campos[i].valido = validarDatos(campos[i].campo, campos[i].expresion, campos[i].formato);
   }
 
   for (var i=0; i<campos.length; i++){
-    if (!campos[i].valido)
-      return loginValido = false;
+    if (!campos[i].valido){
+      return datosValidos = false;
+    } else {
+      datosValidos = true;
+    }
   }
 
-  if (loginValido)
-    console.log("Datos Guardados con Exito");
-    //window.location.href = "dash-carpeta.html";
+  if (datosValidos) {
+    actualizarUsuario();
+  }
+
+
 });
 

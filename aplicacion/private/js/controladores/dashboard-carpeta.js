@@ -45,7 +45,7 @@ function cargarDatos(){
 }
 
 function generarCarpetas(){
-  console.log(`Generar las carpetas:`);
+  //console.log(`Generar las carpetas:`);
   $.ajax({
 		url: "/api/carpeta",
     method: "GET",
@@ -71,7 +71,7 @@ function generarCarpetas(){
                 <div class="col-4 padding">
                   <div class="float-right">
                   <i ></i>
-                    <a onclick="crearTrabajo('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevoTrabajo" href="#" data-toggle="tooltip" title="Nuevo Trabajo"><span class="far fa-plus-square text-info"></span></a>
+                    <a class="reset" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Nuevo Trabajo"><span class="far fa-plus-square text-info"></span></a>
                     <a onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
                     <a onclick="borrarCarpeta('${response.carpetas[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
@@ -155,6 +155,9 @@ function buscarCarpeta(id){
       $('#carpeta-imagen').val(response.carpeta.imagen);
       //$('#crearNuevaCarpeta').modal('show');
 
+      $('#crearCarpeta').addClass('d-none');
+      $('#actualizarCarpeta').removeClass('d-none');
+
     },
     error: function(err){
       console.error(err);
@@ -163,7 +166,7 @@ function buscarCarpeta(id){
 }
 
 function actualizarCarpeta(){
-  console.log("Actualizar Carpeta: " + $('#carpeta-id').val());
+  //console.log("Actualizar Carpeta: " + $('#carpeta-id').val());
   
   $.ajax({
     url: '/api/carpeta/'+$('#carpeta-id').val(),
@@ -200,7 +203,7 @@ function actualizarCarpeta(){
 
       $('#crearNuevaCarpeta').modal('hide');
       generarCarpetas();
-
+      limpiarFormulario();
     },
     error: function(err){
       console.error(err);
@@ -271,8 +274,24 @@ function borrarCarpeta(id){
       }
     }
   })
-
 }
+
+function limpiarFormulario(){
+  console.log('limpiar el formulario');
+  $('#crearCarpeta').removeClass('d-none');
+  $('#actualizarCarpeta').addClass('d-none');
+
+  $('#carpeta-id').val("");
+  $('#carpeta-nombre').val("");
+  $('#carpeta-descripcion').val("");
+  $('#carpeta-imagen').val("");
+}
+
+/* Función que se encarga de dejar los campos por defecto */
+$(".limpiar").click(function(){
+  console.log('Reset del Formulario');
+  limpiarFormulario();
+});
 
 // ============ Proyecto ============
 function crearProyecto(){

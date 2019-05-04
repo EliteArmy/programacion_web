@@ -37,20 +37,18 @@ CodeMirror.on(window, "hashchange", function() {
   if (theme) { input.value = theme; selectTheme(); }
 });
 
-function loadfile(input) {
+function loadfile(input, type) {
   var reader = new FileReader();
+
   reader.onload = function(e) {
-      editores[0].setValue(e.target.result);
+      editores[type].setValue(e.target.result);
   }
+  
   reader.readAsText(input.files[0]);
 }
 
 
 function correrProyecto(){
-  //var html = HTML.getValue();
-  //var css = CSS.getValue();
-  //var js = JS.getValue();
-
   var html = editores[0].getValue();
   var css = editores[1].getValue();
   var javascript = editores[2].getValue();
@@ -78,13 +76,12 @@ function correrProyecto(){
 
                     </html>`;
 
-  var resultado = document.getElementById("resultado").contentWindow.document;
-  resultado.body.innerHTML = estructura;
+  //var resultado = document.getElementById("resultado").contentWindow.document;
+  //resultado.body.innerHTML = estructura;
 
   var frameResultado = document.getElementById("resultado");
   var resultado = frameResultado.contentDocument ||  frameResultado.contentWindow.document;
   resultado.open();
   resultado.write(estructura);
   resultado.close();
-
 }

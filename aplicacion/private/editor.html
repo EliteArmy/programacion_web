@@ -107,7 +107,7 @@
 
           <li class="nav-item dropdown ml-1">
             <a class="nav-link mr-1 text-white" href="#">
-              <i class="fas fa-save font-blue"></i> <span class="center">Nuevo</span>  
+              <i class="fas fa-plus-square font-blue"></i> <span class="center">Nuevo</span>  
             </a>
           </li>
 
@@ -220,7 +220,7 @@
                 <div class="col-12 font-weight-bolder mb-1">
                   <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    Subir HTML <input type="file" onchange="loadfile(this)"> 
+                    Subir HTML <input type="file" onchange="loadfile(this, 0)"> 
                   </span> 
                 </div>
 
@@ -237,7 +237,7 @@
                 <div class="col-12 font-weight-bolder mb-1">
                   <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    Subir CSS <input type="file" onchange="loadfile(this)"> 
+                    Subir CSS <input type="file" onchange="loadfile(this, 1)"> 
                   </span> 
                 </div>
 
@@ -253,7 +253,7 @@
                   <div class="col-12 font-weight-bolder mb-1">
                     <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
                       <i class="fas fa-cloud-upload-alt"></i>
-                      Subir Javascript <input type="file" onchange="loadfile(this)"> 
+                      Subir Javascript <input type="file" onchange="loadfile(this, 2)"> 
                     </span> 
                   </div>
   
@@ -267,11 +267,12 @@
               <div class="row no-gutters m-1 shadow-sm">
                 
                 <div class="col-12 font-weight-bolder mb-1">
-                  <span class="btn btn-primary btn-file mr-1 mb-1 font-color">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    Resultado <input type="file" onchange="loadfile(this)"> 
+                  <span class="btn btn-primary btn-file mr-1 mb-1 font-color" onclick="correrProyecto()">
+                    <i class="fas fa-play font-blue"></i>
+                    Ver Resultado
                   </span> 
                 </div>
+
                 <!--
                 <div class="col-12">
                   <textarea id="html-resultado" name="html-resultado" placeholder="Resultado"></textarea>

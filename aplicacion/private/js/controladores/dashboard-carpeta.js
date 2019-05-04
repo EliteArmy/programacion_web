@@ -495,7 +495,7 @@ function crearArchivo(){
       // Mensajes Validos
       $.alert({
         title: '',
-        content: `Archivo "${response.archivo.nombre}", creado con exito`,
+        content: `Archivo "${response.nombre}", creado con exito`,
         type: 'green',
         typeAnimated: true,
         icon: 'fas fa-check',

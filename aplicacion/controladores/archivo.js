@@ -1,7 +1,9 @@
 'use strict'
 
 // Al no estar instalado por npm, se le debe indicar la ruta
+const Carpeta = require('../modelos/carpeta');
 const Archivo = require('../modelos/archivo');
+const mongoose = require("mongoose");
 
 function getArchivo (req, res) {
   // params porque viene como parametro de la url
@@ -48,12 +50,28 @@ function saveArchivo(req, res){
   archivo.usuarioCreador = req.session.codigoUsuario
   archivo.compartido = []  
 
-  archivo.save((err, archivoStored) => {
-    if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}`})
-    
-    // Devuelve los campos mas los que agrego mongo
-    res.status(200).send({ archivo: archivoStored })
-  })
+  archivo.save()
+    .then(dataArhivo=>{
+
+      Carpeta.updateOne({ _id: req.body.carpetaRaizId },
+        {
+          $push: { archivos: mongoose.Types.ObjectId(dataArhivo._id) }
+        })
+        .then(data=>{
+          //res.send(data); // No se puede enviar datos desde aquí, si no el primero que hizo el llamado "archivo.save()"
+        })
+        .catch(error=>{
+          console.log("--- 3. Error Carpeta: " + error)
+          res.send(error); // En caso de error
+        })
+      
+      console.log("--- 1. Archivo: " + dataArhivo) // Datos enviados al Ajax
+      res.send(dataArhivo);
+    })  
+    .catch(error=>{
+      console.log("Error Archivo: " + error)
+      res.send(error);
+    });
 
   /*
   archivo.save((err, archivoStored) => {

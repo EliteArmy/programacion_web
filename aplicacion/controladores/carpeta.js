@@ -124,7 +124,7 @@ function saveSubCarpeta(req, res){
     
     })
     .catch(error=>{
-      //console.log(" No Hay Error --- Error SubCarpeta: "+error)
+      //console.log("Error SubCarpeta: "+error)
       res.send(error); // En caso de error
     });
 

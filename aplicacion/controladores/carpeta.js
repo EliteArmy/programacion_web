@@ -2,9 +2,12 @@
 
 // Al no estar instalado por npm, se le debe indicar la ruta
 const Carpeta = require('../modelos/carpeta');
+const proyecto = require('../modelos/proyecto');
+const archivo = require('../modelos/archivo');
 var mongoose = require("mongoose");
 
 function getCarpeta (req, res) {
+  console.log("Get Carpeta")
   // params porque viene como parametro de la url
   let carpetaId = req.params.carpetaId // variable para guardar el id
 
@@ -29,6 +32,12 @@ function getCarpetas (req, res) {
     
     res.status(200).send({ carpetas })
   })
+}
+
+// Buscar el contenido de una carpeta
+function getContenidoCarpeta(req, res){
+  console.log('GET /carpeta/contenido')
+  res.status(200).send({ message:"Exito" })
 }
 
 // Guardar una carpeta en la base de Datos
@@ -82,26 +91,7 @@ function saveSubCarpeta(req, res){
   subCarp.estado = req.body.estado
   subCarp.usuarioCreador = req.session.codigoUsuario
   subCarp.compartido = []
-/*
-  subCarp.save()
-    .then(subData=>{
 
-      Carpeta.findOneAndUpdate({ _id: req.body.carpetaRaizId }, // Actualizar la carpeta raiz con la nueva carpeta creada
-        {
-          $push: { subCarpeta: mongoose.Types.ObjectId(subData._id) }
-        }).then(data=>{
-          res.send(data);
-        })
-        .catch(error=>{
-            res.send(error); // En caso de error
-        });
-
-      res.send(subData);
-    })
-    .catch(error=>{
-      res.send(error); // En caso de error
-    });
-*/
   subCarp.save()
     .then(subData=>{
 
@@ -110,19 +100,19 @@ function saveSubCarpeta(req, res){
           $push: { subCarpeta: mongoose.Types.ObjectId(subData._id) }
         })
         .then(data=>{
-          console.log("-------- 2. Carpeta: "+data) // data: [object Object]
+          //console.log("--- 2. Carpeta: "+data) // data: [object Object]
           //res.send(data); // No se puede enviar datos desde aquí, si no el primero que hizo el llamado "subCarp.save()"
         })
         .catch(error=>{
-          console.log("-------- 3. Error Carpeta: "+error)
+          //console.log("--- 3. Error Carpeta: "+error)
           res.send(error); // En caso de error
         });
-      console.log("-------- 1. SubCarpeta: "+subData) // Datos enviados al Ajax
+      //console.log("--- 1. SubCarpeta: "+subData) // Datos enviados al Ajax
       res.send(subData);
     
     })
     .catch(error=>{
-      console.log(" No Hay Error -------- Error SubCarpeta: "+error)
+      //console.log(" No Hay Error --- Error SubCarpeta: "+error)
       res.send(error); // En caso de error
     });
 
@@ -161,10 +151,11 @@ function deleteCarpeta (req, res) {
 
 // Se exportan las funciones
 module.exports = {
-  getCarpeta,
   getCarpetas,
+  getCarpeta,
   saveCarpeta,
   saveSubCarpeta,
+  getContenidoCarpeta,
   updateCarpeta,
   deleteCarpeta
 }

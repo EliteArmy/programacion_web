@@ -48,6 +48,8 @@ api.post('/carpeta', carpetaCtrl.saveCarpeta)
 
 api.post('/carpeta/subcarpeta', carpetaCtrl.saveSubCarpeta)
 
+api.post('/carpeta/contenido', carpetaCtrl.getContenidoCarpeta) // --
+
 api.put('/carpeta/:carpetaId', carpetaCtrl.updateCarpeta)
 
 api.delete('/carpeta/:carpetaId', carpetaCtrl.deleteCarpeta)

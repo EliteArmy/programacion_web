@@ -72,21 +72,20 @@ function generarCarpetas(){
                 <div class="col-4 padding">
                   <div class="float-right">
 
-
-                  <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="far fa-plus-square text-info"></span>
-                    </a>
-                
-                    <div class="dropdown-menu">
-                      <!--<h6 class="dropdown-header">Crear Nuevo:</h6>-->
-                      <a class="dropdown-item disabled" href="#">Crear Nuevo:</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
-                      <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
-                      <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
+                    <div class="dropdown">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="far fa-plus-square text-info"></span>
+                      </a>
+                  
+                      <div class="dropdown-menu">
+                        <!--<h6 class="dropdown-header">Crear Nuevo:</h6>-->
+                        <a class="dropdown-item disabled" href="#">Crear Nuevo:</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
+                        <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
+                      </div>
                     </div>
-                  </div>
 
                     <a onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
                     <a onclick="borrarCarpeta('${response.carpetas[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
@@ -94,7 +93,7 @@ function generarCarpetas(){
                 </div>
               </div>
               <div>
-                <a class="" href="#"><span class="fas fa-folder folder"></span></a>
+                <a class="" onclick="buscarContenidoCarpeta('${response.carpetas[i]._id}')" href="#"><span class="fas fa-folder folder"></span></a>
               </div>
               <p class="card-text">${response.carpetas[i].descripcion}</p>
             </div>
@@ -157,7 +156,7 @@ function crearCarpeta(){
 }
 
 function crearSubCarpeta(){
-  console.log("Crear Sub Carpeta: " + $('#carpeta-id').val());
+  //console.log("Crear Sub Carpeta: " + $('#carpeta-id').val());
 
   $.ajax({
     url: "/api/carpeta/subcarpeta",
@@ -231,9 +230,27 @@ function buscarCarpeta(id){
   });
 }
 
-function buscarContenidoCarpeta(){
+
+function buscarContenidoCarpeta(id){
+  console.log("Buscar Contenido Carpeta: " + id);
   
+  $.ajax({
+    url: "/api/carpeta/contenido",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "carpetaRaizId": id
+    },
+    success: function(response){
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+
 }
+
 
 function actualizarCarpeta(){
   //console.log("Actualizar Carpeta: " + $('#carpeta-id').val());

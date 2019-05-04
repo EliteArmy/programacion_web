@@ -1,6 +1,7 @@
 Carpetas:
   • Leer Carpetas y mostrarlas
   • Creación de Carpetas
+  • Creación de Carpetas dentro de carpetas
   • Actualizar información de Carpetas
     -> Nombre
     -> Descripción
@@ -45,3 +46,8 @@ Misceláneo:
   • Navegación entre las páginas del sitio
   • Responsive
 
+Cosas por hacer:
+redirigir despues del registro
+crear pagina 404
+mejorar landing
+mejorar logout

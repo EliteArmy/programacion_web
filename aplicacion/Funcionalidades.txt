@@ -38,6 +38,7 @@ Editor:
   • Descargar los archivos
   • Subir archivos al editor
   • Cambiar los temas en el editor (Syntax highlighting)
+  • Mostrar el resultado de la combinacion de HTML, CSS y JS dentro de la página
 
 
 Misceláneo:

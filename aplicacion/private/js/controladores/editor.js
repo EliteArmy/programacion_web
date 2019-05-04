@@ -1,5 +1,5 @@
-var txtAreas = ["html", "css", "javascript", "html-resultado"];
-var modo = ["text/html", "css", "javascript", "text/html"];
+var txtAreas = ["html", "css", "javascript"];
+var modo = ["text/html", "css", "javascript"];
 var editores = [];
 
 for (var i = 0; i<txtAreas.length; i++){
@@ -20,7 +20,6 @@ function selectTheme() {
   editores[0].setOption("theme", theme);
   editores[1].setOption("theme", theme);
   editores[2].setOption("theme", theme);
-  editores[3].setOption("theme", theme);
   location.hash = "#" + theme;
 }
 
@@ -31,7 +30,6 @@ if (choice) {
   editores[0].setOption("theme", choice);
   editores[1].setOption("theme", choice);
   editores[2].setOption("theme", choice);
-  editores[3].setOption("theme", choice);
 }
 
 CodeMirror.on(window, "hashchange", function() {
@@ -48,3 +46,45 @@ function loadfile(input) {
 }
 
 
+function correrProyecto(){
+  //var html = HTML.getValue();
+  //var css = CSS.getValue();
+  //var js = JS.getValue();
+
+  var html = editores[0].getValue();
+  var css = editores[1].getValue();
+  var javascript = editores[2].getValue();
+
+  console.log(html);
+  console.log(css);
+  console.log(javascript);
+
+  var estructura = `<!DOCTYPE html>
+                    <html>
+                    
+                      <head>
+                        <meta charset="utf-8">
+                        <style>
+                          ${css}  
+                        </style>  
+                      </head>
+
+                      <body>
+                        ${html} 
+                        <script>
+                          ${javascript}
+                        </script>
+                      </body>
+
+                    </html>`;
+
+  var resultado = document.getElementById("resultado").contentWindow.document;
+  resultado.body.innerHTML = estructura;
+
+  var frameResultado = document.getElementById("resultado");
+  var resultado = frameResultado.contentDocument ||  frameResultado.contentWindow.document;
+  resultado.open();
+  resultado.write(estructura);
+  resultado.close();
+
+}

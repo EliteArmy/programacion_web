@@ -52,13 +52,15 @@ function generarCarpetas(){
     method: "GET",
     dataType: "json",
     success: function(response){
-      console.log(response);
-      console.log(`Numero carpetas: ${response.carpetas.length}`);
+      //console.log(response);
+      //console.log(`Numero carpetas: ${response.carpetas.length}`);
+      
       $('#numero-carpetas').html(response.carpetas.length)
 
       document.getElementById('mostrar-carpetas').innerHTML = "";
   
       for(var i=0; i<response.carpetas.length; i++){
+        
         document.getElementById('mostrar-carpetas').innerHTML +=
         `<div id="${[i+1]}" class="form-group card-padding col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
           <div class="text-center card">
@@ -81,8 +83,8 @@ function generarCarpetas(){
                         <!--<h6 class="dropdown-header">Crear Nuevo:</h6>-->
                         <a class="dropdown-item disabled" href="#">Crear Nuevo:</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
+                        <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
+                        <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
                         <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
                       </div>
                     </div>
@@ -232,17 +234,58 @@ function buscarCarpeta(id){
 
 
 function buscarContenidoCarpeta(id){
+
   console.log("Buscar Contenido Carpeta: " + id);
-  
+  //document.getElementById('mostrar-carpetas').innerHTML = "";
+
+  // Busca las carpetas dentro de la carpeta padre
   $.ajax({
-    url: "/api/carpeta/contenido",
+    url: "/api/carpeta/contenido/carpetas",
     method: "POST",
     dataType: "json",
     data: {
       "carpetaRaizId": id
     },
     success: function(response){
+      //for(var i=0; i<response.carpetas.length; i++){
+        //document.getElementById('mostrar-carpetas').innerHTML +=``;
+      //}
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
 
+  // Busca los proyectos de la carpeta padre
+  $.ajax({
+    url: "/api/carpeta/contenido/proyectos",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "carpetaRaizId": id
+    },
+    success: function(response){
+      //for(var i=0; i<response.proyectos.length; i++){
+        //document.getElementById('mostrar-carpetas').innerHTML +=``;
+      //}
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+
+  // Busca los arhivos de la carpeta padre
+  $.ajax({
+    url: "/api/carpeta/contenido/archivos",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "carpetaRaizId": id
+    },
+    success: function(response){
+      //for(var i=0; i<response.archivos.length; i++){
+        //document.getElementById('mostrar-carpetas').innerHTML +=``;
+      //}
     },
     error: function(err){
       console.error(err);
@@ -431,8 +474,8 @@ function crearProyecto(){
 
 // ============ Archivo ============
 function crearArchivo(){
-  console.log("Crear Archivo");
-  /*
+  console.log("Crear Archivo: " + $('#carpeta-id').val());
+  
   $.ajax({
     url: "/api/archivo",
     method: "POST",
@@ -441,6 +484,9 @@ function crearArchivo(){
       "nombre": $('#archivo-nombre').val(),
       "descripcion": $('#archivo-descripcion').val(),
       "imagen": $('#archivo-imagen').val(),
+      "carpetaRaizId": $('#carpeta-id').val(),
+      "contenido": $('#archivo-contenido').val(),
+      "extension": $('#slc-tipo-extension').val(),
       "estado": "Activa"
     },
     success: function(response){
@@ -466,12 +512,12 @@ function crearArchivo(){
         }
       });
       $('#crearNuevoArchivo').modal('hide');
-      generarArchivos();
+      //generarArchivos();
     },
     error: function(err){
       console.error(err);
     }
   });
-  */
+  
 }
 

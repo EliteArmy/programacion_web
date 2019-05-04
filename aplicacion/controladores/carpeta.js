@@ -4,7 +4,7 @@
 const Carpeta = require('../modelos/carpeta');
 const proyecto = require('../modelos/proyecto');
 const archivo = require('../modelos/archivo');
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 function getCarpeta (req, res) {
   console.log("Get Carpeta")
@@ -35,9 +35,21 @@ function getCarpetas (req, res) {
 }
 
 // Buscar el contenido de una carpeta
-function getContenidoCarpeta(req, res){
-  console.log('GET /carpeta/contenido')
-  res.status(200).send({ message:"Exito" })
+function obtenerContenidoCarpeta(req, res){
+  console.log('POST /carpeta/contenido/carpetas')
+  res.status(200).send({ message: "Exito" })
+}
+
+// Buscar el contenido de una carpeta
+function obtenerContenidoProyecto(req, res){
+  console.log('POST /carpeta/contenido/proyectos')
+  res.status(200).send({ message: "Exito" })
+}
+
+// Buscar el contenido de una carpeta
+function obtenerContenidoArchivos(req, res){
+  console.log('POST /carpeta/contenido/archivos')
+  res.status(200).send({ message: "Exito" })
 }
 
 // Guardar una carpeta en la base de Datos
@@ -155,7 +167,9 @@ module.exports = {
   getCarpeta,
   saveCarpeta,
   saveSubCarpeta,
-  getContenidoCarpeta,
+  obtenerContenidoCarpeta,
+  obtenerContenidoProyecto,
+  obtenerContenidoArchivos,
   updateCarpeta,
   deleteCarpeta
 }

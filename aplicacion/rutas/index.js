@@ -48,7 +48,9 @@ api.post('/carpeta', carpetaCtrl.saveCarpeta)
 
 api.post('/carpeta/subcarpeta', carpetaCtrl.saveSubCarpeta)
 
-api.post('/carpeta/contenido', carpetaCtrl.getContenidoCarpeta) // --
+api.post('/carpeta/contenido/carpetas', carpetaCtrl.obtenerContenidoCarpeta) // --
+api.post('/carpeta/contenido/proyectos', carpetaCtrl.obtenerContenidoProyecto) // --
+api.post('/carpeta/contenido/archivos', carpetaCtrl.obtenerContenidoArchivos) // --
 
 api.put('/carpeta/:carpetaId', carpetaCtrl.updateCarpeta)
 

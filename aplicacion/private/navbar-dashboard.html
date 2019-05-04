@@ -203,7 +203,7 @@
 
           <div class="form-group col-12 col-sm-6 col-md-6">
             <label for="archivo-nombre">Nombre Archivo:</label>
-            <input type="text" value="nombre" class="form-control" id="archivo-nombre" name="archivo-nombre" placeholder="Nombre Archivo">
+            <input type="text" value="Nombre Archivo" class="form-control" id="archivo-nombre" name="archivo-nombre" placeholder="Nombre Archivo">
             <div class="invalid-feedback">
               <span></span>
             </div>
@@ -211,7 +211,7 @@
 
           <div class="form-group col-12 col-sm-6 col-md-6">
             <label for="archivo-descripcion">Descripción Archivo:</label>
-            <input type="text" value="descripcion" class="form-control" id="archivo-descripcion" name="archivo-descripcion" placeholder="Descripción Archivo">
+            <input type="text" value="Descripción" class="form-control" id="archivo-descripcion" name="archivo-descripcion" placeholder="Descripción Archivo">
             <div class="invalid-feedback">
               <span></span>
             </div>
@@ -230,12 +230,22 @@
             <select id="slc-tipo-extension" class="selectpicker form-control" title="Seleccione Extensión" data-style="btn-primary">
               <option value="html">HTML</option>
               <option value="css">CSS</option>
-              <option value="javascript">Javascript</option>
-              <option value="java">Java</option>
+              <option value="js">Javascript</option>
               <option value="php">PHP</option>
-              <option value="python">Python</option>
-              <option value="c++">C++</option>
+              <option value="py">Python</option>
+              <option value="rb">Ruby</option>
+              <option value="java">Java</option>
+              <option value="cpp">C++</option>
+              <option value="cs">C#</option>
             </select>
+          </div>
+
+          <div class="form-group col-12 col-sm-12 col-md-12">
+            <label for="archivo-contenido">Contenido:</label>
+            <textarea rows="4" class="form-control" value="Contenido..."  id="archivo-contenido" name="archivo-contenido" placeholder="Contenido"></textarea>
+            <div class="invalid-feedback">
+              <span></span>
+            </div>
           </div>
 
         </div>
@@ -250,14 +260,3 @@
 </div>
 <!-- ============ FIN Modal para nuevo Archivo ============ -->
 
-
-<!--
-  <div class="form-group col-12 col-sm-6 col-md-6">
-    <label for="slc-tipo-trabajo">Seleccione una Opción:</label>
-    <select id="slc-tipo-trabajo" class="selectpicker form-control" title="Seleccione una Opción" data-style="btn-primary">
-      <option value="carpeta">Carpeta</option>
-      <option value="proyecto">Proyecto</option>
-      <option value="archivo">Archivo</option>
-    </select>
-  </div>
--->

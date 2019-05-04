@@ -1,5 +1,8 @@
 'use strict'
 
+const archivo = require('../modelos/archivo');
+const mongoose = require("mongoose");
+
 // Al no estar instalado por npm, se le debe indicar la ruta
 const Proyecto = require('../modelos/proyecto');
 
@@ -40,6 +43,9 @@ function saveProyecto(req, res){
   proyecto.carpetaId = req.body.carpetaId
   proyecto.usuarioId = req.body.usuarioId
   proyecto.estado = req.body.estado
+
+
+  
 
   proyecto.save((err, proyectoStored) => {
     if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}`})

@@ -8,8 +8,8 @@ var ArchivoEsquema = new mongoose.Schema({
   imagen: String,
   fechaCreacion: { type: Date, default: Date.now() } ,
 
-  carpetaId: mongoose.Types.ObjectId, // Id Carpeta a la cual puede pertenecer
-  proyectoId: mongoose.Types.ObjectId, // Id Proyecto al cual puede pertenecer
+  carpetaRaizId: mongoose.Types.ObjectId, // Id Carpeta a la cual puede pertenecer
+  proyectoRaizId: mongoose.Types.ObjectId, // Id Proyecto al cual puede pertenecer
   
   contenido: String,
   extension: String,

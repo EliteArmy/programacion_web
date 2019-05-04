@@ -29,19 +29,24 @@ function getArchivos (req, res) {
 
 function saveArchivo(req, res){
   console.log('POST /api/archivo')
-  console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
+  //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let archivo = new Archivo() // Archivo es el modelo de la base de datos
   
   archivo.nombre = req.body.nombre // req.body - tenemos todo el cuerpo de la cabecera
   archivo.descripcion = req.body.descripcion
-  archivo.contenido = req.body.contenido
+  archivo.imagen = req.body.imagen
+  archivo.fechaCreacion = Date.now() // No almacena si no es de los previamente definidos
+
+  archivo.carpetaRaizId = req.body.carpetaRaizId // Id Carpeta a la cual puede pertenecer
+  //archivo.proyectoRaizId = req.body.proyectoRaizId // Id Proyecto al cual puede pertenecer
+
+  archivo.contenido = req.body.contenido // Id Carpeta a la cual puede pertenecer
   archivo.extension = req.body.extension // No almacena si no es de los previamente definidos
-  archivo.fechaCreacion = req.body.fechaCreacion
-  archivo.proyectoId = req.body.proyectoId
-  archivo.carpetaId = req.body.carpetaId
-  archivo.usuarioId = req.body.usuarioId
+  
   archivo.estado = req.body.estado
+  archivo.usuarioCreador = req.session.codigoUsuario
+  archivo.compartido = []  
 
   archivo.save((err, archivoStored) => {
     if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}`})
@@ -49,6 +54,15 @@ function saveArchivo(req, res){
     // Devuelve los campos mas los que agrego mongo
     res.status(200).send({ archivo: archivoStored })
   })
+
+  /*
+  archivo.save((err, archivoStored) => {
+    if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}`})
+    
+    // Devuelve los campos mas los que agrego mongo
+    res.status(200).send({ archivo: archivoStored })
+  })
+  */
 }
 
 function updateArchivo (req, res) {

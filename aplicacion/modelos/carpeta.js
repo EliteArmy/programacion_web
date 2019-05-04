@@ -8,7 +8,7 @@ var CarpetaEsquema = new mongoose.Schema({
   imagen: String, 
   fechaCreacion: { type: Date, default: Date.now() } ,
   
-  carpetaId: mongoose.Types.ObjectId, // Id carpeta a la cual pertenece, en caso de ser subcarpeta
+  carpetaRaizId: mongoose.Types.ObjectId, // Id carpeta a la cual pertenece, en caso de ser subcarpeta
   
   subCarpeta: Array, // Arreglo de sub carpetas que puede tener
   archivos: Array, // Arreglo de archivos que puede tener

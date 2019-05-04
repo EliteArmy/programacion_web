@@ -1,19 +1,20 @@
+$(document).ready(function() {
+  cargarDatos();
+  generarCarpetas();
+  console.log("Jquery se cargo con exito")
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
+  });
+  
+});
+
 $("#sidebar").load("sidebar.html", function() {
   console.log("Sidebar fue cargado con exito.");
 });
 
 $("#nav-bar").load("navbar-dashboard.html", function() {
   console.log("Navbar fue cargado con exito.");
-});
-
-$(document).ready(function() {
-  cargarDatos();
-  generarCarpetas();
-
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
-  });
-  
 });
 
 function cargarDatos(){
@@ -70,15 +71,30 @@ function generarCarpetas(){
 
                 <div class="col-4 padding">
                   <div class="float-right">
-                  <i ></i>
-                    <a class="reset" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Nuevo Trabajo"><span class="far fa-plus-square text-info"></span></a>
+
+
+                  <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="far fa-plus-square text-info"></span>
+                    </a>
+                
+                    <div class="dropdown-menu">
+                      <!--<h6 class="dropdown-header">Crear Nuevo:</h6>-->
+                      <a class="dropdown-item disabled" href="#">Crear Nuevo:</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
+                      <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
+                    </div>
+                  </div>
+
                     <a onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
                     <a onclick="borrarCarpeta('${response.carpetas[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
                 </div>
               </div>
               <div>
-                <a class="" href="editor.html"><span class="fas fa-folder folder"></span></a>
+                <a class="" href="#"><span class="fas fa-folder folder"></span></a>
               </div>
               <p class="card-text">${response.carpetas[i].descripcion}</p>
             </div>
@@ -140,6 +156,53 @@ function crearCarpeta(){
   });
 }
 
+function crearSubCarpeta(){
+  console.log("Crear Sub Carpeta: " + $('#carpeta-id').val());
+
+  $.ajax({
+    url: "/api/carpeta/subcarpeta",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "nombre": $('#carpeta-nombre').val(),
+      "descripcion": $('#carpeta-descripcion').val(),
+      "imagen": $('#carpeta-imagen').val(),
+      "carpetaRaizId": $('#carpeta-id').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      console.log(`Nombre Carpeta: ${response.nombre}`);
+
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Sub Carpeta "${response.nombre}", creada con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+      $('#crearNuevaCarpeta').modal('hide');
+      generarCarpetas();
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
 function buscarCarpeta(id){
   console.log("Buscar Carpeta");
 
@@ -158,11 +221,18 @@ function buscarCarpeta(id){
       $('#crearCarpeta').addClass('d-none');
       $('#actualizarCarpeta').removeClass('d-none');
 
+      $('#carpetaNuevaTitulo').addClass('d-none');
+      $('#carpetaActualizarTitulo').removeClass('d-none');
+
     },
     error: function(err){
       console.error(err);
     }
   });
+}
+
+function buscarContenidoCarpeta(){
+  
 }
 
 function actualizarCarpeta(){
@@ -276,10 +346,13 @@ function borrarCarpeta(id){
   })
 }
 
-function limpiarFormulario(){
+function limpiarFormularioCarpeta(){
   console.log('limpiar el formulario');
   $('#crearCarpeta').removeClass('d-none');
   $('#actualizarCarpeta').addClass('d-none');
+
+  $('#carpetaNuevaTitulo').removeClass('d-none');
+  $('#carpetaActualizarTitulo').addClass('d-none');
 
   $('#carpeta-id').val("");
   $('#carpeta-nombre').val("");
@@ -288,9 +361,8 @@ function limpiarFormulario(){
 }
 
 /* Función que se encarga de dejar los campos por defecto */
-$(".limpiar").click(function(){
-  console.log('Reset del Formulario');
-  limpiarFormulario();
+$(document).on('click','.reset', function(){
+  limpiarFormularioCarpeta();
 });
 
 // ============ Proyecto ============

@@ -2,8 +2,8 @@
 
 // Al no estar instalado por npm, se le debe indicar la ruta
 const Carpeta = require('../modelos/carpeta');
-const proyecto = require('../modelos/proyecto');
-const archivo = require('../modelos/archivo');
+const Proyecto = require('../modelos/proyecto');
+const Archivo = require('../modelos/archivo');
 const mongoose = require("mongoose");
 
 function getCarpeta (req, res) {
@@ -112,19 +112,19 @@ function saveSubCarpeta(req, res){
           $push: { subCarpeta: mongoose.Types.ObjectId(subData._id) }
         })
         .then(data=>{
-          //console.log("--- 2. Carpeta: "+data) // data: [object Object]
+          //console.log("--- 2. Carpeta: " + data) // data: [object Object]
           //res.send(data); // No se puede enviar datos desde aquí, si no el primero que hizo el llamado "subCarp.save()"
         })
         .catch(error=>{
-          //console.log("--- 3. Error Carpeta: "+error)
+          //console.log("--- 3. Error Carpeta: " + error)
           res.send(error); // En caso de error
         });
-      //console.log("--- 1. SubCarpeta: "+subData) // Datos enviados al Ajax
+      //console.log("--- 1. SubCarpeta: " + subData) // Datos enviados al Ajax
       res.send(subData);
     
     })
     .catch(error=>{
-      //console.log("Error SubCarpeta: "+error)
+      //console.log("Error SubCarpeta: " + error)
       res.send(error); // En caso de error
     });
 

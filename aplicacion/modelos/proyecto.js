@@ -8,7 +8,7 @@ var ProyectoEsquema = new mongoose.Schema({
   imagen: String, 
   fechaCreacion: { type: Date, default: Date.now() } ,
   
-  carpetaId: mongoose.Types.ObjectId, // Id carpeta a la cual pertenece
+  carpetaRaizId: mongoose.Types.ObjectId, // Id carpeta a la cual pertenece
   
   archivoCSS: mongoose.Types.ObjectId,
   archivoHTML: mongoose.Types.ObjectId,

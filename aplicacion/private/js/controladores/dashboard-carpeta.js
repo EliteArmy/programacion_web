@@ -428,7 +428,7 @@ $(document).on('click','.reset', function(){
 // ============ Proyecto ============
 function crearProyecto(){
   console.log("Crear Proyecto");
-  /*
+  
   $.ajax({
     url: "/api/proyecto",
     method: "POST",
@@ -440,12 +440,12 @@ function crearProyecto(){
       "estado": "Activa"
     },
     success: function(response){
-      //console.log(`Nombre Proyecto: ${response.proyecto.nombre}`);
+      //console.log(`Nombre Proyecto: ${response.nombre}`);
 
       // Mensajes Validos
       $.alert({
         title: '',
-        content: `Proyecto "${response.proyecto.nombre}", creado con exito`,
+        content: `Proyecto "${response.nombre}", creado con exito`,
         type: 'green',
         typeAnimated: true,
         icon: 'fas fa-check',
@@ -463,13 +463,13 @@ function crearProyecto(){
       });
 
       $('#crearNuevoProyecto').modal('hide');
-      generarProyectos();
+      //generarProyectos();
     },
     error: function(err){
       console.error(err);
     }
   });
-  */
+  
 }
 
 // ============ Archivo ============
@@ -490,7 +490,7 @@ function crearArchivo(){
       "estado": "Activa"
     },
     success: function(response){
-      //console.log(`Nombre Archivo: ${response.archivo.nombre}`);
+      //console.log(`Nombre Archivo: ${response.nombre}`);
 
       // Mensajes Validos
       $.alert({

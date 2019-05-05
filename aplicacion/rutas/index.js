@@ -61,7 +61,7 @@ api.get('/proyecto', proyectoCtrl.getProyectos)
 
 api.get('/proyecto/:proyectoId', proyectoCtrl.getProyecto)
 
-api.post('/proyecto', proyectoCtrl.saveProyecto)
+api.post('/proyecto', proyectoCtrl.saveProyecto) // Crear Proyecto
 
 api.put('/proyecto/:proyectoId', proyectoCtrl.updateProyecto)
 

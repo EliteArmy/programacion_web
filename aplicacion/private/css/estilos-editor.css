@@ -62,3 +62,17 @@ i, cite, em, var, address, dfn {
   background-color:rgb(33, 37, 41);
   border-color: rgb(33, 37, 41);
 }
+
+a {
+  /*color: rgb(10, 150, 200);*/
+  color: white;
+  text-decoration: none;
+  text-decoration-style: dashed;
+  background-color: transparent;
+}
+
+a:hover {
+  /*color: #0056b3;*/
+  color: white;
+  text-decoration: none;
+}

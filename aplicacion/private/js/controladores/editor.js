@@ -261,3 +261,20 @@ function guardarProyecto(){
   });
 }
 
+function descargarArchivoHTML(archivo){
+  var texto = editores[0].getValue();
+  archivo.download;
+  archivo.href = "data:x-application/octet-stream," + encodeURIComponent(texto);
+}
+
+function descargarArchivoCSS(archivo){
+  var texto = editores[1].getValue();
+  archivo.download;
+  archivo.href = "data:x-application/octet-stream," + encodeURIComponent(texto);
+}
+
+function descargarArchivoJS(archivo){
+  var texto = editores[2].getValue();
+  archivo.download;
+  archivo.href = "data:x-application/octet-stream," + encodeURIComponent(texto);
+}

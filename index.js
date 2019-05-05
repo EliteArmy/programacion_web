@@ -12,6 +12,14 @@ app.listen (config.port, () => {
 })
 
 // ====================== CONEXIÓN ======================
+mongoose.connect(`mongodb://arielpalma:DataPassword1@ds151626.mlab.com:51626/heroku_lj6c5705`, { useNewUrlParser: true })
+        .then(()=>{
+            console.log("Se conectó a la base de datos remota.");
+        })
+        .catch(error=>{
+            console.error(JSON.stringify(error));   
+        });
+/*
 mongoose.connect(config.db, (err, res) => {
   
   if (err) {
@@ -20,5 +28,15 @@ mongoose.connect(config.db, (err, res) => {
 
   // Si no hay error, muestra el mensaje
   console.log('Conexión con la base de datos establecida...')
-
 })
+*/
+/*
+const MongoClient = require(‘mongodb’).MongoClient;
+
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+*/

@@ -32,7 +32,7 @@ function getArchivos (req, res) {
 }
 
 function saveArchivo(req, res){
-  console.log('POST /api/archivo')
+  //console.log('POST /api/archivo')
   //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let archivo = new Archivo() // Archivo es el modelo de la base de datos

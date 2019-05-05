@@ -7,7 +7,7 @@ const Archivo = require('../modelos/archivo');
 const mongoose = require("mongoose");
 
 function getCarpeta (req, res) {
-  console.log("Get Carpeta")
+  //console.log("Get Carpeta")
   // params porque viene como parametro de la url
   let carpetaId = req.params.carpetaId // variable para guardar el id
 
@@ -84,7 +84,7 @@ function saveCarpeta(req, res){
 
 // Guardar una Sub carpeta en la base de Datos
 function saveSubCarpeta(req, res){
-  console.log('POST api/carpeta/subcarpeta') // Imprime en terminal
+  //console.log('POST api/carpeta/subcarpeta') // Imprime en terminal
   //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let subCarp = new Carpeta() // Carpeta es el modelo de la base de datos

@@ -32,7 +32,7 @@ function getUsuarios(req, res) {
 
 // Registro de nuevos Usuarios
 function saveUsuario(req, res){
-  console.log('POST /api/usuario')
+  //console.log('POST /api/usuario')
   console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let usuario = new Usuario() // Usuario es el modelo de la base de datos
@@ -52,8 +52,8 @@ function saveUsuario(req, res){
 }
 
 function updateUsuario (req, res) {
-  console.log('PUT /api/usuario')
-  console.log(req.body)
+  //console.log('PUT /api/usuario')
+  //console.log(req.body)
   //let usuarioId = req.params.usuarioId // variable para guardar el id
 
   let usuarioId = req.session.codigoUsuario // variable session para guardar el id
@@ -121,7 +121,7 @@ function usuarioLogeado(req, res){
 }
 
 function logoutUsuario(req, res){
-  console.log('GET /logout')
+  //console.log('GET /logout')
 
   req.session.destroy();
   //res.redirect("/login.html");
@@ -142,6 +142,60 @@ function verificarAutenticacion(req, res, next){
 		res.send("ERROR, ACCESO NO AUTORIZADO");
 }
 
+
+//login con facebook
+function fblogin (req, res){
+  usuario.find({idFB:req.body.idFB})
+  .then(data=>{
+      
+    if (data.length==1){
+          req.session.codigoUsuario = data[0]._id;
+          //Actualizar los datos
+              usuario.update(
+                  {_id:data[0]._id},
+                  {
+                      nombre : req.body.nombre,
+                      apellido : req.body.apellido,
+                      usuario: req.body.nombre + req.body.apellido,
+                      email : req.body.email,
+                     
+                  }
+              ).then(result=>{
+              
+              })
+              .catch(error=>{
+                  res.send(error);
+              });
+          
+          res.send({status:2,mensaje:"Usuario autenticado con éxito"});
+
+      }else{
+          var u = new usuario({
+              idFB :req.body.idFB,
+              nombre : req.body.nombre,
+              apellido : req.body.apellido,
+              usuario: req.body.nombre + req.body.apellido,
+              email : req.body.email,
+      });
+  
+      u.save()
+      .then(obj=>{
+          req.session.codigoUsuario = obj._id;
+          res.send({status:1,mensaje:"Usuario autenticado con éxito"});
+      })
+      .catch(e=>{
+          res.send(e);
+      });
+    }//fin insertar
+
+  })
+  .catch(error=>{
+      res.send(error);
+  });
+
+};
+
+
 // Se exportan las funciones
 module.exports = {
   getUsuario,
@@ -149,6 +203,7 @@ module.exports = {
   saveUsuario,
   updateUsuario,
   deleteUsuario,
+  fblogin,
 
   loginUsuario,
   usuarioLogeado,

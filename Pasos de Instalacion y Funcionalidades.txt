@@ -1,3 +1,17 @@
+Usuario:
+  • Creación de nuevos Usuarios por medio de registro
+  • Mostrar nombre del usuario en el navbar luego del Login
+  • Mostrar información del usuario en el perfil luego del Login
+  • Actualizar información de Usuarios en su perfil
+
+
+Autenticación:
+  • Login (Creación de sesión)
+  • Logout (Remover la sesión)
+  • Redireccionar al dashboard en caso de estar autenticado y buscar una página que no existe 
+  • Redireccionar al login en caso de no estar autenticado y buscar una página que no existe
+
+
 Carpetas:
   • Leer Carpetas y mostrarlas
   • Creación de Carpetas
@@ -13,25 +27,14 @@ Proyectos
   • Leer Proyectos y mostrarlos
   • Creación de Proyectos
   • Editar el contenido de los proyectos a través del editor
+  • Actualizar información del proyecto 
 
 
 Archivos:
   • Leer Archivos y mostrarlos
   • Creación de Archivos
-
-
-Usuario:
-  • Creación de nuevos Usuarios por medio de registro
-  • Mostrar nombre del usuario en el navbar luego del Login
-  • Mostrar información del usuario en el perfil luego del Login
-  • Actualizar información de Usuarios en su perfil
-
-
-Autenticación:
-  • Login (Creación de sesión)
-  • Logout (Remover la sesión)
-  • Redireccionar al dashboard en caso de estar autenticado y buscar una página que no existe 
-  • Redireccionar al login en caso de no estar autenticado y buscar una página que no existe
+  • Editar Archivos
+  • Borrar Archivos
 
 
 Editor:
@@ -47,9 +50,4 @@ Misceláneo:
   • Navegación entre las páginas del sitio
   • Responsive
   • Pagina de Logout con redirección al login en 5s.
-
-
-Cosas por hacer:
-redirigir despues del registro
-mejorar landing page
 

@@ -39,6 +39,8 @@ api.post('/registro', usuarioCtrl.saveUsuario) // app.post("/registro", function
 
 api.post('/logout', usuarioCtrl.logoutUsuario) // app.post("/logout", function(req, res){}
 
+api.post('/fblogin', usuarioCtrl.fblogin) // app.post("/login", function(req, res){}
+
 // ==================== PETICIONES DE CARPETA ====================
 api.get('/carpeta', carpetaCtrl.getCarpetas)
 

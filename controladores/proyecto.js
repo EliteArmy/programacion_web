@@ -34,7 +34,7 @@ function getProyectos (req, res) {
 }
 
 function editProyecto (req, res) {
-  console.log("Editar un Proyecto")
+  //console.log("Editar un Proyecto")
   
   let proyectoId = req.params.proyectoId // variable para guardar el id
 
@@ -62,7 +62,7 @@ function editProyecto (req, res) {
 
 // Validación de si existen las variables de session
 function cargarchkProyecto (req, res) {
-  console.log("cheque proyecto")
+  //console.log("cheque proyecto")
   if(req.session.archivoHTML){
     res.send({ estatus: 1, mensaje: "" });
   } else if (req.session.archivoJS) {
@@ -133,7 +133,7 @@ function guardarProyecto(req, res){
 }
 
 function saveProyecto(req, res){
-  console.log('POST /api/proyecto')
+  //console.log('POST /api/proyecto')
   //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   // 1. Primero se crea un proyecto sin los arhivos que va a contener

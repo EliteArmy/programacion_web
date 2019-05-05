@@ -29,7 +29,7 @@ function pageRedirect(){
 
 $("#btn-logout").click(function(){
   
-  console.log('Salir del Sitio')
+  //console.log('Salir del Sitio')
   
   $.ajax({
     url: "/api/logout",
@@ -44,3 +44,8 @@ $("#btn-logout").click(function(){
   });
 
 });
+
+$("#btn-login").click(function(){
+  window.location = "login.html"
+});
+

@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  generarCarpetas();
+  cargarDatos();
+  generarArchivos();
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
@@ -7,8 +8,40 @@ $(document).ready(function() {
   
 });
 
-$("#sidebar").load('sidebar.html');
-$("#nav-bar").load('navbar-dashboard.html');
+$("#sidebar").load("sidebar.html", function() {
+  //console.log("Sidebar fue cargado con exito.");
+});
+
+$("#nav-bar").load("navbar-dashboard.html", function() {
+  //console.log("Navbar fue cargado con exito.");
+});
+
+function cargarDatos(){
+  //console.log("Cargar los Datos del Usuario.")
+   
+  $.ajax({
+    url: "/api/loged",
+    method: "get",
+    dataType: "json",
+    success: function(response){
+      //console.log(`Tamaño: ${response.length}`);
+      //console.log(`Response: ${response}`);
+      //console.log(`Nombre: ${response[0].nombreUsuario}`);  
+      //console.log(`Correo: ${response[0].correo}`);
+      
+      if (response.length > 0){
+        //console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
+        $('#nombre-usuario').html(response[0].nombreUsuario)
+        $('#nombre-usuario2').html(response[0].nombreUsuario)
+      } else {
+        // console.log("");
+      }
+    },
+    error: function(err){
+      console.log(err);
+    }
+  });
+}
 
 var informacionArchivos = [
   {nombre:'Archivo 01', descripcion:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, incidunt..'},
@@ -21,7 +54,7 @@ var informacionArchivos = [
 
 console.log(informacionArchivos.length);
 
-function generarCarpetas(){
+function generarArchivos(){
   
   document.getElementById('mostrar-archivos').innerHTML = "";
   
@@ -53,3 +86,45 @@ function generarCarpetas(){
   }
 }
 
+function limpiarFormularioCarpeta(){
+  //console.log('limpiar el formulario');
+  $('#crearCarpeta').removeClass('d-none');
+  $('#actualizarCarpeta').addClass('d-none');
+  
+  $('#crearProyecto').removeClass('d-none');
+  $('#actualizarProyecto').addClass('d-none');
+  
+  $('#crearArchivo').removeClass('d-none');
+  $('#actualizarArchivo').addClass('d-none');
+
+
+  $('#carpetaNuevaTitulo').removeClass('d-none');
+  $('#carpetaActualizarTitulo').addClass('d-none');
+
+  $('#proyectoNuevoTitulo').removeClass('d-none');
+  $('#proyectoActualizarTitulo').addClass('d-none');
+
+  $('#archivoNuevoTitulo').removeClass('d-none');
+  $('#archivoActualizarTitulo').addClass('d-none');
+
+
+  $('#carpeta-id').val("");
+  $('#carpeta-nombre').val("");
+  $('#carpeta-descripcion').val("");
+  $('#carpeta-imagen').val("");
+
+  $('#proyecto-id').val("");
+  $('#proyecto-nombre').val("");
+  $('#proyecto-descripcion').val("");
+  $('#proyecto-imagen').val("");
+
+  $('#archivo-id').val("");
+  $('#archivo-nombre').val("");
+  $('#archivo-descripcion').val("");
+  $('#archivo-imagen').val("");
+}
+
+/* Función que se encarga de dejar los campos por defecto */
+$(document).on('click', '.reset', function(){
+  limpiarFormularioCarpeta();
+});

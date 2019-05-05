@@ -9,15 +9,14 @@ Carpetas:
   • Borrar Carpetas
   
 
-Archivos:
-  • 
-  • Creación de Archivos
-  • 
-
-
 Proyectos
-  • 
+  • Leer Proyectos y mostrarlos
   • Creación de Proyectos
+  • Editar el contenido de los proyectos a través del editor
+
+
+Archivos:
+  • Creación de Archivos
   • 
 
 
@@ -29,28 +28,28 @@ Usuario:
 
 
 Autenticación:
-  • Login
-  • Logout
-  • Redireccionar en caso de no existir la página
-  • Redireccionar en caso de no estar autenticado
+  • Login (Creación de sesión)
+  • Logout (Remover la sesión)
+  • Redireccionar al dashboard en caso de estar autenticado y buscar una página que no existe 
+  • Redireccionar al login en caso de no estar autenticado y buscar una página que no existe
 
 
 Editor:
-  • Descargar los archivos
-  • Subir archivos al editor
   • Cambiar los temas en el editor (Syntax highlighting)
   • Mostrar el resultado de la combinacion de HTML, CSS y JS dentro de la página
-  • Cargar proyectos (archivos html, css y js) en el editor 
-  • Guardar cambios de proyectos (archivos html, css y js) desde el editor
+  • Descargar los archivos desde el editor
+  • Subir archivos al editor
+  • Cargar proyectos (archivos html, css y js) en el editor desde la base
+  • Guardar cambios de proyectos (archivos html, css y js) en la base desde el editor
 
 
 Misceláneo:
   • Navegación entre las páginas del sitio
   • Responsive
+  • Pagina de Logout con redirección al login en 5s.
+
 
 Cosas por hacer:
-redirigir para editar un proyecto
 redirigir despues del registro
-crear pagina 404
 mejorar landing page
-mejorar logout page
+

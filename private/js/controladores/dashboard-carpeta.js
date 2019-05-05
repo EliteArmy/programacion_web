@@ -401,21 +401,45 @@ function borrarCarpeta(id){
 }
 
 function limpiarFormularioCarpeta(){
-  console.log('limpiar el formulario');
+  //console.log('limpiar el formulario');
   $('#crearCarpeta').removeClass('d-none');
   $('#actualizarCarpeta').addClass('d-none');
+  
+  $('#crearProyecto').removeClass('d-none');
+  $('#actualizarProyecto').addClass('d-none');
+  
+  $('#crearArchivo').removeClass('d-none');
+  $('#actualizarArchivo').addClass('d-none');
+
 
   $('#carpetaNuevaTitulo').removeClass('d-none');
   $('#carpetaActualizarTitulo').addClass('d-none');
+
+  $('#proyectoNuevoTitulo').removeClass('d-none');
+  $('#proyectoActualizarTitulo').addClass('d-none');
+
+  $('#archivoNuevoTitulo').removeClass('d-none');
+  $('#archivoActualizarTitulo').addClass('d-none');
+
 
   $('#carpeta-id').val("");
   $('#carpeta-nombre').val("");
   $('#carpeta-descripcion').val("");
   $('#carpeta-imagen').val("");
+
+  $('#proyecto-id').val("");
+  $('#proyecto-nombre').val("");
+  $('#proyecto-descripcion').val("");
+  $('#proyecto-imagen').val("");
+
+  $('#archivo-id').val("");
+  $('#archivo-nombre').val("");
+  $('#archivo-descripcion').val("");
+  $('#archivo-imagen').val("");
 }
 
 /* Función que se encarga de dejar los campos por defecto */
-$(document).on('click','.reset', function(){
+$(document).on('click', '.reset', function(){
   limpiarFormularioCarpeta();
 });
 

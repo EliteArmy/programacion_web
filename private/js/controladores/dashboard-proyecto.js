@@ -53,7 +53,6 @@ function generarProyectos(){
     success: function(response){
       //console.log(response);
       //console.log(`Numero proyectos: ${response.proyectos.length}`);
-      
       $('#numero-proyectos').html(response.proyectos.length)
 
       document.getElementById('mostrar-proyectos').innerHTML = "";
@@ -72,22 +71,6 @@ function generarProyectos(){
 
                 <div class="col-4 padding">
                   <div class="float-right">
-
-                    <div class="dropdown">
-                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="far fa-plus-square text-info"></span>
-                      </a>
-                  
-                      <div class="dropdown-menu">
-                        <!--<h6 class="dropdown-header">Crear Nuevo:</h6>-->
-                        <a class="dropdown-item disabled" href="#">Crear Nuevo:</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" onclick="buscarCarpeta('${response.proyectos[i]._id}')" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
-                        <a class="dropdown-item" onclick="buscarCarpeta('${response.proyectos[i]._id}')" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
-                        <a class="dropdown-item" onclick="buscarCarpeta('${response.proyectos[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
-                      </div>
-                    </div>
-
                     <a onclick="buscarCarpeta('${response.proyectos[i]._id}')" data-toggle="modal" data-target="#crearNuevoProyecto" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
                     <a onclick="borrarProyecto('${response.proyectos[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
@@ -235,3 +218,46 @@ function editarProyecto(id){
     }
   });
 }
+
+function limpiarFormularioCarpeta(){
+  //console.log('limpiar el formulario');
+  $('#crearCarpeta').removeClass('d-none');
+  $('#actualizarCarpeta').addClass('d-none');
+  
+  $('#crearProyecto').removeClass('d-none');
+  $('#actualizarProyecto').addClass('d-none');
+  
+  $('#crearArchivo').removeClass('d-none');
+  $('#actualizarArchivo').addClass('d-none');
+
+
+  $('#carpetaNuevaTitulo').removeClass('d-none');
+  $('#carpetaActualizarTitulo').addClass('d-none');
+
+  $('#proyectoNuevoTitulo').removeClass('d-none');
+  $('#proyectoActualizarTitulo').addClass('d-none');
+
+  $('#archivoNuevoTitulo').removeClass('d-none');
+  $('#archivoActualizarTitulo').addClass('d-none');
+
+
+  $('#carpeta-id').val("");
+  $('#carpeta-nombre').val("");
+  $('#carpeta-descripcion').val("");
+  $('#carpeta-imagen').val("");
+
+  $('#proyecto-id').val("");
+  $('#proyecto-nombre').val("");
+  $('#proyecto-descripcion').val("");
+  $('#proyecto-imagen').val("");
+
+  $('#archivo-id').val("");
+  $('#archivo-nombre').val("");
+  $('#archivo-descripcion').val("");
+  $('#archivo-imagen').val("");
+}
+
+/* Función que se encarga de dejar los campos por defecto */
+$(document).on('click', '.reset', function(){
+  limpiarFormularioCarpeta();
+});

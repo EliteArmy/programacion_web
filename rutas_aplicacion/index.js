@@ -37,12 +37,8 @@ apl.get('/perfil.html', autenticar, function (res, req, next) {
   res.redirect('/perfil.html')
 })
 
-apl.get('archivos/html.html', function (res, req, next) {  
-  res.redirect('archivos/html.html')
-})
-/*
 apl.get('*', function (req, res) {
-	res.redirect('/login.html')
+	res.redirect('/dash-carpeta.html')
 })
-*/
+
 module.exports = apl

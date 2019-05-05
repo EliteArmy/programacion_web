@@ -40,6 +40,8 @@ Editor:
   • Subir archivos al editor
   • Cambiar los temas en el editor (Syntax highlighting)
   • Mostrar el resultado de la combinacion de HTML, CSS y JS dentro de la página
+  • Cargar proyectos (archivos html, css y js) en el editor 
+  • Guardar cambios de proyectos (archivos html, css y js) desde el editor
 
 
 Misceláneo:

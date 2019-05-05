@@ -67,7 +67,7 @@ api.get('/proyecto/cargarhtlm', proyectoCtrl.cargarHTMLProyecto) // Cargar Archi
 api.get('/proyecto/cargarcss', proyectoCtrl.cargarCSSProyecto) // Cargar Archivos de Proyecto
 api.get('/proyecto/cargarjs', proyectoCtrl.cargarJSProyecto) // Cargar Archivos de Proyecto
 
-api.put('/proyecto/guardar', proyectoCtrl.guardarProyecto) // Guardar Archivos de Proyecto
+api.post('/proyecto/guardar', proyectoCtrl.guardarProyecto) // Guardar Archivos de Proyecto
 
 api.post('/proyecto', proyectoCtrl.saveProyecto) // Crear Proyecto
 

@@ -93,21 +93,16 @@ function correrProyecto(){
 }
 
 function cargarProyecto(){
-  console.log("cargar un proyecto")
-
-  //editores[0].setValue("hola");
-  //editores[1].setValue("hola");
-  //editores[2].setValue("hola");
+  //console.log("cargar un proyecto")
 
   $.ajax({
     url: '/api/proyecto/cargarhtlm',
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(response)
-      console.log(response.archivo.contenido)
-      
+      console.log(response.archivo._id)
       editores[0].setValue(response.archivo.contenido);
+      $('#id-html').val(response.archivo._id);
     },
     error: function(err){
       console.error(err);
@@ -119,10 +114,9 @@ function cargarProyecto(){
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(response)
-      console.log(response.archivo.contenido)
-      
+      console.log(response.archivo._id)
       editores[1].setValue(response.archivo.contenido);
+      $('#id-css').val(response.archivo._id);
     },
     error: function(err){
       console.error(err);
@@ -134,10 +128,9 @@ function cargarProyecto(){
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(response)
-      console.log(response.archivo.contenido)
-      
+      console.log(response.archivo._id)
       editores[2].setValue(response.archivo.contenido);
+      $('#id-javascript').val(response.archivo._id);
     },
     error: function(err){
       console.error(err);
@@ -157,20 +150,46 @@ function guardarProyecto(){
 
   $.ajax({
     url: '/api/proyecto/guardar',
-    method: "PUT",
+    method: "POST",
     dataType: "json",
     data: {
-      "nombre": $('#carpeta-nombre').val(),
-      "html": html,
-      "css": css,
-      "js": javascript
+      "id": $('#id-html').val(),
+      "contenido": html,
     },
     success: function(response){
-
     },
     error: function(err){
       console.error(err);
     }
   });
 
+  $.ajax({
+    url: '/api/proyecto/guardar',
+    method: "POST",
+    dataType: "json",
+    data: {
+      "id": $('#id-css').val(),
+      "contenido": css,
+    },
+    success: function(response){
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+
+  $.ajax({
+    url: '/api/proyecto/guardar',
+    method: "POST",
+    dataType: "json",
+    data: {
+      "id": $('#id-javascript').val(),
+      "contenido": javascript
+    },
+    success: function(response){
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
 }

@@ -90,7 +90,7 @@ function cargarCSSProyecto(req, res){
 }
 
 function cargarJSProyecto(req, res){
-  console.log("GET /proyecto/cargar")
+  //console.log("GET /proyecto/cargar")
 
   let javascript = req.session.archivoJS;
   //console.log(javascript);
@@ -104,9 +104,23 @@ function cargarJSProyecto(req, res){
 
 
 function guardarProyecto(req, res){
-
-
-
+  console.log("post /proyecto/guardar")
+  
+  Archivo.findOne({ _id: req.body.id
+  })
+  .then(archivo=>{
+    archivo.contenido = req.body.contenido;
+    archivo.save()
+    .then(obj=>{
+      //res.send(obj);
+    })
+    .catch(error=>{
+        res.send(obj);
+    });
+  })
+  .catch(error=>{
+    res.send(error);
+  });
 }
 
 function saveProyecto(req, res){

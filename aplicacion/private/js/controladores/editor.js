@@ -48,19 +48,32 @@ function loadfile(input, type) {
 }
 
 $(document).ready(function() {
-
-  cargarProyecto();
-
+  editorArchivo();
 });
+
+function editorArchivo(){
+  $.ajax({
+    url: '/api/proyecto/cargarchk',
+    method: "get",
+    dataType: "json",
+    success: function(response){
+      if(response.estatus == 1)
+      cargarProyecto();
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
 
 function correrProyecto(){
   var html = editores[0].getValue();
   var css = editores[1].getValue();
   var javascript = editores[2].getValue();
 
-  console.log(html);
-  console.log(css);
-  console.log(javascript);
+  //console.log(html);
+  //console.log(css);
+  //console.log(javascript);
 
   var estructura = `<!DOCTYPE html>
                     <html>
@@ -81,9 +94,6 @@ function correrProyecto(){
 
                     </html>`;
 
-  //var resultado = document.getElementById("resultado").contentWindow.document;
-  //resultado.body.innerHTML = estructura;
-
   var frameResultado = document.getElementById("resultado");
   var resultado = frameResultado.contentDocument || frameResultado.contentWindow.document;
   
@@ -100,7 +110,7 @@ function cargarProyecto(){
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(response.archivo._id)
+      //console.log(response.archivo._id)
       editores[0].setValue(response.archivo.contenido);
       $('#id-html').val(response.archivo._id);
     },
@@ -114,7 +124,7 @@ function cargarProyecto(){
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(response.archivo._id)
+      //console.log(response.archivo._id)
       editores[1].setValue(response.archivo.contenido);
       $('#id-css').val(response.archivo._id);
     },
@@ -128,7 +138,7 @@ function cargarProyecto(){
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(response.archivo._id)
+      //console.log(response.archivo._id)
       editores[2].setValue(response.archivo.contenido);
       $('#id-javascript').val(response.archivo._id);
     },
@@ -139,7 +149,7 @@ function cargarProyecto(){
 }
 
 function guardarProyecto(){
-  console.log("Guardar Proyecto")
+  //console.log("Guardar Proyecto")
 
   var html = editores[0].getValue();
   var css = editores[1].getValue();
@@ -157,6 +167,25 @@ function guardarProyecto(){
       "contenido": html,
     },
     success: function(response){
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `HTML actualizado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
     },
     error: function(err){
       console.error(err);
@@ -172,6 +201,25 @@ function guardarProyecto(){
       "contenido": css,
     },
     success: function(response){
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `CSS actualizado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
     },
     error: function(err){
       console.error(err);
@@ -187,9 +235,29 @@ function guardarProyecto(){
       "contenido": javascript
     },
     success: function(response){
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Javascript actualizado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
     },
     error: function(err){
       console.error(err);
     }
   });
 }
+

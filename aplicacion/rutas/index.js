@@ -63,6 +63,7 @@ api.get('/proyecto', proyectoCtrl.getProyectos)
 
 api.get('/proyecto/editar/:proyectoId', proyectoCtrl.editProyecto) // Editar Archivos de Proyecto
 
+api.get('/proyecto/cargarchk', proyectoCtrl.cargarchkProyecto) // Cargar Archivos de Proyecto
 api.get('/proyecto/cargarhtlm', proyectoCtrl.cargarHTMLProyecto) // Cargar Archivos de Proyecto
 api.get('/proyecto/cargarcss', proyectoCtrl.cargarCSSProyecto) // Cargar Archivos de Proyecto
 api.get('/proyecto/cargarjs', proyectoCtrl.cargarJSProyecto) // Cargar Archivos de Proyecto

@@ -1,7 +1,6 @@
 $(document).ready(function() {
   cargarDatos();
   generarCarpetas();
-  console.log("Jquery se cargo con exito")
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 100, "hide": 100 }})
@@ -10,11 +9,11 @@ $(document).ready(function() {
 });
 
 $("#sidebar").load("sidebar.html", function() {
-  console.log("Sidebar fue cargado con exito.");
+  //console.log("Sidebar fue cargado con exito.");
 });
 
 $("#nav-bar").load("navbar-dashboard.html", function() {
-  console.log("Navbar fue cargado con exito.");
+  //console.log("Navbar fue cargado con exito.");
 });
 
 function cargarDatos(){
@@ -31,7 +30,7 @@ function cargarDatos(){
       //console.log(`Correo: ${response[0].correo}`);
       
       if (response.length > 0){
-        console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
+        //console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
         $('#nombre-usuario').html(response[0].nombreUsuario)
         $('#nombre-usuario2').html(response[0].nombreUsuario)
       } else {

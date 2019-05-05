@@ -9,11 +9,11 @@ $(document).ready(function() {
 });
 
 $("#sidebar").load("sidebar.html", function() {
-  console.log("Sidebar fue cargado con exito.");
+  //console.log("Sidebar fue cargado con exito.");
 });
 
 $("#nav-bar").load("navbar-dashboard.html", function() {
-  console.log("Navbar fue cargado con exito.");
+  //console.log("Navbar fue cargado con exito.");
 });
 
 function cargarDatos(){
@@ -30,7 +30,7 @@ function cargarDatos(){
       //console.log(`Correo: ${response[0].correo}`);
       
       if (response.length > 0){
-        console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
+        //console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
         $('#nombre-usuario').html(response[0].nombreUsuario)
         $('#nombre-usuario2').html(response[0].nombreUsuario)
       } else {
@@ -44,7 +44,7 @@ function cargarDatos(){
 }
 
 function generarProyectos(){
-  console.log(`Generar los Proyectos:`);
+  //console.log(`Generar los Proyectos:`);
   
   $.ajax({
 		url: "/api/proyecto",
@@ -52,7 +52,7 @@ function generarProyectos(){
     dataType: "json",
     success: function(response){
       //console.log(response);
-      console.log(`Numero proyectos: ${response.proyectos.length}`);
+      //console.log(`Numero proyectos: ${response.proyectos.length}`);
       
       $('#numero-proyectos').html(response.proyectos.length)
 
@@ -217,14 +217,14 @@ function borrarProyecto(id){
 
 function editarProyecto(id){
   //console.log("Editar Proyecto: " + $('#carpeta-id').val());
-  console.log("Editar Proyecto: " + id);
+  //console.log("Editar Proyecto: " + id);
 
   $.ajax({
     url: '/api/proyecto/editar/'+id,
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log('Se le va a redirigir');
+      //console.log('Se le va a redirigir');
       window.location = "editor.html"
       //console.log(response.proyecto.archivoCSS)
       //console.log(response.proyecto.archivoHTML)

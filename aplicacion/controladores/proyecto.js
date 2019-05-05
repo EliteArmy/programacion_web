@@ -23,7 +23,6 @@ function getProyecto (req, res) {
   })
 }
 
-
 function getProyectos (req, res) {
   Proyecto.find({ usuarioCreador: req.session.codigoUsuario }, (err, proyectos) => {
     if (err) return res.status(500).send({ message: `Error al realizar la peticición: ${err}`})    
@@ -33,7 +32,6 @@ function getProyectos (req, res) {
     res.status(200).send({ proyectos })
   })
 }
-
 
 function editProyecto (req, res) {
   console.log("Editar un Proyecto")
@@ -62,9 +60,19 @@ function editProyecto (req, res) {
   })
 }
 
+// Validación de si existen las variables de session
+function cargarchkProyecto (req, res) {
+  if(req.session.archivoHTML){
+    res.send({ estatus: 1, mensaje: "" });
+  } else if (req.session.archivoJS) {
+    res.send({ estatus: 1, mensaje: "" });
+  } else {
+    res.send({ estatus: 0, mensaje: "" });
+  }
+}
 
 function cargarHTMLProyecto(req, res){
-  console.log("GET /proyecto/cargar")
+  //console.log("GET /proyecto/cargar")
 
   let html = req.session.archivoHTML;
   //console.log(html);
@@ -77,8 +85,8 @@ function cargarHTMLProyecto(req, res){
 }
 
 function cargarCSSProyecto(req, res){
-  console.log("GET /proyecto/cargar")
-
+  //console.log("GET /proyecto/cargar")
+  
   let css = req.session.archivoCSS;
   //console.log(css);
 
@@ -102,21 +110,21 @@ function cargarJSProyecto(req, res){
   })
 }
 
-
 function guardarProyecto(req, res){
-  console.log("post /proyecto/guardar")
+  //console.log("post /proyecto/guardar")
   
   Archivo.findOne({ _id: req.body.id
   })
   .then(archivo=>{
     archivo.contenido = req.body.contenido;
     archivo.save()
-    .then(obj=>{
-      //res.send(obj);
+    .then(data=>{
+      //res.send(data);
     })
     .catch(error=>{
-        res.send(obj);
+        res.send(data);
     });
+    res.send(archivo);
   })
   .catch(error=>{
     res.send(error);
@@ -268,6 +276,7 @@ module.exports = {
   getProyecto,
   getProyectos,
   editProyecto,
+  cargarchkProyecto,
   cargarHTMLProyecto,
   cargarCSSProyecto,
   cargarJSProyecto,

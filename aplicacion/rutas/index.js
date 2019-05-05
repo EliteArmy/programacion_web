@@ -59,7 +59,15 @@ api.delete('/carpeta/:carpetaId', carpetaCtrl.deleteCarpeta)
 // ==================== PETICIONES DE PROYECTO ====================
 api.get('/proyecto', proyectoCtrl.getProyectos)
 
-api.get('/proyecto/:proyectoId', proyectoCtrl.getProyecto)
+//api.get('/proyecto/:proyectoId', proyectoCtrl.getProyecto)
+
+api.get('/proyecto/editar/:proyectoId', proyectoCtrl.editProyecto) // Editar Archivos de Proyecto
+
+api.get('/proyecto/cargarhtlm', proyectoCtrl.cargarHTMLProyecto) // Cargar Archivos de Proyecto
+api.get('/proyecto/cargarcss', proyectoCtrl.cargarCSSProyecto) // Cargar Archivos de Proyecto
+api.get('/proyecto/cargarjs', proyectoCtrl.cargarJSProyecto) // Cargar Archivos de Proyecto
+
+api.put('/proyecto/guardar', proyectoCtrl.guardarProyecto) // Guardar Archivos de Proyecto
 
 api.post('/proyecto', proyectoCtrl.saveProyecto) // Crear Proyecto
 

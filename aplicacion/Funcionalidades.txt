@@ -11,13 +11,13 @@ Carpetas:
 
 Archivos:
   • 
-  • 
+  • Creación de Archivos
   • 
 
 
 Proyectos
   • 
-  • 
+  • Creación de Proyectos
   • 
 
 
@@ -47,7 +47,8 @@ Misceláneo:
   • Responsive
 
 Cosas por hacer:
+redirigir para editar un proyecto
 redirigir despues del registro
 crear pagina 404
-mejorar landing
-mejorar logout
+mejorar landing page
+mejorar logout page

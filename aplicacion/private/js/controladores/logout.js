@@ -23,7 +23,7 @@ function pageRedirect(){
   var delay = 5000; // tiempo en millisegundos
  
   setTimeout(function(){
-   window.location = "login.html";}, delay);
+    window.location = "login.html";}, delay);
   
  }
 

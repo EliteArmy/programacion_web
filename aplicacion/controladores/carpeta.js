@@ -25,7 +25,7 @@ function getCarpeta (req, res) {
 
 // Generar las Carpetas de un usuario Loggeado
 function getCarpetas (req, res) {
-  Carpeta.find({usuarioCreador: req.session.codigoUsuario}, (err, carpetas) => {
+  Carpeta.find({ usuarioCreador: req.session.codigoUsuario }, (err, carpetas) => {
     if (err) return res.status(500).send({ message: `Error al realizar la peticición: ${err}`})    
     
     if (!carpetas) return res.status(404).send({ message: `No Tienes Carpetas` })

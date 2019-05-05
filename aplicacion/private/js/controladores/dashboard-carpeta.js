@@ -42,7 +42,6 @@ function cargarDatos(){
       console.log(err);
     }
   });
-
 }
 
 function generarCarpetas(){
@@ -359,8 +358,6 @@ function borrarCarpeta(id){
         text: "¡Si, Seguro!",
         btnClass: "btn-warning",
         action: function(){
-
-
           $.ajax({
             url: '/api/carpeta/'+id,
             method: "DELETE",
@@ -395,8 +392,6 @@ function borrarCarpeta(id){
               console.error(error);
             }
           });
-          
-
         }
       },
       Cancelar: function(){
@@ -434,13 +429,14 @@ function crearProyecto(){
     method: "POST",
     dataType: "json",
     data: {
+      "carpetaRaizId": $('#carpeta-id').val(),
       "nombre": $('#proyecto-nombre').val(),
       "descripcion": $('#proyecto-descripcion').val(),
       "imagen": $('#proyecto-imagen').val(),
       "estado": "Activa"
     },
     success: function(response){
-      //console.log(`Nombre Proyecto: ${response.nombre}`);
+      console.log(`Nombre Proyecto: ${response.nombre}`);
 
       // Mensajes Validos
       $.alert({

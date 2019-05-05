@@ -12,7 +12,7 @@ app.listen (config.port, () => {
 })
 
 // ====================== CONEXIÓN ======================
-mongoose.connect(`mongodb://arielpalma:DataPassword1@ds151626.mlab.com:51626/heroku_lj6c5705`, { useNewUrlParser: true })
+mongoose.connect(`mongodb://tester:DataPassword1@ds151626.mlab.com:51626/heroku_lj6c5705`, { useNewUrlParser: true })
         .then(()=>{
             console.log("Se conectó a la base de datos remota.");
         })

@@ -331,7 +331,7 @@ function actualizarCarpeta(){
 
       $('#crearNuevaCarpeta').modal('hide');
       generarCarpetas();
-      limpiarFormulario();
+      limpiarFormularioCarpeta();
     },
     error: function(err){
       console.error(err);

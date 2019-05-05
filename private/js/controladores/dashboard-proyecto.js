@@ -228,7 +228,7 @@ function borrarProyecto(id){
 
 function editarProyecto(id){
   //console.log("Editar Proyecto: " + $('#proyecto-id').val());
-  //console.log("Editar Proyecto: " + id);
+  console.log("Editar Proyecto: " + id);
 
   $.ajax({
     url: '/api/proyecto/editar/'+id,
@@ -237,9 +237,9 @@ function editarProyecto(id){
     success: function(response){
       //console.log('Se le va a redirigir');
       window.location = "editor.html"
-      //console.log(response.proyecto.archivoCSS)
-      //console.log(response.proyecto.archivoHTML)
-      //console.log(response.proyecto.archivoJS)
+      console.log(response.proyecto.archivoCSS)
+      console.log(response.proyecto.archivoHTML)
+      console.log(response.proyecto.archivoJS)
     },
     error: function(err){
       console.error(err);

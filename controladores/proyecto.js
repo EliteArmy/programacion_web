@@ -62,6 +62,7 @@ function editProyecto (req, res) {
 
 // Validación de si existen las variables de session
 function cargarchkProyecto (req, res) {
+  console.log("cheque proyecto")
   if(req.session.archivoHTML){
     res.send({ estatus: 1, mensaje: "" });
   } else if (req.session.archivoJS) {
@@ -143,8 +144,9 @@ function saveProyecto(req, res){
   proyecto.imagen = req.body.imagen
   proyecto.fechaCreacion = Date.now() // No almacena si no es de los previamente definidos
   
-  proyecto.carpetaRaizId = req.body.carpetaRaizId
-  
+  if(req.body.carpetaRaizId){
+    proyecto.carpetaRaizId = req.body.carpetaRaizId
+  }  
   //proyecto.archivoCSS // Se guardan despues
   //proyecto.archivoHTML // Se guardan despues
   //proyecto.archivoJS // Se guardan despues

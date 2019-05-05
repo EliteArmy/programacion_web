@@ -243,8 +243,8 @@ function saveProyecto(req, res){
 }
 
 function updateProyecto (req, res) {
-  console.log('PUT /api/proyecto')
-  console.log(req.body)
+  //console.log('PUT /api/proyecto')
+  //console.log(req.body)
   
   let proyectoId = req.params.proyectoId
   let update = req.body

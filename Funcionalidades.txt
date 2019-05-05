@@ -16,8 +16,8 @@ Proyectos
 
 
 Archivos:
+  • Leer Archivos y mostrarlos
   • Creación de Archivos
-  • 
 
 
 Usuario:

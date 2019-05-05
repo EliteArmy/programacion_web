@@ -233,7 +233,7 @@ function buscarCarpeta(id){
 
 function buscarContenidoCarpeta(id){
 
-  console.log("Buscar Contenido Carpeta: " + id);
+  //console.log("Buscar Contenido Carpeta: " + id);
   //document.getElementById('mostrar-carpetas').innerHTML = "";
 
   // Busca las carpetas dentro de la carpeta padre

@@ -71,8 +71,8 @@ function generarProyectos(){
 
                 <div class="col-4 padding">
                   <div class="float-right">
-                    <a onclick="buscarCarpeta('${response.proyectos[i]._id}')" data-toggle="modal" data-target="#crearNuevoProyecto" href="#" data-toggle="tooltip" title="Editar Carpeta"><span class="far fa-edit text-success"></span></a>
-                    <a onclick="borrarProyecto('${response.proyectos[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Carpeta"><span class="far fa-trash-alt text-danger"></span></a>
+                    <a onclick="buscarProyecto('${response.proyectos[i]._id}')" data-toggle="modal" data-target="#crearNuevoProyecto" href="#" data-toggle="tooltip" title="Editar Proyecto"><span class="far fa-edit text-success"></span></a>
+                    <a onclick="borrarProyecto('${response.proyectos[i]._id}')" href="#" data-toggle="tooltip" title="Borrar Proyecto"><span class="far fa-trash-alt text-danger"></span></a>
                   </div>
                 </div>
               </div>
@@ -92,26 +92,54 @@ function generarProyectos(){
 	});
 }
 
-function actualizarCarpeta(){
-  //console.log("Actualizar Proyecto: " + $('#carpeta-id').val());
+function buscarProyecto(id){
+  //console.log("Buscar Proyecto");
+
+  $.ajax({
+    url: "/api/proyecto/"+id,
+    method: "GET",
+    dataType: "json",
+    success: function(response){
+      //console.log(`Nombre Proyecto: ${response.proyecto.nombre}`);
+      $('#proyecto-id').val(response.proyecto._id);
+      $('#proyecto-nombre').val(response.proyecto.nombre);
+      $('#proyecto-descripcion').val(response.proyecto.descripcion);
+      $('#proyecto-imagen').val(response.proyecto.imagen);
+      //$('#crearNuevaProyecto').modal('show');
+
+      $('#crearProyecto').addClass('d-none');
+      $('#actualizarProyecto').removeClass('d-none');
+
+      $('#proyectoNuevoTitulo').addClass('d-none');
+      $('#proyectoActualizarTitulo').removeClass('d-none');
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
+function actualizarProyecto(){
+  //console.log("Actualizar Proyecto: " + $('#proyecto-id').val());
   
   $.ajax({
-    url: '/api/carpeta/'+$('#carpeta-id').val(),
+    url: '/api/proyecto/'+$('#proyecto-id').val(),
     method: "PUT",
     dataType: "json",
     data: {
-      "nombre": $('#carpeta-nombre').val(),
-      "descripcion": $('#carpeta-descripcion').val(),
-      "imagen": $('#carpeta-imagen').val(),
+      "nombre": $('#proyecto-nombre').val(),
+      "descripcion": $('#proyecto-descripcion').val(),
+      "imagen": $('#proyecto-imagen').val(),
       "estado": "Activa"
     },
     success: function(response){
-      console.log(`Nombre Proyecto: ${response.carpeta.nombre}`);
+      console.log(`Nombre Proyecto: ${response.proyecto.nombre}`);
 
       // Mensajes Validos
       $.alert({
         title: '',
-        content: `Proyecto "${response.carpeta.nombre}", actualizado con exito`,
+        content: `Proyecto "${response.proyecto.nombre}", actualizado con exito`,
         type: 'green',
         typeAnimated: true,
         icon: 'fas fa-check',
@@ -128,9 +156,9 @@ function actualizarCarpeta(){
         }
       });
 
-      $('#crearNuevaCarpeta').modal('hide');
-      generarCarpetas();
-      limpiarFormulario();
+      $('#crearNuevoProyecto').modal('hide');
+      generarProyectos();
+      limpiarFormularioCarpeta();
     },
     error: function(err){
       console.error(err);
@@ -139,7 +167,7 @@ function actualizarCarpeta(){
 }
 
 function borrarProyecto(id){
-  console.log("Borrar Proyecto: " + $('#carpeta-id').val());
+  console.log("Borrar Proyecto: " + $('#proyecto-id').val());
   
   $.confirm({
     title: '',
@@ -199,7 +227,7 @@ function borrarProyecto(id){
 }
 
 function editarProyecto(id){
-  //console.log("Editar Proyecto: " + $('#carpeta-id').val());
+  //console.log("Editar Proyecto: " + $('#proyecto-id').val());
   //console.log("Editar Proyecto: " + id);
 
   $.ajax({

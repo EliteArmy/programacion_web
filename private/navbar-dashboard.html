@@ -241,6 +241,14 @@
             </div>
           </div>
 
+          <div id="extension" class="form-group col-12 col-sm-6 col-md-6">
+            <label for="archivo-extension">Extensión Archivo:</label>
+            <input type="text" class="form-control" disabled id="archivo-extension" name="archivo-extension" placeholder="Extensión Archivo">
+            <div class="invalid-feedback">
+              <span></span>
+            </div>
+          </div>
+
           <div class="form-group col-12 col-sm-6 col-md-6">
             <label for="slc-tipo-extension">Seleccione una Extensión</label>
             <select id="slc-tipo-extension" class="selectpicker form-control" title="Seleccione Extensión" data-style="btn-primary">
@@ -272,7 +280,7 @@
         </div>
       </div>
       
-      <div class="modal-footer">
+      <div id="crearArchivo" class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="crearArchivo()" id="GuardarNuevoArchivo">Crear Archivo</button>
         <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
       </div>

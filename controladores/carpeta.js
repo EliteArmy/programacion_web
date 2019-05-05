@@ -132,8 +132,8 @@ function saveSubCarpeta(req, res){
 
 // Actualiza una carpeta en la base de datos
 function updateCarpeta (req, res) {
-  console.log('PUT /api/carpeta')
-  console.log(req.body)
+  //console.log('PUT /api/carpeta')
+  //console.log(req.body)
   
   let carpetaId = req.params.carpetaId
   let update = req.body

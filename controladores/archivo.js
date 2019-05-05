@@ -22,9 +22,11 @@ function getArchivo (req, res) {
 }
 
 function getArchivos (req, res) {
+  //console.log("GET /archivo")
   Archivo.find({}, (err, archivos) => {
     if (err) return res.status(500).send({ message: `Error al realizar la peticición: ${err}`})    
     if (!archivos) return res.status(404).send({ message: `No existen archivos` })
+    //console.log(archivos)
     res.status(200).send({ archivos })
   })
 }
@@ -84,8 +86,8 @@ function saveArchivo(req, res){
 }
 
 function updateArchivo (req, res) {
-  console.log('PUT /api/archivo')
-  console.log(req.body)
+  //console.log('PUT /api/archivo')
+  //console.log(req.body)
   
   let archivoId = req.params.archivoId
   let update = req.body

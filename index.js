@@ -19,6 +19,7 @@ mongoose.connect(`mongodb://tester:DataPassword1@ds151626.mlab.com:51626/heroku_
         .catch(error=>{
             console.error(JSON.stringify(error));   
         });
+        
 /*
 mongoose.connect(config.db, (err, res) => {
   
@@ -29,14 +30,4 @@ mongoose.connect(config.db, (err, res) => {
   // Si no hay error, muestra el mensaje
   console.log('Conexión con la base de datos establecida...')
 })
-*/
-/*
-const MongoClient = require(‘mongodb’).MongoClient;
-
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
 */

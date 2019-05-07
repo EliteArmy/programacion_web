@@ -2,6 +2,7 @@
 
 // Al no estar instalado por npm, se le debe indicar la ruta
 const Usuario = require('../modelos/usuario');
+const mongoose = require("mongoose");
 
 function getUsuario (req, res) {
   //console.log('GET /api/usuario/ID')
@@ -144,6 +145,7 @@ function verificarAutenticacion(req, res, next){
 
 // Login con facebook
 function fblogin (req, res){
+  console.log(req.body)
   Usuario.find({facebookId: req.body.facebookId})
     .then(data=>{
       if (data.length == 1){
@@ -164,10 +166,11 @@ function fblogin (req, res){
             res.send(error);
           });
 
-        res.send({status:2, mensaje: "Usuario autenticado con éxito"});
+        res.send({status: 1, mensaje: "Usuario autenticado con éxito"});
 
       } else {
-        var u = new usuario({
+        console.log("New User")
+        var u = new Usuario({
           facebookId: req.body.facebookId,
           nombre: req.body.nombre,
           apellido: req.body.apellido,
@@ -176,13 +179,13 @@ function fblogin (req, res){
         });
     
         u.save()
-        .then(obj=>{
-          req.session.codigoUsuario = obj._id;
-          res.send({status: 1, mensaje: "Usuario autenticado con éxito"});
-        })
-        .catch(error=>{
-          res.send(error);
-        });
+          .then(obj=>{
+            req.session.codigoUsuario = obj._id;
+            res.send({status: 1, mensaje: "Usuario nuevo autenticado con éxito"});
+          })
+          .catch(error=>{
+            res.send(error);
+          });
       }
 
     })

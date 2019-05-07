@@ -74,7 +74,7 @@ $("#btn-login").click(function(){
         "contrasena": $('#contrasena').val(),
       },
       success: function (response){
-        console.log(`mensaje del servidor: ${response.mensaje}`);   
+        //console.log(`mensaje del servidor: ${response.mensaje}`);   
         
         if (response.estatus == 1){
           window.location.href = "/dash-carpeta.html";
@@ -129,6 +129,7 @@ $("#btn-login").click(function(){
 
 function logInFB(){ 
   FB.login(function(response) {
+    console.log(response);
     if (response.status=="connected"){
       FB.api('/me?fields=id,name,first_name,last_name,email', function(datosUsuario) {
         var parametros = {

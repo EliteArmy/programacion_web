@@ -113,13 +113,69 @@ function usuarioLogeado(req, res){
   
   Usuario.find({_id: req.session.codigoUsuario})
     .then(data=>{
-      //console.log(`data Usuario Logaedo: ${data}`) // Imprime en terminal
+      console.log(`data Usuario Logaedo: ${data}`) // Imprime en terminal
       res.send(data);
     })
     .catch(error=>{
       res.send(error);
     });
 }
+
+// Login con facebook
+function fblogin (req, res){
+  console.log(req.body)
+  Usuario.find({facebookId: req.body.facebookId})
+    .then(data=>{
+      if (data.length == 1){
+        req.session.codigoUsuario = data[0]._id;
+        req.session.correoUsuario = data[0].correo;
+        req.session.nombreUsuario = data[0].nombreUsuario;
+
+        // Actualizar los datos
+        Usuario.updateOne({_id:data[0]._id},
+          {
+              nombre: req.body.nombre,
+              apellido: req.body.apellido,
+              usuario: req.body.nombre + req.body.apellido,
+              correo: req.body.correo,
+          })
+          .then(result=>{
+            // 
+          })
+          .catch(error=>{
+            res.send(error);
+          });
+
+        res.send({estatus: 1, mensaje: "Usuario autenticado con éxito", usuario: data[0]});
+        
+      } else {
+        //console.log("Nuevo User")
+        var usu = new Usuario({
+          facebookId: req.body.facebookId,
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          usuario: req.body.nombre + req.body.apellido,
+          correo: req.body.correo
+        });
+    
+        usu.save()
+          .then(user=>{
+            req.session.codigoUsuario = user._id;
+            req.session.correoUsuario = user.correo;
+            req.session.nombreUsuario = user.nombreUsuario;
+
+            res.send({estatus: 1, mensaje: "Usuario nuevo autenticado con éxito"});
+          })
+          .catch(error=>{
+            res.send(error);
+          });
+      }
+
+    })
+    .catch(error=>{
+      res.send(error);
+    });
+};
 
 function logoutUsuario(req, res){
   //console.log('GET /logout')
@@ -143,62 +199,6 @@ function verificarAutenticacion(req, res, next){
 		res.send("ERROR, ACCESO NO AUTORIZADO");
 }
 
-// Login con facebook
-function fblogin (req, res){
-  console.log(req.body)
-  Usuario.find({facebookId: req.body.facebookId})
-    .then(data=>{
-      if (data.length == 1){
-        req.session.codigoUsuario = data[0]._id;
-        req.session.correoUsuario = data[0].correo;
-        req.session.nombreUsuario = data[0].nombreUsuario;
-
-        //Actualizar los datos
-        Usuario.updateOne({_id:data[0]._id},
-          {
-              nombre: req.body.nombre,
-              apellido: req.body.apellido,
-              usuario: req.body.nombre + req.body.apellido,
-              correo: req.body.correo,
-          })
-          .then(result=>{
-            // 
-          })
-          .catch(error=>{
-            res.send(error);
-          });
-
-        res.send({estatus: 1, mensaje: "Usuario autenticado con éxito"});
-        
-      } else {
-        console.log("New User")
-        var u = new Usuario({
-          facebookId: req.body.facebookId,
-          nombre: req.body.nombre,
-          apellido: req.body.apellido,
-          usuario: req.body.nombre + req.body.apellido,
-          correo: req.body.correo
-        });
-    
-        u.save()
-          .then(user=>{
-            req.session.codigoUsuario = user._id;
-            req.session.correoUsuario = user.correo;
-            req.session.nombreUsuario = user.nombreUsuario;
-
-            res.send({estatus: 1, mensaje: "Usuario nuevo autenticado con éxito"});
-          })
-          .catch(error=>{
-            res.send(error);
-          });
-      }
-
-    })
-    .catch(error=>{
-      res.send(error);
-    });
-};
-
 // Se exportan las funciones
 module.exports = {
   getUsuario,
@@ -207,7 +207,6 @@ module.exports = {
   updateUsuario,
   deleteUsuario,
   fblogin,
-
   loginUsuario,
   usuarioLogeado,
   logoutUsuario,

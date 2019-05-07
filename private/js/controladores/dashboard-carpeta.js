@@ -24,13 +24,13 @@ function cargarDatos(){
     method: "get",
     dataType: "json",
     success: function(response){
-      //console.log(`Tamaño: ${response.length}`);
-      //console.log(`Response: ${response}`);
-      //console.log(`Nombre: ${response[0].nombreUsuario}`);  
-      //console.log(`Correo: ${response[0].correo}`);
+      console.log(`Tamaño: ${response.length}`);
+      console.log(`Response: ${response}`);
+      console.log(`Nombre: ${response[0].nombreUsuario}`);  
+      console.log(`Correo: ${response[0].correo}`);
       
       if (response.length > 0){
-        //console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
+        console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
         $('#nombre-usuario').html(response[0].nombreUsuario)
         $('#nombre-usuario2').html(response[0].nombreUsuario)
       } else {

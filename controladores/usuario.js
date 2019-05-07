@@ -142,59 +142,54 @@ function verificarAutenticacion(req, res, next){
 		res.send("ERROR, ACCESO NO AUTORIZADO");
 }
 
-
-//login con facebook
+// Login con facebook
 function fblogin (req, res){
-  usuario.find({idFB:req.body.idFB})
-  .then(data=>{
-      
-    if (data.length==1){
-          req.session.codigoUsuario = data[0]._id;
-          //Actualizar los datos
-              usuario.update(
-                  {_id:data[0]._id},
-                  {
-                      nombre : req.body.nombre,
-                      apellido : req.body.apellido,
-                      usuario: req.body.nombre + req.body.apellido,
-                      email : req.body.email,
-                     
-                  }
-              ).then(result=>{
-              
-              })
-              .catch(error=>{
-                  res.send(error);
-              });
-          
-          res.send({status:2,mensaje:"Usuario autenticado con éxito"});
+  Usuario.find({facebookId: req.body.facebookId})
+    .then(data=>{
+      if (data.length == 1){
+        req.session.codigoUsuario = data[0]._id;
 
-      }else{
-          var u = new usuario({
-              idFB :req.body.idFB,
-              nombre : req.body.nombre,
-              apellido : req.body.apellido,
+        //Actualizar los datos
+        Usuario.update({_id:data[0]._id},
+          {
+              nombre: req.body.nombre,
+              apellido: req.body.apellido,
               usuario: req.body.nombre + req.body.apellido,
-              email : req.body.email,
-      });
-  
-      u.save()
-      .then(obj=>{
+              correo: req.body.correo,
+          })
+          .then(result=>{
+            // 
+          })
+          .catch(error=>{
+            res.send(error);
+          });
+
+        res.send({status:2, mensaje: "Usuario autenticado con éxito"});
+
+      } else {
+        var u = new usuario({
+          facebookId: req.body.facebookId,
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          usuario: req.body.nombre + req.body.apellido,
+          correo: req.body.correo
+        });
+    
+        u.save()
+        .then(obj=>{
           req.session.codigoUsuario = obj._id;
-          res.send({status:1,mensaje:"Usuario autenticado con éxito"});
-      })
-      .catch(e=>{
-          res.send(e);
-      });
-    }//fin insertar
+          res.send({status: 1, mensaje: "Usuario autenticado con éxito"});
+        })
+        .catch(error=>{
+          res.send(error);
+        });
+      }
 
-  })
-  .catch(error=>{
+    })
+    .catch(error=>{
       res.send(error);
-  });
-
+    });
 };
-
 
 // Se exportan las funciones
 module.exports = {

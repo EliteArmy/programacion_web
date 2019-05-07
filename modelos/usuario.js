@@ -10,6 +10,7 @@ const UsuarioEsquema = new mongoose.Schema({
   contrasena: { type: String },
   descripcion: String,
   imagen: String,
+  facebookId: String,
   plan: mongoose.Schema.Types.ObjectId,
   fechaRegistro: { type: Date, default: Date.now }
 });

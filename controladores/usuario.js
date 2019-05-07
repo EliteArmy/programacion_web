@@ -168,7 +168,7 @@ function fblogin (req, res){
             res.send(error);
           });
 
-        res.send({status: 1, mensaje: "Usuario autenticado con éxito"});
+        res.send({estatus: 1, mensaje: "Usuario autenticado con éxito"});
         
       } else {
         console.log("New User")
@@ -186,7 +186,7 @@ function fblogin (req, res){
             req.session.correoUsuario = user.correo;
             req.session.nombreUsuario = user.nombreUsuario;
 
-            res.send({status: 1, mensaje: "Usuario nuevo autenticado con éxito"});
+            res.send({estatus: 1, mensaje: "Usuario nuevo autenticado con éxito"});
           })
           .catch(error=>{
             res.send(error);

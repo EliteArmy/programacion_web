@@ -63,15 +63,15 @@ function saveArchivo(req, res){
           //res.send(data); // No se puede enviar datos desde aquí, si no el primero que hizo el llamado "archivo.save()"
         })
         .catch(error=>{
-          console.log("--- 3. Error Carpeta: " + error)
+          //console.log("--- 3. Error Carpeta: " + error)
           res.send(error); // En caso de error
         })
       
-      console.log("--- 1. Archivo: " + dataArhivo) // Datos enviados al Ajax
+      //console.log("--- 1. Archivo: " + dataArhivo) // Datos enviados al Ajax
       res.send(dataArhivo);
     })  
     .catch(error=>{
-      console.log("Error Archivo: " + error)
+      //console.log("Error Archivo: " + error)
       res.send(error);
     });
 

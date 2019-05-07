@@ -9,7 +9,7 @@ function salir (){
     dataType: "json",
     success: function(response){
       if (response.estatus == 1) {
-        console.log(response.mensaje)
+        //console.log(response.mensaje)
         pageRedirect();       
       }
     },
@@ -29,7 +29,7 @@ function pageRedirect(){
 
 $("#btn-logout").click(function(){
   
-  //console.log('Salir del Sitio')
+  ////console.log('Salir del Sitio')
   
   $.ajax({
     url: "/api/logout",

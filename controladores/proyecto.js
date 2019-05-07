@@ -232,14 +232,14 @@ function saveProyecto(req, res){
           //res.send(data); // No se puede enviar datos desde aquí, si no el primero que hizo el llamado "proyecto.save()"
         })
         .catch(error=>{
-          console.log("Error2: " + error)
+          //console.log("Error2: " + error)
           res.send(error); // En caso de error
         });
       res.send(proyData);
     
     })
     .catch(error=>{
-      console.log("Error3" + error)
+      //console.log("Error3" + error)
       res.send(error); // En caso de error
     });
 }

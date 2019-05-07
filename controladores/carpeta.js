@@ -36,19 +36,19 @@ function getCarpetas (req, res) {
 
 // Buscar el contenido de una carpeta
 function obtenerContenidoCarpeta(req, res){
-  console.log('POST /carpeta/contenido/carpetas')
+  //console.log('POST /carpeta/contenido/carpetas')
   res.status(200).send({ message: "Exito" })
 }
 
 // Buscar el contenido de una carpeta
 function obtenerContenidoProyecto(req, res){
-  console.log('POST /carpeta/contenido/proyectos')
+  //console.log('POST /carpeta/contenido/proyectos')
   res.status(200).send({ message: "Exito" })
 }
 
 // Buscar el contenido de una carpeta
 function obtenerContenidoArchivos(req, res){
-  console.log('POST /carpeta/contenido/archivos')
+  //console.log('POST /carpeta/contenido/archivos')
   res.status(200).send({ message: "Exito" })
 }
 

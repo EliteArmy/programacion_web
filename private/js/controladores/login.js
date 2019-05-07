@@ -75,8 +75,8 @@ $("#btn-login").click(function(){
       },
       success: function (response){
         //console.log(`mensaje del servidor: ${response}`);
-        console.log(`mensaje del servidor1: ${response.estatus}`);
-        console.log(`mensaje del servidor2: ${response.mensaje}`);   
+        //console.log(`mensaje del servidor1: ${response.estatus}`);
+        //console.log(`mensaje del servidor2: ${response.mensaje}`);   
         
         if (response.estatus == 1){
           window.location.href = "/dash-carpeta.html";

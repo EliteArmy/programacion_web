@@ -92,7 +92,7 @@ function generarArchivos(){
 }
 
 function buscarArchivo(id){
-  console.log("Buscar Archivo");
+  //console.log("Buscar Archivo");
   //$('.selectpicker').selectpicker('val', '');
   //$('.selectpicker').selectpicker('refresh');
 
@@ -102,13 +102,13 @@ function buscarArchivo(id){
     dataType: "json",
     success: function(response){
       //console.log(`Nombre Archivo: ${response.archivo.nombre}`);
-      console.log(`Extensión Archivo: ${response.archivo.extension}`);
+      //console.log(`Extensión Archivo: ${response.archivo.extension}`);
       $('#archivo-id').val(response.archivo._id);
       $('#archivo-nombre').val(response.archivo.nombre);
       $('#archivo-descripcion').val(response.archivo.descripcion);
       $('#archivo-imagen').val(response.archivo.imagen);
       $('#archivo-extension').val(response.archivo.extension);
-      $('#slc-tipo-extension').val('val', response.archivo.extension);
+      $('#slc-tipo-extension').selectpicker('val', response.archivo.extension);
       $('#archivo-contenido').val(response.archivo.contenido);
       //$('#crearNuevoArchivo').modal('show');
 
@@ -149,7 +149,7 @@ function actualizarArchivo(){
       "estado": "Activa"
     },
     success: function(response){
-      console.log(`Nombre Archivo: ${response.archivo.nombre}`);
+      //console.log(`Nombre Archivo: ${response.archivo.nombre}`);
 
       // Mensajes Validos
       $.alert({
@@ -182,7 +182,7 @@ function actualizarArchivo(){
 }
 
 function borrarArchivo(id){
-  console.log("Borrar Archivo: " + $('#archivo-id').val());
+  //console.log("Borrar Archivo: " + $('#archivo-id').val());
   
   $.confirm({
     title: '',

@@ -34,7 +34,7 @@ function getUsuarios(req, res) {
 // Registro de nuevos Usuarios
 function saveUsuario(req, res){
   //console.log('POST /api/usuario')
-  console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
+  //console.log(req.body) // gracias a bodyparser, ya viene parseado, viene como objeto json
 
   let usuario = new Usuario() // Usuario es el modelo de la base de datos
   
@@ -113,7 +113,7 @@ function usuarioLogeado(req, res){
   
   Usuario.find({_id: req.session.codigoUsuario})
     .then(data=>{
-      console.log(`data Usuario Logaedo: ${data}`) // Imprime en terminal
+      //console.log(`data Usuario Logaedo: ${data}`) // Imprime en terminal
       res.send(data);
     })
     .catch(error=>{
@@ -123,7 +123,7 @@ function usuarioLogeado(req, res){
 
 // Login con facebook
 function fblogin (req, res){
-  console.log(req.body)
+  //console.log(req.body)
   Usuario.find({facebookId: req.body.facebookId})
     .then(data=>{
       if (data.length == 1){
@@ -136,7 +136,7 @@ function fblogin (req, res){
           {
               nombre: req.body.nombre,
               apellido: req.body.apellido,
-              usuario: req.body.nombre + req.body.apellido,
+              nombreUsuario: req.body.nombre + req.body.apellido,
               correo: req.body.correo,
           })
           .then(result=>{
@@ -149,12 +149,12 @@ function fblogin (req, res){
         res.send({estatus: 1, mensaje: "Usuario autenticado con éxito", usuario: data[0]});
         
       } else {
-        //console.log("Nuevo User")
+        //console.log("Nuevo Usuario")
         var usu = new Usuario({
           facebookId: req.body.facebookId,
           nombre: req.body.nombre,
           apellido: req.body.apellido,
-          usuario: req.body.nombre + req.body.apellido,
+          nombreUsuario: req.body.nombre + req.body.apellido,
           correo: req.body.correo
         });
     

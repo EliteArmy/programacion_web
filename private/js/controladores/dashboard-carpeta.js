@@ -24,13 +24,13 @@ function cargarDatos(){
     method: "get",
     dataType: "json",
     success: function(response){
-      console.log(`Tamaño: ${response.length}`);
-      console.log(`Response: ${response}`);
-      console.log(`Nombre: ${response[0].nombreUsuario}`);  
-      console.log(`Correo: ${response[0].correo}`);
+      //console.log(`Tamaño: ${response.length}`);
+      //console.log(`Response: ${response}`);
+      //console.log(`Nombre: ${response[0].nombreUsuario}`);  
+      //console.log(`Correo: ${response[0].correo}`);
       
       if (response.length > 0){
-        console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
+        //console.log(`Se cargaron los datos de: ${response[0].nombreUsuario} con exito.`);
         $('#nombre-usuario').html(response[0].nombreUsuario)
         $('#nombre-usuario2').html(response[0].nombreUsuario)
       } else {
@@ -110,7 +110,7 @@ function generarCarpetas(){
 
 // ============ Carpeta ============
 function crearCarpeta(){
-  console.log("Crear Carpeta");
+  //console.log("Crear Carpeta");
 
   $.ajax({
     url: "/api/carpeta",
@@ -123,7 +123,7 @@ function crearCarpeta(){
       "estado": "Activa"
     },
     success: function(response){
-      console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+      //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
 
       // Mensajes Validos
       $.alert({
@@ -170,7 +170,7 @@ function crearSubCarpeta(){
       "estado": "Activa"
     },
     success: function(response){
-      console.log(`Nombre Carpeta: ${response.nombre}`);
+      //console.log(`Nombre Carpeta: ${response.nombre}`);
 
       // Mensajes Validos
       $.alert({
@@ -203,7 +203,7 @@ function crearSubCarpeta(){
 }
 
 function buscarCarpeta(id){
-  console.log("Buscar Carpeta");
+  //console.log("Buscar Carpeta");
 
   $.ajax({
     url: "/api/carpeta/"+id,
@@ -307,7 +307,7 @@ function actualizarCarpeta(){
       "estado": "Activa"
     },
     success: function(response){
-      console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+      //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
 
       // Mensajes Validos
       $.alert({
@@ -340,7 +340,7 @@ function actualizarCarpeta(){
 }
 
 function borrarCarpeta(id){
-  console.log("Borrar Carpeta: " + $('#carpeta-id').val());
+  //console.log("Borrar Carpeta: " + $('#carpeta-id').val());
   
   $.confirm({
     title: '',
@@ -445,7 +445,7 @@ $(document).on('click', '.reset', function(){
 
 // ============ Proyecto ============
 function crearProyecto(){
-  console.log("Crear Proyecto");
+  //console.log("Crear Proyecto");
   
   $.ajax({
     url: "/api/proyecto",
@@ -459,7 +459,7 @@ function crearProyecto(){
       "estado": "Activa"
     },
     success: function(response){
-      console.log(`Nombre Proyecto: ${response.nombre}`);
+      //console.log(`Nombre Proyecto: ${response.nombre}`);
 
       // Mensajes Validos
       $.alert({
@@ -493,7 +493,7 @@ function crearProyecto(){
 
 // ============ Archivo ============
 function crearArchivo(){
-  console.log("Crear Archivo: " + $('#carpeta-id').val());
+  //console.log("Crear Archivo: " + $('#carpeta-id').val());
   
   $.ajax({
     url: "/api/archivo",

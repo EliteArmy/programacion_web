@@ -1,9 +1,9 @@
 $("#sidebar").load("sidebar.html", function() {
-  console.log("Sidebar fue cargado con exito.");
+  //console.log("Sidebar fue cargado con exito.");
 });
 
 $("#nav-bar").load("navbar-dashboard.html", function() {
-  console.log("Navbar fue cargado con exito.");
+  //console.log("Navbar fue cargado con exito.");
 });
 
 var campos = [
@@ -71,7 +71,7 @@ function cargarDatos(){
     method: "GET",
     dataType: "json",
     success: function(response){
-      console.log(`Se cargaron los datos de: ${response.usuario.nombreUsuario} con exito.`);
+      //console.log(`Se cargaron los datos de: ${response.usuario.nombreUsuario} con exito.`);
       
       $('#nombre-usuario').html(response.usuario.nombreUsuario);
       $('#nombre-usuario2').html(response.usuario.nombreUsuario);
@@ -85,7 +85,7 @@ function cargarDatos(){
       $('#correo').val(response.usuario.correo);
       $('#contrasena').val(response.usuario.contrasena);
       $('#descripcion').val(response.usuario.descripcion);
-      //$('#').val(response.usuario.);
+      $('#slc-tipo-plan').selectpicker('val',response.usuario.plan);
       //$('#').val(response.usuario.);
     },
     error: function(err){
@@ -107,10 +107,11 @@ function actualizarUsuario(){
       "nombreUsuario": $('#usuario').val(),
       "correo": $('#correo').val(),
       "contrasena": $('#contrasena').val(),
-      "descripcion": $('#descripcion').val()
+      "descripcion": $('#descripcion').val(),
+      "plan": $('#slc-tipo-plan').val()
     },
     success: function(response){
-      console.log(`Nombre usuario: ${response.usuario.nombre}`);
+      //console.log(`Nombre usuario: ${response.usuario.nombre}`);
 
       // Mensajes Validos
       $.alert({

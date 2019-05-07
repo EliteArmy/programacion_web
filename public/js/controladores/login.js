@@ -144,11 +144,31 @@ function logInFB(){
           method: "POST",
           data: parametros,
           dataType: "json",
-          success: function(respuesta){
-            console.log(respuesta);
-            console.log(respuesta.status);
-            console.log(respuesta.mensaje);
-            //location.href ="login.html";
+          success: function(response){
+
+            if (response.estatus == 1){
+              window.location.href = "/dash-carpeta.html";
+            } else {
+              // Mensaje de Error
+              $.alert({
+                title: '',
+                content: response.mensaje,
+                type: 'red',
+                typeAnimated: true,
+                icon: 'fas fa-exclamation-triangle',
+                closeIcon: true,
+                closeIconClass: 'fas fa-times',
+                autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+                theme: 'modern', // Acepta propiedades CSS
+                buttons: {
+                  cerrar: {
+                    text: 'Cerrar',
+                    btnClass: 'btn-danger',
+                    keys: ['enter', 'shift']
+                  }
+                }
+              });
+            }
           },
           error: function (e) {
             console.log(e);

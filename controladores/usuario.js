@@ -150,9 +150,11 @@ function fblogin (req, res){
     .then(data=>{
       if (data.length == 1){
         req.session.codigoUsuario = data[0]._id;
+        req.session.correoUsuario = data[0].correo;
+        req.session.nombreUsuario = data[0].nombreUsuario;
 
         //Actualizar los datos
-        Usuario.update({_id:data[0]._id},
+        Usuario.updateOne({_id:data[0]._id},
           {
               nombre: req.body.nombre,
               apellido: req.body.apellido,
@@ -167,7 +169,7 @@ function fblogin (req, res){
           });
 
         res.send({status: 1, mensaje: "Usuario autenticado con éxito"});
-
+        
       } else {
         console.log("New User")
         var u = new Usuario({
@@ -179,8 +181,11 @@ function fblogin (req, res){
         });
     
         u.save()
-          .then(obj=>{
-            req.session.codigoUsuario = obj._id;
+          .then(user=>{
+            req.session.codigoUsuario = user._id;
+            req.session.correoUsuario = user.correo;
+            req.session.nombreUsuario = user.nombreUsuario;
+
             res.send({status: 1, mensaje: "Usuario nuevo autenticado con éxito"});
           })
           .catch(error=>{

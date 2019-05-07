@@ -22,6 +22,7 @@ Autenticación:
   • Logout (Remover la sesión)
   • Redireccionar al dashboard en caso de estar autenticado y buscar una página que no existe 
   • Redireccionar al login en caso de no estar autenticado y buscar una página que no existe
+  • Facebook Login
 
 Carpetas:
   • Leer Carpetas y mostrarlas

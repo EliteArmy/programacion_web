@@ -83,7 +83,7 @@ function generarCarpetas(){
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevoArchivo" href="#">Archivo</a>
                         <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevoProyecto" href="#">Proyecto</a>
-                        <a class="dropdown-item" onclick="buscarCarpeta('${response.carpetas[i]._id}')" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
+                        <a class="dropdown-item" onclick="nuevaSubCarpeta()" data-toggle="modal" data-target="#crearNuevaCarpeta" href="#">Carpeta</a>
                       </div>
                     </div>
 
@@ -202,6 +202,16 @@ function crearSubCarpeta(){
   });
 }
 
+function nuevaSubCarpeta(){
+  $('#crearCarpeta').addClass('d-none');
+  $('#actualizarCarpeta').addClass('d-none');
+  $('#crearSubCarpeta').removeClass('d-none');
+
+  $('#carpetaNuevaTitulo').addClass('d-none');
+  $('#carpetaActualizarTitulo').addClass('d-none');
+  $('#carpetaSubTitulo').removeClass('d-none');
+}
+
 function buscarCarpeta(id){
   //console.log("Buscar Carpeta");
 
@@ -219,17 +229,40 @@ function buscarCarpeta(id){
 
       $('#crearCarpeta').addClass('d-none');
       $('#actualizarCarpeta').removeClass('d-none');
+      $('#crearSubCarpeta').addClass('d-none');
+
+      $('#crearProyecto').removeClass('d-none');
+      $('#actualizarProyecto').addClass('d-none');
+      
+      $('#crearArchivo').removeClass('d-none');
+      $('#actualizarArchivo').addClass('d-none');
+
 
       $('#carpetaNuevaTitulo').addClass('d-none');
       $('#carpetaActualizarTitulo').removeClass('d-none');
+      $('#carpetaSubTitulo').addClass('d-none');
 
+      $('#proyectoNuevoTitulo').removeClass('d-none');
+      $('#proyectoActualizarTitulo').addClass('d-none');
+    
+      $('#archivoNuevoTitulo').removeClass('d-none');
+      $('#archivoActualizarTitulo').addClass('d-none');
+
+      $('#proyecto-id').val("");
+      $('#proyecto-nombre').val("");
+      $('#proyecto-descripcion').val("");
+      $('#proyecto-imagen').val("");
+    
+      $('#archivo-id').val("");
+      $('#archivo-nombre').val("");
+      $('#archivo-descripcion').val("");
+      $('#archivo-imagen').val("");
     },
     error: function(err){
       console.error(err);
     }
   });
 }
-
 
 function buscarContenidoCarpeta(id){
 
@@ -291,7 +324,6 @@ function buscarContenidoCarpeta(id){
   });
 
 }
-
 
 function actualizarCarpeta(){
   //console.log("Actualizar Carpeta: " + $('#carpeta-id').val());
@@ -404,6 +436,7 @@ function limpiarFormularioCarpeta(){
   //console.log('limpiar el formulario');
   $('#crearCarpeta').removeClass('d-none');
   $('#actualizarCarpeta').addClass('d-none');
+  $('#crearSubCarpeta').addClass('d-none');
   
   $('#crearProyecto').removeClass('d-none');
   $('#actualizarProyecto').addClass('d-none');
@@ -414,6 +447,7 @@ function limpiarFormularioCarpeta(){
 
   $('#carpetaNuevaTitulo').removeClass('d-none');
   $('#carpetaActualizarTitulo').addClass('d-none');
+  $('#carpetaSubTitulo').addClass('d-none');
 
   $('#proyectoNuevoTitulo').removeClass('d-none');
   $('#proyectoActualizarTitulo').addClass('d-none');
@@ -488,7 +522,6 @@ function crearProyecto(){
       console.error(err);
     }
   });
-  
 }
 
 // ============ Archivo ============

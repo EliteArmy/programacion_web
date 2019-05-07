@@ -241,10 +241,104 @@ function borrarArchivo(id){
   })
 }
 
+// ============ Proyecto ============
+function crearProyecto(){
+  //console.log("Crear Proyecto");
+  
+  $.ajax({
+    url: "/api/proyecto",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "carpetaRaizId": $('#carpeta-id').val(),
+      "nombre": $('#proyecto-nombre').val(),
+      "descripcion": $('#proyecto-descripcion').val(),
+      "imagen": $('#proyecto-imagen').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      //console.log(`Nombre Proyecto: ${response.nombre}`);
+
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Proyecto "${response.nombre}", creado con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+      $('#crearNuevoProyecto').modal('hide');
+      //generarProyectos();
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
+// ============ Carpeta ============
+function crearCarpeta(){
+  //console.log("Crear Carpeta");
+
+  $.ajax({
+    url: "/api/carpeta",
+    method: "POST",
+    dataType: "json",
+    data: {
+      "nombre": $('#carpeta-nombre').val(),
+      "descripcion": $('#carpeta-descripcion').val(),
+      "imagen": $('#carpeta-imagen').val(),
+      "estado": "Activa"
+    },
+    success: function(response){
+      //console.log(`Nombre Carpeta: ${response.carpeta.nombre}`);
+
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Carpeta "${response.carpeta.nombre}", creada con exito`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+      $('#crearNuevaCarpeta').modal('hide');
+
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
 function limpiarFormularioCarpeta(){
   //console.log('limpiar el formulario');
   $('#crearCarpeta').removeClass('d-none');
   $('#actualizarCarpeta').addClass('d-none');
+  $('#crearSubCarpeta').addClass('d-none');
   
   $('#crearProyecto').removeClass('d-none');
   $('#actualizarProyecto').addClass('d-none');
@@ -255,6 +349,7 @@ function limpiarFormularioCarpeta(){
 
   $('#carpetaNuevaTitulo').removeClass('d-none');
   $('#carpetaActualizarTitulo').addClass('d-none');
+  $('#carpetaSubTitulo').addClass('d-none');
 
   $('#proyectoNuevoTitulo').removeClass('d-none');
   $('#proyectoActualizarTitulo').addClass('d-none');
